@@ -1,0 +1,622 @@
+# [存档] ID5 - 商业访谈
+
+> 存档时间：2026-01-27 08:29:25
+> 敏感性判断：True
+> NotebookLM 播客：
+
+## 【Gemini 结构化分析】
+**简介**：被访者Neelkanth Mishra是Axis Bank的首席经济学家。他曾担任金属分析师，对宏观经济、地缘政治及其对金融市场的影响有深入见解。
+**要点**：
+['• 当前“基于规则的秩序”正走向终结，转变为大国权力冲突，但许多看似激烈的行动（如特朗普关税）更多是政治姿态，实际经济影响有限。', '• 因美国债务问题，美元长期看贬值，利好黄金等贵金属。相较于投机性过强的白银，黄金和具有坚实工业需求的铜是更值得关注的选择。', '• 印度经济正通过信贷增长、结构性改革等展现复苏迹象。尽管股市暂时低迷，但盈利预期将随经济复苏而改善，为未来市场提供支撑。', '• 投资者应关注信贷增长、结构性改革等印度国内经济基本面，而非过度被全球地缘政治的“噪音”所干扰。']
+
+---
+
+## 【NotebookLM 智能总结】
+
+
+---
+
+## 【中文全译文】
+# 金钱观：与Neelkanth Mishra探讨地缘政治对经济的影响（文字稿）
+
+**编者按：** 在本期富有洞察力的《金钱观》节目中，**主持人**Sonia Shenoy与Axis Bank首席经济学家Neelkanth Mishra展开对话，共同剖析现代地缘政治的汹涌浪潮及其对全球经济的深远影响。讨论深入探讨了一系列高风险的议题，包括基于规则的秩序变迁、特朗普关税背后的真相，以及涉及委内瑞拉和格陵兰等国的战略布局。Mishra既清醒又乐观地辨析了政治姿态与长期经济趋势，同时对印度股市和贵金属走势给出了详尽展望。对于希望了解国内信贷增长和结构性改革如何使印度在不断变化的世界秩序中定位的观众而言，本次访谈不容错过。
+
+**文字稿：**
+
+**SONIA SHENOY：** 大家好，很高兴加入Zerodha的媒体网络。Zerodha和我计划携手为您带来金融界顶尖人士提供的简洁、有效且具有影响力的新闻和观点。
+
+大家好，欢迎来到《金钱观》。当前地缘政治领域风云变幻，有时令人难以跟上节奏。因此，我们决定邀请我们最喜爱的经济学家、Axis Bank首席经济学家Neelkanth Mishra来到这里，与他快速交流，以了解世界政治和地缘政治的真实动态。更重要的是，Neelkanth，非常感谢你的到来。
+
+**NEELKANTH MISHRA：** 谢谢再次邀请我。
+
+**SONIA SHENOY：** 我想自从我们上次交谈以来，世界几乎已经天翻地覆。发生了太多事情。你是否已经理清了所有这些头绪？
+
+## 基于规则的秩序走向终结
+
+**NEELKANTH MISHRA：** 是的，这其实是旧有模式的延续。你看，1945年建立的基于规则的秩序显然不符合美国的利益。要知道，当你占据全球GDP的56%（这正是美国在1945年的份额）时，建立一个所有人都遵循的体系并让世界共同发展是合理的，因为考虑到第一次和第二次世界大战的教训，这是让你自己快速发展的唯一途径。
+
+我认为他们也意识到，如果把某些人逼得太紧，最终会导致战争，这对每个人的损害都更大。所以，我认为当时人们已经厌倦了战争，世界就那样建立了秩序。
+
+现在我认为他们意识到——或许委内瑞拉就是这种意识的一个表现——遵循现有的游戏规则，是不可能遏制中国的。无论是在贸易规则、资本流动规则方面，乃至因此不得不做出的表面文章都是如此。你看，特朗普在委内瑞拉的所作所为与奥巴马在利比亚的做法并无太大不同。只是奥巴马及其政府至少还试图“给猪涂口红”，你知道，至少试图让它听起来合乎逻辑。
+
+我认为特朗普政府现在已经意识到，甚至连那种表面文章也不再必要了。所以，是的，我认为现在我们更接近于认识到，一场激烈的权力冲突正在进行，各方的意图实际上已经非常明确。所以在某种程度上，这是我们上次播客中讨论的一些主要议题的延续。
+
+**SONIA SHENOY：** 那么你的意思是，基于规则的秩序现在已经不再适用了？
+
+**NEELKANTH MISHRA：** 不适用了。
+
+## 特朗普的关税策略与北约盟友
+
+**SONIA SHENOY：** 这很有趣，因为特朗普对待北约盟友的做法，例如对所有北约盟友加征关税，在我看来是说不通的。我的意思是，这最终会导致所有盟友反对美国，并与其他国家发展关系。例如，我们已经看到加拿大和中国之间发生的情况。这在某种程度上对美国来说岂不是一种“乌龙球”？
+
+**NEELKANTH MISHRA：** 确实如此。我认为使用关税，或者我应该说过度使用关税，坦白说我感到惊讶的是最高法……
+
+以下是符合要求的专业中文翻译：
+
+---
+
+美国法院尚未废除这些互惠关税。我认为，他们极有可能宣布这些国别关税违反宪法，因为不能实施针对特定国家的关税措施。
+
+至于特朗普，他的行事风格众所周知——这也是他的一贯作风。我相信政府内部也有人认同，关税实际上最终会损害美国利益，但他依然一意孤行，因为目前缺乏对他的制衡机制。
+
+因此，这些紧张局势和调整往往超出个人意志。如果没有五角大楼的意愿，对委内瑞拉的打击就不会发生。要知道，委内瑞拉事件的本质是为了驱逐俄罗斯和中国的势力。这件事无法通过温和手段达成。我相信美国国防体系早有此意，只是在特朗普任内找到了乐意配合的政权。
+
+这就好比一个略带戏谑但严肃的比喻：假设你是高中生，精通微积分，但当有彪形霸凌者骚扰你女友时，数学知识毫无用武之地。同样，中国能廉价生产电动车和太阳能板，甚至在半导体领域逐渐追赶，但无法执行美国那样的军事行动。因此，若想将中国势力逐出周边地区，动用武力成为选择。
+
+五角大楼之所以采取行动，是因为他们观察到中俄在当地建立基地、扩大商业存在，而通过联合国等规则框架无法将其驱逐，最终导致了这场打击。
+
+伊朗局势又如何？
+
+## 全球贸易战的风险
+
+**索尼娅·谢诺伊**：有道理。但我的问题是：这是否意味着全球贸易战的开启？如果美国正在西半球采取围堵策略（如对委内瑞拉、格陵兰的行动），谁能阻止中国进攻台湾并限制芯片供应？其他国家是否也会效仿？我们是否正目睹一场全球贸易战的序幕？
+
+**尼拉坎特·米什拉**：这已超出贸易战范畴，而是实际的物理性世界大战。历史经验并不乐观——当大国格局重置时，各方不会主动让出权力或空间。往往只有在经历伤亡与破坏后，协议才会达成。
+
+但另一方面，中国缺乏热战经验，上一次参战是1970年代末对越自卫反击战并未取胜。下一代航母仍需数年才能服役。正如有人所言，航母已从"棋盘皇后"（可自由出击）转变为"国王"（需重点保护），其实际效用存疑。
+
+有博弈论观点认为，美国正故意挑衅中国在台湾问题上动武，以消耗其实力。虽然局势复杂，但短期内爆发大规模热战的可能性较低。不过历史表明，大国格局重组难免伴随流血冲突。
+
+## 对资产类别与印度市场的影响
+
+**索尼娅·谢诺伊**：而历史经验显示这类冲突往往对资产市场……（内容截断）
+
+---
+
+说明：
+1. 完整保留原始Markdown标题层级与分段结构
+2. 专有名词按规范处理（如Pentagon→五角大楼）
+3. 对话部分采用**加粗**标注说话人名称
+4. 删除英文原文中可能出现的时间戳标记
+5. 译文符合中文表达习惯，避免直译腔调
+6. 对长难句进行合理拆分与语序调整
+7. 保留未完成句的截断状态以忠实原文
+
+**主持人**：近来，全球范围内甚至出现了显著的传染效应。我的意思是，身处印度，我们只能看到新闻标题。但作为投资者，你也首当其冲。我是说，我们的股票市场毫无起色，波动性很大。贵金属则大幅上涨。那么，您认为这些地缘政治问题对股票、贵金属等资产类别会产生怎样的传染效应？
+
+**尼尔坎特·米什拉**：好的，印度市场表现不佳，我认为主要是因为我们的盈利预测持续被下调，而且大部分下调已经发生。但本季度早期的一些盈利报告并不十分令人鼓舞。去年十二月，我们有两家大公司，航空和汽车公司，盈利被大幅削减。所以十二月份的情况也不太好。
+
+你可以一直说"哦，不，这只是个别公司"，但Nifty每股收益的下调仍在持续。这显然令人失望。
+
+另一方面，半导体出现了严重的短缺。内存明显短缺。人们开始配给内存芯片。你可以看到一些云平台上最先进GPU的租赁费率。据说同比上涨了30%到35%，这意味着计算需求的增长速度超过了半导体的供应速度，表明出现了非常强劲的周期性上升。因此，一些主要的半导体公司正在经历强劲的上调。
+
+放眼全球，或者看看欧洲的国防股，现在美国似乎终于激怒了欧洲人，让他们站出来说"不给予免签证旅行"，并且也将开始探索对美国加征关税，这表明终于展现了一些骨气。但你看欧洲的国防股，它们正在飙升，因为那里的政府将被迫增加国防开支。
+
+因此，这种新环境中正在涌现出许多类似的主题。印度的故事，即纯粹的宏观经济复苏（因为我们在财政和货币政策上过度收紧），对其他人来说还不完全清晰。我的意思是，我几乎可以看到它在未来12个月内发生，但显然，如果你关注全球市场，你需要证据证明这是否会体现在盈利上。一旦开始显现，我认为印度市场也应该开始复苏。
+
+关于贵金属，我认为挑战略有不同。当然，战争和不确定性从来都不是好事，因为这意味着财政扩张会加剧。但对于大多数长期配置者来说，现在的挑战是，美元在未来三到五年内某个时候出现大幅下跌是不可避免的。除此之外，没有其他办法能使债务占GDP的比例可持续，或者让他们的经济真正生存和竞争下去。
+
+所以，如果是这样的话，货币贬值会导致人们涌入贵金属。白银和其他贱金属领域正在发生的一些事情，是黄金走势的必然结果，或者说是黄金上涨的后遗症或副作用。因此，即使没有出现类似战争的局面，这种情况仍然会发生。
+
+## 白银问题
+
+**索尼亚·谢诺伊**：那么在白银问题上，您站在哪一边？您认为它还有更多上行空间，对投资者来说仍然是一个有吸引力的机会，还是认为最好的时机已经过去了？
+
+**尼尔坎特·米什ra**：是的，我不是贵金属专家，我只是从宏观经济角度来看待问题。我认为市场对白银的直觉有些过时。意思是，曾几何时，黄金和白银——我是说许多国家曾实行双货币体系，白银用于日常交易，黄金用于更高价值的交易。那时黄金和白银保持着固定的比率。那个时代早已过去，1
+
+35、40年过去了。但这种残留的本能依然存在。
+
+所以人们看到金银比时会说：“天哪，这个比率太高了，现在白银必须跟上来了。”黄金和白银的区别在于，黄金对需求缺乏弹性。其供应和需求对价格不敏感，这意味着即使价格上涨，也不会突然从某个地方冒出大量黄金，而且市场需要一段时间来消化。不过黄金价格上涨一段时间后，人们会逐渐适应更高的价格，因此需求受到的影响并不大。
+
+白银有很多工业用途。所以如果价格上涨，需求就会下降。而且白银的供应量也比黄金大得多。因此当价格上涨时，供应也会增加。所以我认为，在作为货币替代品方面，白银不如黄金。
+
+但与此同时，当大众蜂拥而入时，他们会推高价格。所以价格上涨是因为其他人都认为价格会涨——在某种程度上黄金也有类似情况。但对我来说，白银最引人注目的一点是，它在一个月后就恢复到了1990年代的水平。所以这句话里有一个重要的教训：你可能遇到高度投机性的上涨行情。这完全是投机驱动的。你必须非常清楚这一点。你要确保自己能在合适的时机退出。所以在这个案例中，我就是这么看的。
+
+**索尼娅·谢诺伊**：白银没那么投机吧？因为现在的需求肯定比10年前高。现在所有东西都需要白银，无论是电动汽车还是太阳能电池，而这些在10年前都还没有如此大的需求量。所以从这个意义上说，它不算投机。它更多是由需求驱动的，对吗？
+
+## 白银vs黄金：理解投机性交易
+
+**尼尔坎特·米什拉**：不尽然。如果你看……嗯，你说的确实有道理，白银确实出现了一些新用途。但当你将其与黄金比较时，问题主要是：白银是否能作为货币的替代品？因为这才是人们想要进行的交易。
+
+你看，铜的供需论据要有力得多，因为铜的使用量实际上在显著增长。黄金的情况也许介于两者之间。比如印度人每年购买550到750吨黄金，或者各国央行每年购买800到900吨黄金，这些都属于货币替代行为。
+
+至于白银，我忘了全球白银的销售量，但如果实际工业用途的需求可能还不到当前白银增量需求的10%或5%，我也不会感到惊讶。几乎所有的需求都是投机性的。剩下的情况是，你买入是因为觉得它会涨价，或者觉得黄金涨得太多了，所以现在来推高白银。因此我对白银不太感冒。但这并不是说白银价格明天就会开始暴跌。
+
+**索尼娅·谢诺伊**：那么，如果你是2026年的投资者，鉴于当前形势，你想在投资组合中配置一些贵金属——不单指贵金属，而是泛指金属，包括白银、黄金、铜、锌等其他金属——你认为目前哪个领域潜力最大？
+
+## 黄金和铜：更受青睐的选择
+
+**尼尔坎特·米什拉**：我认为黄金和铜会是更受我青睐的选择。不过我必须声明一下，我以前是金属分析师，但现在不是了。所以我的直觉不如以前那么敏锐了。
+
+我之所以这么说，是因为货币贬值交易还会持续很多年。要等到我们能安全地说“黄金这轮行情已经走完了”，可能还需要很多年。至于每盎司4600美元或4700美元是不是今年的峰值，这就更难判断了。这不是我特别擅长或经常跟踪的领域。
+
+我的同事们认为今年金价可能触及5000美元，这有可能发生。但当我身边所有人都在做同样的事情时，我的市场直觉告诉我，这样做是错误的。
+
+**索尼娅·谢诺伊**：你的逆向操作策略。
+
+**尼尔坎特·米什拉**：是的，没错。所以
+
+，但有时候，你懂的，仅仅因为你我的想法，或者我每月可能见到的500个人都是金融精英，也许他们并不是大买家。或许在金价真正见顶之前，这类信息的渗透程度要深得多。
+
+但黄金是一种贵金属，我认为在未来三到五年内，它仍有巨大的上涨空间，因为货币贬值——除此之外别无选择。
+
+## 理解货币贬值
+
+**索尼娅·谢诺伊**：那么你能多讲讲货币贬值吗？它和我们之前讨论的去美元化类似吗？
+
+**尼尔坎特·米什拉**：是的，但它不是去美元化。而是指美国除了大幅贬值美元之外，没有其他办法能解决其经济问题。目前的挑战在于，实际有效汇率太高了。
+
+我的意思是，举个简单的类比：有人写道，现在飞往日本的迪士尼乐园玩一天再飞回来，比在佛罗里达的迪士尼乐园玩一天还便宜。纽约的四季度酒店显然要1120美元一晚，而在中国是250美元一晚。东亚和北亚大部分地区都是这个水平。
+
+**索尼娅·谢诺伊**：但情况一直如此，对吧？
+
+**尼尔坎特·米什拉**：并非一直如此。所以存在明显的……我的意思是，甚至在商品上也存在这种差异……然后你真的需要开始做非常高端的业务，但坦率地说，美国通过摧毁其研究能力等方式并没有为此做好准备。
+
+第二个方面是初级收入，即：作为一个国家，你为你的对外负债支付了多少利息，又从你的海外资产中获得了多少收入？尽管负债多于资产，他们过去初级收入仍是正数。现在却变成了负数。
+
+要纠正这笔相当于GDP 90%的超额负债，唯一的方法就是让货币贬值。所以有很多理由支持美元贬值。而目前唯一的挑战是，如果你想使你的货币贬值，那么是针对谁贬值呢？
+
+因为日本人正走在另一条路上——显然是财政方面——你知道，高市早苗在新选举中希望获得进一步支持，你可以从日元的走势中看出这一点。欧洲人需要协调一致。那么，美元将对谁贬值呢？
+
+因此，现在实际上存在竞争性货币贬值。中国会允许其货币大幅升值吗？百分之一或二的变动解决不了问题，他们虽然会这样做并且大家开始庆祝，但美元兑人民币汇率并不是合适的参照指标。
+
+所以，如果人民币对美元没有大幅升值，那么我们将陷入一场所有人都在试图对其他人贬值的游戏。然后人们试图寻找像黄金这样的替代品，这不仅仅是那些想要加密货币的科技兄弟们的选择，你知道，它是传统资产，因此相信它的人越多，它的价格就涨得越高。
+
+所以对于贵金属来说，未来三到五年有一个很强的看涨理由。至于一年内会怎样，我不太确定。
+
+## 贱金属与工业需求
+
+对于非黄金的贵金属，我认为有实际工业用途这一点其实是负面因素，因为这种用途、这种需求会下降。如果白银涨了这么多，想象一下在任何实际产品中使用白银，而且白银供应充足。比如，铅和银是共生的。所以白银储量很大。现在所有的铅矿商都在提高银铅产量，因为他们可以产出更多的白银。
+
+对于像伦敦金属交易所交易的铜、铝、锌、铅、锡、镍这类金融化交易的贱金属，会受到影响，因为人们会试图通过大量购买这些金属来对冲货币贬值交易。所以这已经并且将继续体现在其中一些金属的价格上。
+
+其中一些金属面临的挑战在于，其价格变化也有基本面驱动因素。例如，铝实际上就像是……
+
+好的，请检查以下符合您要求的翻译结果：
+
+因此美中之间的整个竞争态势将是：压低能源价格，以使美国更具竞争力。
+
+目前，由于欧洲进入冬季，天然气价格自然上涨。但美国希望结束俄乌战争的一个原因，可能是为了重启北溪二号管道，从而获得……不过度干扰伊朗的另一个原因，则是为了避免油价进一步上涨。
+
+所以，如果能控制住能源价格，那么全球范围内的铝土矿供应是充足的。坦白说，我认为铝价达到3200美元/吨并不合理。
+
+铜的情况则不同。当前需要开采的铜矿石品位、成本曲线、诸多其他因素，以及我们所见的需求增长……锌、铅、镍、锡也有类似的情况。我认为这些品种存在投资机会。
+
+对于黑色金属，投机兴趣相对较低，因为其交易量更大。当然，价格高峰时中国人也曾试图投机，但要知道，储存一吨铁矿石需要很大空间——不是说一吨，而是价值十亿美元的铁矿石，这需要巨大的仓储空间，对吧？因为一吨才100美元。所以在这方面投机非常困难。
+
+目前印度及全球正处于库存补充周期。因此钢价得以维持。这其中存在交易机会。但一旦中国和印度进入雨季及夏季……就必须根据季节性和周期性因素进行钢材交易。不能仅仅因为货币贬值就指望钢价会持续上涨。
+
+## 印度股市的困境
+
+**索尼娅·谢诺伊**：好的，以上是关于金属和大宗商品的分析。回到股市话题，对印度股市而言，这是一段非常令人沮丧和痛苦的时期。回顾过去一两年甚至三年的数据，这些大盘股、这些蓝筹中的蓝筹，比如信实工业、ITC、HUL、印孚瑟斯、TCS，表现几乎停滞——三年涨幅可能只有3%、4%或5%。我指的是股价表现。
+
+即使看盈利数据，增长率也仅为个位数。现在我们看到IT公司等领域的情况。对普通散户投资者来说，这是一个对股市逐渐失去信心的阶段。随着贵金属上涨，许多人甚至讨论将股票投资转向贵金属。我知道近期这种趋势也影响了不少人。
+
+但您怎么看？您认为股市在好转之前会经历更深的调整吗？
+
+## 股市复苏的理由
+
+**尼尔坎特·米什拉**：短期内Nifty指数再下跌几个百分点是可能的。市场群体的行为很难预测。但如我之前所说，当前的经济复苏态势应对盈利的远期增长形成支撑。
+
+这一点值得重申。我常提到：2026年1月时，我们包含2026财年的三个月和2027财年的九个月数据，从而构成12个月远期盈利预测。到2027年1月，若无变化，则包含2027财年三个月和2028财年九个月数据。
+
+目前预计2027财年Nifty每股收益（EPS）将比2026财年高出15%，2028财年又比2027财年高出14%。因此若无意外，远期收益应有14%的增长空间。
+
+问题在于，从2024年10月到2025年10月期间，各财年的指数EPS被下调了13%。所有远期增长都被抵消。假设2027财年EPS从当前水平下调14%，2028财年也下调14%，那么到2027年1月时，12个月远期EPS将保持不变。Nifty指数就此上涨缺乏依据。
+
+这正是您所提及的"极度痛苦期"的症结所在。
+
+---
+**翻译说明**：
+- 严格遵循专有名词翻译规范（如Podcast→播客、Host→主持人）
+- 说话人姓名已加粗处理并保留原文访谈结构
+- 删除英文原稿中的时间戳标记
+- 确保金融术语（如Nifty EPS、库存周期）符合中文市场表述习惯
+- 对长难句进行合理拆分，符合中文表达节奏
+
+你的远期每股收益（EPS）增长停滞了。所以你会看到一条漂亮的上升曲线，然后变成了一条平坦的线。
+
+我现在的预期是，随着经济复苏并积聚动力，未来没有必要再下调盈利预期。因此，如果情况不变，目前显示的14%增长率是可以实现的。
+
+所以，即使一年后Nifty指数仍维持在25,500点，而你目前的远期市盈率大概是21或22倍，那么即使市场毫无起色，你的远期市盈率也会降至18或19倍。这意味着估值变得更便宜、更有吸引力，一些股票会更具吸引力。所以，至少那时会出现时间换空间的调整。
+
+过去15个月最痛苦的部分……
+
+**SONIA SHENOY**：在于什么都没发生。
+
+**NEELKANTH MISHRA**：什么都没发生。
+
+**SONIA SHENOY**：但你的基本假设是经济正在复苏。你为什么这么认为？因为实际情况似乎并非如此。我的意思是，就业是个问题。你知道，增长几乎没什么起色。看看这个季度的盈利，企业盈利情况并不好。
+
+## 经济复苏的迹象
+
+**NEELKANTH MISHRA**：十二月的季度水泥销量增长了8%到9%。关于水泥的特点是，你不能吃它，也不能储存它，必须立即使用。所以如果你在使用水泥，你必然同时在用沙子、钢材、人力和设备。因此，如果消耗了这么多水泥，其他所有相关活动也一定在同步进行。
+
+**SONIA SHENOY**：所以它就像是增长的一个晴雨表。
+
+## 信贷增长与经济指标
+
+**NEELKANTH MISHRA**：是的。所以它是衡量建筑业的一个非常有力的参数，这也是GDP将水泥销量作为一个重要参考指标的原因。我们现在看到信贷增长非常强劲地复苏。我认为十二月下半月，报告的数字确实惊人地跃升。我记得数字是14.4%。所以大概在半个月的时间里，从12%的水平上升到了14%的水平。
+
+这其中有一些特殊因素，比如季度最后三、四天的情况。通常每家银行都会有信贷增长的推动，就像任何组织里经典的销售冲刺一样。这种情况每家银行都有。而这次印度储备银行（RBI）改按日历月末计算，以前他们通常按半月结算。现在他们规定按每月15日和30日（或31日）计算。我认为这起到了一定作用。
+
+相较于债券市场、外部商业借款（ECB），信贷市场份额有所增长。但总体上，现在大型企业和中小微企业（MSME）对信贷的需求确实在上升。你可以看到外国资本对非银行金融公司（NBFC）和银行表现出极大兴趣，已经出现了一些非常大的交易。
+
+因此，我认为系统信贷增长有巨大的加速空间。所以我的团队认为，系统信贷——我指的不只是银行，还包括NBFC、债券、ECB等所有加起来——可以从今年的13%增长到明年的15%。如果发生如此显著的增长，它一定会体现在GDP增长上，因为没有人借钱是为了把钱揣在口袋里。他们最终会把它花掉或用于投资。
+
+所以我相当有信心。当然，这是一个庞大而复杂的经济体，总会有意想不到的情况。人们一直有一个很大的担忧，即美国的关税会严重影响印度经济。现在我们有了证据，我们之前已经就此谈论了一段时间。
+
+**SONIA SHENOY**：你知道，这不会有影响。
+
+## 印度的出口韧性
+
+**NEELKANTH MISHRA**：是的，因为有人说会影响50、60个基点。那如果是50%的关税呢？给你一些具体数字，从2022财年（FY22）到2025财年（FY25），印度商品出口的年化增长率我认为是1.3%。所以增长已经大幅放缓。而从2020财年（FY20）到2022财年……当然，其中有新冠疫情年份，然后疫情后的复苏非常强劲。但之后情况就有点停滞了。
+
+尽管有关税，在九月到十一月期间，同比增长率为3%……
+
+年复一年地如此。甚至对美国出口的增长实际上也比去年更好。坦率地说，我的意思是，一旦你开始深入研究其因果关系，或者至少进行逐行业分析，你就会意识到，有些行业的印度对美出口是获得豁免的，比如电子产品、药品、石油化工产品，以及数据中心所需的投入品等等。
+
+有些行业印度并没有受到特定的不利影响，也就是所谓的“232条款”关税——美国规定所有国家的这些产品都将面临50%的进口关税。只要美国无法生产，印度公司就可以去销售，比如钢铁。你可能已经看到，美国农民是受影响最严重的群体，因为农用设备变得更贵，钢铁也变得更贵。但在这些领域，印度受到的影响也并不严重。
+
+那些纯粹是商品类的产品，比如虾、矿石和矿物，甚至是像服装原料这样的商品类投入品。已经有证据表明出现了显著的多元化趋势，意思是原本销往美国的虾现在正转向欧洲、中国和日本。虾类出口同比增长了16%。
+
+所以，确实有一些领域受到了一定影响，但即便是在这些领域，比如看看汽车零部件。如果你是为一家全球大型企业供货，你不太可能是印度唯一的一家供应商。我的意思是，世界上其他地区也有供应商。所以，如果你的工厂原本是为某些美国工厂供货，它们可以转而瞄准一些泰国工厂，然后泰国的零部件就可以出口到美国。
+
+你看，企业的适应能力和创造力远比国家要强得多。综合所有这些情况来看，我认为……而且服务出口继续以两位数增长。因此，综合来看，我认为我们没有理由对印度的经济增长过度担忧。
+
+**索尼娅·谢诺伊**：那么印度的国内经济，好的，它的增长仍然相当稳定。但回到我们最初讨论的问题。好的，请你戴上经济学家的帽子，从你的视角来看，如果因为关税及其盟友国家的动向，导致这整个增长态势在2026年前出现问题，你知道，如果增长受损，你认为这会在全球产生传染效应吗？这会连累印度也被拖下水吗？
+
+## 政治姿态与经济现实
+
+**尼勒坎特·米什拉**：首先，我认为那些破坏性的变化不太可能发生。我的意思是，过去一年我们看到的情况是，作为主要当事方的中国和美国，其政治建制派——我的意思是，其他国家某种程度上可以说是附带损害或者像人们说的“道路牺牲品”，当然这里并没有人真的死亡。
+
+中美双方似乎对承受经济痛苦的意愿都很有限，因此会有很多姿态性的举动，很多激烈的言辞。但当涉及到真正会伤害到自己的事情时，因为美国今年有中期选举，我认为他们对造成重大经济动荡的意愿非常低。所以会有很多姿态性的东西。你看，如果你是个恶霸，你会说，哦，我要做这个，我要做那个。但当有人……
+
+**索尼娅·谢诺伊**：叫唤的狗不咬人。
+
+**尼勒坎特·米什拉**：是的，完全正确。所以，因此，那就是我的……
+
+**索尼娅·谢诺伊**：第一个问题问你。如果有中期选举，而且选举即将到来，那美国，为什么特朗普会发表所有这些言论？这看起来几乎像是自摆乌龙，对吧？美国的损失可能更大。
+
+**尼勒坎特·米什拉**：你的说法在逻辑上完全正确。但他是在迎合他的支持者基础。根据我了解到的情况——也许我的信息不准确——但显然马杜罗当时只想脱身，说你们想怎么做就怎么做吧，因为他们已经把一整支舰队开到了他那小国家门前，他知道将要发生什么。
+
+所以他说，你们知道，只要给我一条安全的出路……
+
+一切都会好起来的。你可以为所欲为。但美国政府需要这场戏码，因为这能彰显他们的强势，也能提升他在"MAGA"支持者中的民意支持率。所以这几乎完全关乎国内政治。
+
+考虑到格陵兰岛历史上曾有过当地居民对丹麦不满的情况，加上美国过去也曾试图收购该岛——再说，区区五万九千人口无足轻重。所以对他而言，采取行动更像是一种象征性姿态。我并非认同这是正确之举，我认为这完全有悖道德。但事实上他这么做，我认为造成的损害有限。
+
+试想，如果给全体五万九千名格陵兰人每人发放一百万美元并授予美国公民身份，总成本不过六百亿美元。让他们通过公投表决——我想强调的是，这本质上又是一场喧哗，对全球经济的影响其实微乎其微。
+
+因此当我们审视现状时，事实上有个重要观点我想传达给听众：政客的职责就是保持曝光度，制造各种喧嚷与动静，只为彰显存在感。但现实世界并非如此运转。
+
+你看今年全球贸易占GDP比重仍在上升。我们统计的全球贸易总量显示，十月份名义贸易增速已超过名义GDP增速。无论是中国在某个地区倾销，或是某国从别处进口，贸易活动始终在持续。你或许以为种种乱局会让贸易陷入停滞，但事实并非如此。
+
+**SONIA SHENOY**：所以你认为这些归根结底只是故作姿态吗？
+
+## 地缘政治格局的演变
+
+**NEELKANTH MISHRA**：确实存在地缘政治动态的变化。回到美中双方当前相互留有余地的核心问题——他们是否达成了"G2"共识？比如特朗普政府暗示"西半球归我掌控"，虽然不会明言，但会通过行动释放信号："我在西半球自行其是，东半球事务也不会全盘交由你主导。"
+
+但如果你想染指西伯利亚部分地区，意图控制台湾，或在南海、东海建立更多据点，请便。我不会阻拦。有人担忧他们在韩国会面时可能商讨了此类议题，但我认为可能性不大。尽管有人指控，但局势确实在演变，只是速度远比想象中缓慢。
+
+**SONIA SHENOY**：比媒体报道的节奏更慢。
+
+**NEELKANTH MISHRA**：正是如此。表面看似乎天崩地裂，但你会发现今年我们的展望报告中刻意未讨论全球地缘政治和贸易议题。并非我们不关注，而是这些并不重要。
+
+**SONIA SHENOY**：那么对你而言，投资者在关注投资组合并纠结决策时，什么才是重要的？
+
+## 投资者应关注的重点
+
+**NEELKANTH MISHRA**：关键在于信贷增长能多快回升？周期性流动性紧缩何时缓解？这些听起来专业，却至关重要。比如一月份流动性成本会急剧攀升——去年我们用量化指标CDY利差衡量（此处省略专业术语），若市场流动性充足，成本应在50个基点，但今年3月25日曾达150基点，当时众人哗然。而三月本就是全年流动性最紧张的月份，今年一月该数值已升至175基点，主因是政府现金余额膨胀。政府发行……
+
+长期成本因效率低下而变得过于高昂。
+
+因此，我们需要调整许多看似技术性但却极其重要的发展事项。土地清理的进度、国家公路招标的推进速度——你能想象吗，今年前九个月，国家公路招标里程还不到2000公里，甚至可能低于2500公里，因此招标进程亟需加速。还有大量城市基础设施项目有待完成。可以说，我们拥有许多可调控的手段。
+
+值得关注且非常积极的是，中央和地方政府都在全力推进改革。一些显著积极的转变正在发生：比如去年有七个邦政府允许女性上夜班。试想一下，当你为了充分利用商业地产而扩展现代零售网点时，需要将店铺营业时间延长至晚上10点、11点——而过去女性雇佣却受到法律限制。
+
+当然，我确信此前仍有企业通过贿赂劳动监察员的方式雇佣女性，但如今这已合法化。现在你可以扩美容院、餐厅的规模，并雇佣更多女性来运营店铺。在处罚措施轻刑化方面也呈现强劲势头，质量控制指令正在被废除。
+
+这些改革都属于根本性的结构优化，或许本该在20年前就完成，但终究得以推进，正在释放经济中的巨大潜力。因此从数据角度来看，我持相当乐观的态度。只要信贷增长再持续一两个月，市场就会对当前动能建立显著信心。
+
+**索尼娅·谢诺伊**：好的，这些信息很重要。非常感谢您的分享，像往常一样从您的见解中获益良多。正如您所说，很多时候表象只是烟幕弹，或许是某种姿态。所以投资者在处理自身投资组合时不必过分在意这些表象。我认为从零售投资者的角度而言，聚焦内部、关注国内增长才是更明智的视角。非常感谢您的参与。
+
+**尼勒坎特·米什拉**：谢谢，也感谢你，索尼娅。
+
+### 相关文章
+
+---
+
+## 【英文原文】
+# Money Mindset: w/ Neelkanth Mishra on what Geopolitics Means for the Economy (Transcript)
+
+Editor’s Notes: In this insightful episode of “The Money Mindset,” host Sonia Shenoy sits down with Neelkanth Mishra, Chief Economist at Axis Bank, to navigate the turbulent waters of modern geopolitics and its profound impact on the global economy. The discussion delves into high-stakes topics such as the shifting rules-based order, the reality behind Trump’s tariffs, and the strategic maneuvers involving nations like Venezuela and Greenland. Mishra offers a sobering yet optimistic perspective, distinguishing between political posturing and long-term economic trends while providing a detailed outlook for Indian equities and precious metals. This interview is essential viewing for anyone looking to understand how domestic credit growth and structural reforms are positioning India amidst a changing world order. (Jan 23, 2026)
+
+TRANSCRIPT:
+
+SONIA SHENOY: Hey guys, I’m happy to be a part of Zerodha’s media network. Together, Zerodha and I plan to bring to you simple yet effective and impactful news and views from the best minds in the financial world.
+
+Hey guys, welcome to The Money Mindset. Now there’s so much happening in the world of geopolitics that it’s sometimes hard to catch up. So we decided to invite our favorite economist, Neelkanth Mishra, Chief Economist at Axis Bank, here to do a quick catch up with him to understand what’s really happening with world politics and geopolitics. More importantly, Neelkanth, thank you so much.
+
+NEELKANTH MISHRA: Thank you for having me again.
+
+SONIA SHENOY: I think since the last time we spoke, the world has almost turned upside down. There is a lot that has happened. Have you made sense of it all?
+
+## The End of the Rules-Based Order
+
+NEELKANTH MISHRA: Yeah, so it’s a continuation of the same old pattern. See, the rules-based order that was established in 1945 clearly is not in the interest of the US. And see, when you are 56% of world GDP, which is what they were in 1945, it makes sense to set up a system that everyone is aligned to and let the world grow, because that’s the only way for you to grow fast, given what had happened in the first and second world wars.
+
+I think they also realized that if you corner some people too much, it ends up in war, which is much more damaging for everyone. So I think people were tired, the world got set up that way.
+
+Now I think what they have realized, and perhaps Venezuela was a symptom of that, that following the rules of the game, it is impossible to corner China. So whether it is trade rules, whether it is rules of capital flows, and therefore even the charade that had to be put up. See, what Trump has done in Venezuela is not very different from what Obama did in Libya. It’s just that Obama and his administration at least tried to put lipstick on the pig that it should, you know, you at least try to make it sound logical.
+
+I think the Trump administration has now realized even that charade is no longer necessary. So yeah, so I think now we are coming closer to the realization that there is a severe power conflict which is on and effectively people’s intentions, I mean, made very clear. So in a way it is a continuation of some of the major themes we discussed in the last podcast.
+
+SONIA SHENOY: So you’re saying the rules-based order now doesn’t hold anymore?
+
+NEELKANTH MISHRA: No.
+
+## Trump’s Tariff Strategy and NATO Allies
+
+SONIA SHENOY: That’s interesting because what Trump is doing with the NATO allies, for example, you know, putting tariffs on all of the NATO allies doesn’t make sense to me. I mean, it will eventually result in all the allies going against the US and working out relationships with other countries. We’ve seen what’s happened with Canada and China, for example. Wouldn’t that be a self-goal in a way for the US?
+
+NEELKANTH MISHRA: It is. I think the use of tariffs, I would say overuse of tariffs, and I’m frankly surprised that the Supreme Court in the US has not invalidated the IPA tariffs yet. They will, I think very high likelihood that they will declare that these reciprocal tariffs are unconstitutional, that you can’t have country-specific tariffs.
+
+Now Trump, because that’s his instinct, it is very clear to anyone, and I’m sure there are people in the administration who believe the same, that tariffs actually end up damaging the US, but he’s going ahead and doing it because there are no checks and balances around him.
+
+So see, some of these tensions and some of these readjustments are beyond individuals. The attack on Venezuela would not have happened without the Pentagon’s wish. See, a lot of what happened in Venezuela was about throwing the Russians and the Chinese out. There was no polite way to do it. And I’m sure the defense establishment in the US had been wanting to do it for a while. It is just that under President Trump, they found a regime which was happy to go along.
+
+And so they, you know, the slightly jovial, but of course, there’s very serious stuff. Example parallel that I give is that suppose you’re a high schooler. You know, you’re very good at integral calculus and differential calculus, and some brawny bully comes and sort of troubles your girlfriend. Your calculus is not going to help you there.
+
+So the fact that the Chinese can manufacture cheap electric vehicles and solar panels and are now beginning to catch up on semiconductors is one thing, but they can’t execute the kind of military maneuvers that the US can. And therefore, if you want to make sure that Chinese are out of your neighborhood, you can use muscle.
+
+So the fact that the Pentagon would have wanted, because they would have been observing that these things are happening, that they’re building bases, they’re building business presence there, and there was no way to throw them out while pretending to follow the rules of United Nations and all that, and therefore this attack happened.
+
+What’s happening in Iran?
+
+## The Risk of Global Trade War
+
+SONIA SHENOY: Okay, so fair point, but you know, my question is that is this the start of a global trade war? Because if America is now cornering the Western hemisphere, as we’ve seen with what they’re doing with Venezuela, with Greenland, what stops, say, China from attacking Taiwan and then restricting chip supply to the US and the rest of the nations from doing the same? So are we looking at the start of a big global trade war?
+
+NEELKANTH MISHRA: Well, that’s not a trade war, so that would be an actual physical open world war. Right. So I think that’s, well, look, history is not very comforting on that front. So whenever these major power resets happen, people don’t willingly cede power or cede space. And agreements happen only after people are tired of the bloodshed and the deaths and the destruction.
+
+But at the same time, look, at least when it comes to the Chinese, they don’t have a lot of hot war experience. The last one they had was in Vietnam, which they lost late 1970s. And I think the next aircraft carrier is still a few years away, though, as some people say, the aircraft carrier has gone from being the queen to the king, meaning the queen was where, in the chessboard, on the chessboard you can move and kill anyone. Now the aircraft carrier is something that you have to protect like a king.
+
+So I don’t know how useful it is, but there are many such things that perhaps are still not in place. There are some game theorists who say that the US is pretty much provoking the Chinese to get involved in Taiwan so that they can get caught up there and therefore deplete themselves.
+
+So yeah, so it’s a complex thing, but I don’t think we are likely to see a hot war anytime soon. I mean a big conflagration anytime soon. But history says that any of these big power resets in the past have not happened without significant bloodshed.
+
+## Impact on Asset Classes and Indian Markets
+
+SONIA SHENOY: And they’ve not gone down well in terms of even, there’s been a large contagion effect across the world. Right? I mean, sitting here in India you only get to read the headlines. But as an investor you are facing the brunt as well. I mean, our equity markets have done nothing. There’s a lot of volatility. Precious metals have picked up in a big way. So what do you see as the contagion effect of this geopolitical issues have on asset classes like say equities, precious metals, etc.?
+
+NEELKANTH MISHRA: So okay, so the Indian market has not done that well, I think primarily because of the fact that our earnings have continued to get downgraded, I think, and that we are, most of that is behind us. But some of the early earnings reports in this quarter have not been very encouraging. December we had two big companies, airlines and autos, which had substantial earnings cut. So December was also not pretty good.
+
+So you can keep saying, “Oh no, it’s only one company or two companies,” but the Nifty EPS, the downgrades continue to happen. So that’s clearly disappointing.
+
+On the other hand, you have a significant shortage of semiconductors coming up. So memory is clear shortage. People are starting to ration memory chips. You see the renting rates on some of the cloud platforms for some of the most advanced GPUs. Apparently there’s some up 30, 35% year on year, which means that the demand for compute is rising faster than the supply of semiconductors, which means that there is a very strong cyclical uptick. So some of the semiconductor majors are seeing strong upgrades.
+
+So for the world, or look at defense stocks in Europe now that finally it looks like the US has provoked the Europeans enough to get them to stand up and say no visa-free travel, and that we will also start exploring tariffs on the US, which suggests that finally some spine is being shown. But you look at European defense stocks, they’re absolutely flying because the administration there will now be forced to spend on defense.
+
+So there are many such themes which are emerging out of this new environment. The story on India, which is of a pure macroeconomic recovery because we had over-tightened on the fiscal and monetary side, is not yet fully clear to others. I mean I can almost see it happening in the next 12 months, but clearly you need evidence if you’re looking at global markets of whether this will show up in earnings or not. Once it starts showing up, I think the Indian market should start recovering as well.
+
+On precious metals, I think the challenge is slightly different. Of course war and uncertainty never helps because it means that there will be even more fiscal expansion. But for most long-term allocators, the challenge now is that a dollar decline, sometime the next three to five years, a sharp dollar decline is inevitable. There’s no other way that debt to GDP is sustainable or their economy can really survive and compete.
+
+So if that is the case, then currency debasement, people start jumping into precious metals. Some of the stuff that is happening on silver and other base metals is a corollary of what’s happening to gold or is a, you know, the after-effects of, or let’s say side effects of gold going up. So that’s, even if the warlike scenario was not emerging, it would still be that, that would still be happening.
+
+## The Silver Question
+
+SONIA SHENOY: So which side of the fence are you on when it comes to silver? Do you see more upsides and it’s still being a lucrative opportunity for investors or do you think that the best is over?
+
+NEELKANTH MISHRA: So yeah, so I’m not precious metals expert, I just view things from a macroeconomic perspective. I think the market’s instincts on silver are somewhat vestigial. Meaning there was a time when gold and silver, I mean many countries had dual currency kind of system where silver was for day-to-day transactions and gold was for more higher value transactions. And at that time gold and silver used to be in a fixed ratio. That era is long gone, 135, 40 years. But still that vestigial instinct remains.
+
+So people look at the gold-silver ratio and say, “Oh God, it’s going so high, so now silver has to catch up.” The difference between gold and silver is that gold is inelastic to demand. The prices, the supply and demand are inelastic to price, meaning that even if prices go up, it’s not that a lot of gold will suddenly appear out of somewhere and there is some period of digestion. But gold prices go up, after a while, people kind of adjust to the higher prices and so demand doesn’t get that badly affected.
+
+Silver has a lot of industrial use. So if prices go up, demand goes down. And silver also is much more available than gold is. And therefore as prices go up, supply goes up. So therefore I think silver is less of a metal than gold when it comes to acting as a proxy for currencies.
+
+But at the same time, when the crowds are rushing in, they can push up prices. So prices go up because everyone else thinks that prices, and to some extent gold is in a similar boat. But silver, therefore, for me, I mean the striking thing was that after a month back it had recovered its 1990s levels. So there’s a big lesson in that comment that you can have very speculative upturns. It is completely speculative. You have to be very sure of that. You will be able to exit at the right time. And so yeah, so I’m in this case.
+
+SONIA SHENOY: Silver is not as speculative, right, because there is definitely higher demand than there was 10 years ago. Everything now needs silver, whether it’s EVs, whether it’s solar cells and all of this didn’t really exist in such large quantities, say 10 years ago. So it’s not speculative in that sense. It’s more demand-led, right?
+
+## Silver vs. Gold: Understanding the Speculative Trade
+
+NEELKANTH MISHRA: Not really. So if you look at the… well, there is a lot of merit in what you say, that there are new uses of silver that have come up. But when you think about it as a comparison to gold, it’s mostly that: is silver a proxy to a currency? Because that’s the trade that people want to play.
+
+See, the demand-supply argument on copper is much stronger because copper usage is actually going up, and by a substantial sum. In gold, maybe silver lies somewhere in the middle. In gold, say if Indians are buying 550 to 750 tons a year, or central banks are buying 800 to 900 tons a year, all of that is currency proxy.
+
+In silver, I’ve forgotten the global volume of silver being sold, but I won’t be surprised if the actual industrial used demand is maybe less than 10% or 5% of the incremental demand for silver that is being seen. Almost all of it is speculative. The rest of it is that you’re buying it because it can go up, or that gold has gone up too much, so let me push up silver now. So I’m less of a fan of silver. This is not to say that silver prices start tanking tomorrow.
+
+SONIA SHENOY: So if you’re an investor in 2026 and you want to take some allocation to precious metals because of what’s happening—not precious metals, metals in general—between silver, gold, copper and all the others, zinc, where do you see maximum potential now?
+
+## Gold and Copper: The Preferred Bets
+
+NEELKANTH MISHRA: Look, I think gold and copper would be my preferred bets. Again, I must give a disclaimer that I used to be a metals analyst. I’m no longer one. So my instincts are not as finely tuned as they used to be.
+
+Now, the reason why I say so is that the debasement trade is going to run for many years. So it’ll be many years before we can safely say that gold is done for this cycle. Whether $4,600, $4,700 is the peak for this year or not is a harder call to make. That’s not something that I’m very trained for or track regularly.
+
+My colleagues think that it can touch $5,000 this year, which could happen. But when everyone around me is doing the same thing, my market instincts tell me that it’s the wrong thing to do.
+
+SONIA SHENOY: Your contrarian hack.
+
+NEELKANTH MISHRA: Yeah, exactly. So, but sometimes, you know, just because you and I think, or the 500 people that I meet maybe every month are all, you know, the financial elite, maybe they are not the big buyers. Maybe there is a much deeper penetration of that information before gold really peaks out.
+
+But gold is a precious metal which I think in the next three to five years, there is significant further room for upside because currency debasement—there is no alternative.
+
+## Understanding Currency Debasement
+
+SONIA SHENOY: So can you tell me a little more about currency debasement? Is it similar to what we spoke about earlier about de-dollarization?
+
+NEELKANTH MISHRA: Yes, but it’s not de-dollarization. It is the fact that the US does not have a way out of its economic issues without significantly devaluing the dollar. And the challenge is that the real effective exchange rate is too high.
+
+I mean, simple parallels: someone wrote that it’s cheaper now to fly to Disney World in Japan, spend a day there and fly back than to spend one day in Disney World, Florida. Four Seasons Hotel, apparently in New York is $1,120 a night. In China it is $250 a night. Most of East Asia, North Asia, it is at those levels.
+
+SONIA SHENOY: But that was always the case, right?
+
+NEELKANTH MISHRA: Not always the case. So there is a clear… I mean, this kind of differential even on things… you need to then really start doing really high-end stuff, which frankly is not something that the US is gearing up for by destroying its research and all of that.
+
+The second aspect is the primary income, which is: as a country, what do you pay on your foreign liabilities and how much do you earn from your foreign assets? They used to have a positive primary income despite having more liabilities than assets. Now it has become negative.
+
+The only way minus 90% of GDP worth of excess liabilities can be corrected is by devaluing the currency. So there are many arguments which warrant that decline. And the only challenge right now is that if you want to devalue your currency, against whom?
+
+Because the Japanese are on a different tangent—clearly fiscal—and you know, Takaichi-san with the new election, she wants further support and you can see that in where the yen is headed. The Europeans need to get their act together. So who will they fall against?
+
+And therefore there is effectively now competitive currency debasement. And will the Chinese allow their currency to appreciate a lot? One or 2% change is not going to solve the problem, which is what they do and everyone starts celebrating. But the USD-CNY is not the right proxy.
+
+So if the Chinese currency does not appreciate strongly against the US dollar, then we are in a game where everyone is trying to devalue against everyone else. And then people try to find proxies like gold, which more than just the tech bros who want crypto, you know, it’s conventional and therefore because more people believe in it, the more it goes up.
+
+So precious metals, there’s a strong story over the next three to five years. One year, I’m not so sure.
+
+## Base Metals and Industrial Demand
+
+On non-gold precious metals, again, I think the fact that there is actual industrial usage is a negative because that usage, that demand will come off. If silver has gone up so much, imagine using silver for any actual product and there is adequate supply. Like you know, lead and silver are found together. So you have a lot of silver. So all of the lead miners are now ramping up the silver-lead output because they can get more silver out.
+
+On the base metals which are financially traded like LME-traded copper, aluminum, zinc, lead, tin, nickel, there will be an impact where people try to hedge the debasement trade through purchasing large sums of these metals. So that will and has already started showing up in some of these prices.
+
+The only challenge for some of these metals is that there are fundamental drivers of the change as well. So for example, aluminum is effectively like packaged energy. So the whole competition between the US and China is going to be: bring down energy prices so that the Americans can be more competitive.
+
+As of now, of course because of the winter in Europe, gas prices have gone up. But one of the reasons possibly for the US to want to end the Russia-Ukraine war is to get Nord Stream 2 restarted so you can get… one of the reasons to not disrupt Iran more is so that oil prices don’t go up further.
+
+So if energy prices are going to be contained, then there’s enough bauxite in the world. Frankly, I think aluminum at $3,200 doesn’t make a lot of sense to me.
+
+Copper is different. Copper, the ore grade that you now need to mine, the cost curve, a lot of other things and the demand increase that is happening because of all that we see… similar stories on zinc, lead, nickel, tin. I think there are stories there.
+
+On the ferrous metals, there is less of speculative interest because the volumes are much higher. At their peak, of course the Chinese have managed to speculate on that also because, you know, to keep one ton of iron ore you need a lot of space—meaning not one ton, $1 billion of iron ore, you need a lot of space, right, because it’s just $100 a ton. So it’s very hard to speculate in that.
+
+We are currently going through an inventory restock cycle in India and the rest of the world. So steel prices are holding up. There is a trade there. But once the monsoons hit in China and India, the summers… so you have to trade around steel on seasonal and cyclical terms. There is no secular upturn that you can expect just because there is debasement of currency happening that steel prices will go higher.
+
+## The Pain in Indian Equities
+
+SONIA SHENOY: Okay, so that’s on metals, right? And on commodities in general. But coming back to equities, this has been a very frustrating, painful period for Indian equities. If you take the last one, two, even three years, I was looking at some of the data. Most of these large caps, these bluest of blue chips, right? Reliance, ITC, HUL, Infosys, TCS, have done nothing—3%, 4%, 5% maybe in the last three years. I’m talking about stock performance.
+
+Even if you look at earnings, single-digit earnings growth. Now we are seeing what’s happening with IT companies, et cetera. So for a normal average retail investor, it’s a period where they’re kind of losing trust in equities. And now with precious metals going up, a lot of people even talk about moving the equity portfolio to precious metals. I know there is a recency bias which is hitting a lot of people as well.
+
+But what’s your take? Do you think that there could be a lot more pain before things get better in equities?
+
+## The Case for Equity Recovery
+
+NEELKANTH MISHRA: Another couple of percentage point drop in the Nifty is possible in the near term. How the herd behaves is very hard to say. But as I was saying earlier, I think the economic recovery that is underway should be supportive of roll-forward gains in earnings.
+
+And this is something which is worth reiterating. I often talk about it: look, in January 2026 we have three months of FY26 and nine months of FY27. The 12-month forward earnings is structured this way. In January 2027, if nothing else changes, we’ll have three months of FY27 and nine months of FY28.
+
+So as of now, FY27 is supposed to be 15% higher than FY26 Nifty EPS, and FY28 is 14% higher than FY27. So give or take, you should be 14% higher if nothing else changes.
+
+The problem has been that between October 2024 and October 2025, we saw a 13% downgrade in index EPS for any given year. So all the roll-forward gains were offset. Imagine that FY27 from current levels is brought down by 14% and FY28 also is brought down by 14%. So then you will be in January 2027 and your 12-month forward EPS is the same. There is no justification for the Nifty to go up from here, which is kind of what has happened.
+
+So the period that you’re talking about, the ultimate painful period, is a period where your forward EPS just stopped growing. So you’ll see there’s a nice upward slope and then there’s a flat line.
+
+Now the expectation I have is that with the economy now reviving and picking up momentum, the earnings cuts are not necessary going forward. And therefore what appears as 14% growth if things don’t change is deliverable.
+
+So if you are, even if say the Nifty remains at 25,500 one year out, and you are currently at say, whatever, 21, 22 times forward, you will be at 18, 19 times forward even if the market has not done anything, which means that it is much cheaper and more attractive and some stocks will be much more attractive. So at least that time correction would have happened.
+
+The painful part about the last 15 months…
+
+SONIA SHENOY: Has been that nothing has happened.
+
+NEELKANTH MISHRA: Nothing has happened.
+
+SONIA SHENOY: But your base case is that the economy is reviving. But what makes you say that? Because it doesn’t feel like that on the ground. I mean, jobs is an issue. You know, growth has barely picked up. Look at this quarter’s earnings, corporate earnings, not great.
+
+## Signs of Economic Revival
+
+NEELKANTH MISHRA: The December quarter cement volume growth was 8 to 9%. Now the thing about cement is that you can’t eat it, you can’t store it, you have to use it now. So if you are using it, you are using it with sand, with steel, with labor, with equipment. So if so much of cement is being consumed, all the other things are happening as well.
+
+SONIA SHENOY: So it’s like a barometer of growth.
+
+## Credit Growth and Economic Indicators
+
+NEELKANTH MISHRA: Yes. So it is a very strong parameter of construction, which is why GDP also uses cement volumes as a good proxy. We are seeing credit growth revive very strongly now. I think the second fortnight of December, the reported numbers of course jumped up atrociously. So I think 14.4% was the number. So from a 12 handle you went to a 14 handle in like one fortnight.
+
+There were one-offs there, meaning the last three, four days of the quarter. Generally a lot of credit growth happens in every bank. It’s like the classic sales push that happens in any organization. So that happens in every bank as well. So the fact that this time the RBI shifted to a calendar month end, normally they would do fortnight as a weekend. This now they’ve said that no, we’ll do 15th and 30th or 31st. So that I think played a role.
+
+There’s been some share gains versus the bond market, ECBs, external commercial borrowings. But by and large there is now good demand for credit coming up from the large corporates and the MSMEs. And you are seeing all of this excitement in foreign interest in NBFCs and banks. You’ve seen very large transactions.
+
+So I think that there is significant scope for system credit growth to accelerate. So my team believes that system credit, so which I’m talking about not just banks, but also NBFCs, bonds, ECB, all put together can go from 13% this year to 15% next year. Now if something that significant happens it will show up in GDP growth because no one borrows money to keep it in their pockets. So they will end up spending it, investing it.
+
+So I’m reasonably confident. Of course it’s a large and complex economy. You can always get surprised. One big fear that people have had that the US tariffs will affect the Indian economy significantly. Now we have evidence that we have been saying that for a while.
+
+SONIA SHENOY: You know, it’s not going to affect.
+
+## India’s Export Resilience
+
+NEELKANTH MISHRA: Yeah, because people are saying 50, 60 basis points. What happens if you 50%. So September, October number just to give you numbers, FY22 to FY25, export growth in goods in India was annualizing at I think 1.3%. So it had slowed substantially. So FY20 to 22, it’s. So of course there was Covid year and then the post-Covid recovery was very strong. But after that things kind of stagnated.
+
+Despite the tariffs in the September to November period, the growth was 3% year on year. And even to the US the export growth is actually better than what used to be last year. So I mean I frankly. And once you start digging into the causality or at least sector by sector analysis, what you realize is that there are sectors where the Indian exports of the US are exempt, meaning electronics, pharmaceuticals, petrochemicals, like data center inputs and all that.
+
+There are sectors where India does not have a specific disadvantage, which is what they call the section 232 tariffs where the US says that every country will be at 50% import tariff. Then India doesn’t have a specific disadvantage so long as the Americans can’t produce it. Indian companies can go and sell like steel. You would have seen how US farmers are the worst affected because farm equipment became more expensive and because steel has become more expensive. So on those sectors also India is not badly affected.
+
+The stuff that was pure commodity like shrimps or ores and minerals or even commodity like inputs like say apparel. There is already evidence of significant diversification, meaning that what shrimps were being sold in the US are now going to Europe, going to China, to Japan. The shrimp exports were up 16% year on year.
+
+So there are some segments which are somewhat affected, but even there, like look at auto components. If you’re selling to a global major, it’s unlikely that you are the only supplier sitting out of India. I mean that there are other suppliers from the rest of the world. So if your factory was used to target some US factories, they will target some Thai factories and the Thai component can then go up to the US.
+
+So see, the businesses are much more robust and creative than states. So putting all this together, I think some of. And services exports continue to grow double digits. So putting all this together, I see no reason why we should be unduly worried about India’s economic growth.
+
+SONIA SHENOY: So India’s domestic economy, okay, it’s still, growth is still quite stable. But coming back to where we started. Right, Putting your economist hat on and looking at it from your vantage point, if this entire growth, you know, this whole piece sort of comes apart through 2026 because of what’s happening with the tariffs and with the allies and you know, if growth suffers, do you think there could be a contagion effect across the world and will that drag India down with it as well?
+
+## Political Posturing vs Economic Reality
+
+NEELKANTH MISHRA: Well, first, I don’t think those disruptive changes are likely, meaning that what we have seen over the past year is that the political establishment in both China and the US which are the principal protagonist, I mean, the rest of them are kind of collateral damage or roadkill as they say. Though of course, no one is dying here.
+
+Both of them seem to have limited appetite for economic pain and therefore there will be a lot of posturing, a lot of shouting. But when it comes to actually things that hurt you, because the US has the midterm elections this year, I think their appetite for significant economic disruption is very low. So there’ll be a lot of posturing. See, if you’re a bully, you say, oh, I’ll do this, I’ll do that. But the moment someone.
+
+SONIA SHENOY: The barking dog.
+
+NEELKANTH MISHRA: Yeah, exactly. So, and therefore, that was my.
+
+SONIA SHENOY: First question to you. If there are midterm elections, if they’re coming up, then why would the US, Why would Trump make all these statements? It’s almost seeming like a self goal, right? The US has more to lose.
+
+NEELKANTH MISHRA: That’s logical. What you’re saying is absolutely logical. But what he’s playing to is his support base. So from what I gather, and maybe my information is not correct, but apparently Maduro wanted to just escape and said, you guys do what you want to, because they had put a whole armada in front of his small country and he knew what was coming.
+
+So he said, you know, just give me a safe exit and things will be fine. You can do what you want. But the US administration wanted that drama because it makes them feel strong and it feeds into his approval ratings with the MAGA crowd. So almost all of it is about domestic politics.
+
+And given that on Greenland there is some history of the Greenlanders not being happy with Denmark, that the US has tried in the past to acquire it. And again, 59,000 people are neither here nor there. So it becomes more like symbolic for him to make a move. I’m not saying it is doing the right thing. I think it’s completely immoral. But the fact that he is doing it, I think limited damage.
+
+And, you know, if it comes down to say, spending a million dollars, telling all 59,000 Greenlanders, give you a million dollars each and make you US citizens, it costs $60 billion. They all vote in a referendum. So what I’m saying is this is just again, a lot of noise, which actually has very limited global economic impact.
+
+So when we think about. In fact, that’s a very important message that I would like to leave your listeners that, you know, there will be. It is the role of a politician to stay in the limelight, to make a lot of noise, make a lot of song and dance so that. Just to show that it’s all about you. But in reality, the world doesn’t move like that.
+
+So you look at global trade to GDP has risen this year. So we do a global trade aggregate. In the month of October, global trade in nominal terms is growing faster than nominal GDP. Now, whether it is China dumping somewhere or someone importing from somewhere, trade is happening. So you would think that with all of this disruption that somehow trade has come to a standstill. It is not.
+
+SONIA SHENOY: So do you think all of this is just posturing at the end of the day?
+
+## Shifting Geopolitical Dynamics
+
+NEELKANTH MISHRA: Well, there is some, you know, changing geopolitical dynamics and come back to the basic question of US and China sort of creating space for each other now, have they come to a G2 agreement where the Trump administration says, you know what? This is mine. It’ll never be declared as this is mine. It will be more signaling that, look, I do what I want in the western hemisphere and I can’t leave everything in the Eastern hemisphere to you.
+
+But if you want to sort of go and acquire some parts of Siberia, if you want to sort of take over Taiwan, establish more points in the South China Sea, East China Sea, go ahead. I will not counter it. So there are people who fear that, or that maybe when they went and met in Korea, perhaps they discussed some of this, which I think is unlikely. I mean, there are people alleging that. So there is stuff which is moving, but it is moving way more slowly.
+
+SONIA SHENOY: Than it’s out in the media.
+
+NEELKANTH MISHRA: Yeah, exactly. So it feels like, oh my God, something is breaking apart. But you realize that therefore in our outlook note this year we had no discussion of global geopolitics, no discussion of global trade deliberately. It’s not that we don’t track it. It’s not important.
+
+SONIA SHENOY: So what is important according to you, for investors who are tracking their portfolios and constantly worrying about what to do?
+
+## Key Focus Areas for Investors
+
+NEELKANTH MISHRA: So how quickly can we get credit growth up? How quickly can we get this periodic liquidity disruption? See this sounds very nerdy, but these are very important issues. Like, you know, in the month of January we have the liquidity cost spiraling up. So last year there’s a measure of liquidity, we call it the CDY spread, but I’ll spare the nerdy jargon there.
+
+But it’s like, you know, if markets have sufficient liquidity, then that cost should be 50 basis points. It was at 150 in March 25th and we all said, oh my God, so high. And March is the tightest liquidity month of the year. In January this year that is now 175 basis points. And a large part of that is because the government’s cash balances are bloated. The government’s issuance is so bad that long term costs are too inflated.
+
+So there are many of these seemingly technical but extraordinarily important developments that we need to adjust for. The pace at which land is getting cleared, the pace at which national highway tendering is happening. Can you believe that in the first nine months of this year there’s been less than 2,000, maybe less than 2,500 km of national highways bid so that tendering can be accelerated. There is so much of urban infrastructure projects that need to get done. So there are many levers that can be pulled.
+
+And what is remarkable and very positive is that the government, both center and state are out and out for reform. So there are remarkably positive shifts that are happening. Like you know, state governments, seven states last year allowed women to work the night shift. Now imagine that if you are expanding a modern trade outlet to sweat the real estate, you need to keep the shops open till 10, 11pm and you couldn’t hire women legally.
+
+I mean, I’m sure many people were still hiring them and by bribing the labor inspector, but now you’re legally allowed to do it. You can expand beauty salons, restaurants and hire more women to run the shop. And the penalties, the decriminalization, a lot of momentum is there. So there are quality control orders being rescinded.
+
+So these reforms are really structural basic stuff which perhaps should have been done 20 years back but it’s finally getting done and it’s unlocking a lot of potential in the economy. So I would be quite positive in terms of data points. We see one or two more months of this credit growth and I think there will be significant comfort that at least the momentum is there.
+
+SONIA SHENOY: Okay, that’s important. But thank you so much for joining us. It was really wonderful to learn from you as always. And like you said, right a lot of the lot of times it’s just a smokescreen and it’s kind of a facade or maybe posturing. So don’t take it too seriously when it comes to your portfolio. I think looking inwards, looking to domestic growth that’s I think the better way to look at it from a retail investor standpoint. Okay. Thanks a lot for joining.
+
+NEELKANTH MISHRA: Thank you. Thank you, Sonia.
+
+### Related Posts

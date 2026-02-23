@@ -1,0 +1,24 @@
+2026-02-13 19:11:28,381 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-13 19:11:28,381 - INFO - Added job "process_articles" to job store "default"
+2026-02-13 19:11:28,381 - INFO - Scheduler started
+2026-02-13 19:11:28,381 - INFO - GE HealthCare RSS Polling service started.
+2026-02-13 19:11:28,381 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-13 19:11:28,381 - INFO - - Only processes articles from today and yesterday
+2026-02-13 19:11:28,381 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-13 19:11:28,381 - INFO - - Auto-publishes to WeChat after processing
+2026-02-13 19:11:28,381 - INFO - Running initial check...
+2026-02-13 19:11:28,381 - INFO - Checking for new articles...
+2026-02-13 19:11:28,382 - INFO - ============================================================
+2026-02-13 19:11:28,382 - INFO - Fetching articles from all sources...
+2026-02-13 19:11:28,382 - INFO - ============================================================
+2026-02-13 19:11:28,382 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 19:11:33,670 - INFO - Target dates: {datetime.date(2026, 2, 12), datetime.date(2026, 2, 13)}
+2026-02-13 19:11:33,671 - INFO - Found 20 items in RSS feed
+2026-02-13 19:11:33,683 - INFO - [Main RSS] Found 0 recent articles
+2026-02-13 19:11:33,766 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-13 19:11:44,540 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 12), datetime.date(2026, 2, 13)}
+2026-02-13 19:11:44,555 - INFO - Found 76 total links on investor page
+2026-02-13 19:11:44,894 - INFO - [Investor] Found 0 recent articles
+2026-02-13 19:11:44,965 - INFO - Total unique articles found: 0
+2026-02-13 19:11:44,965 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-13 19:11:44,965 - INFO - Processing complete

@@ -1,0 +1,22 @@
+# NotebookLM Skills Configuration
+
+You have access to a Python tool library located in `notebook_tool.py`.
+This library allows you to interact with Google NotebookLM directly.
+
+## Capabilities:
+1. Create new notebooks.
+2. Upload local files (PDFs, TXT) to a notebook.
+3. Add URLs to a notebook.
+4. Query/Chat with a notebook.
+5. List existing notebooks.
+
+## How to use:
+When I ask you to perform actions related to NotebookLM (like "upload this file" or "summarize this"), you should:
+1. Write a temporary Python script (e.g., `run_task.py`) that imports `NotebookSkill` from `notebook_tool.py`.
+2. Instantiate `NotebookSkill`.
+3. Call the appropriate async methods inside an `asyncio.run()` block.
+4. Execute the script in the terminal for me.
+
+## Important:
+- Always use the `NotebookSkill` class wrapper. Do not try to use the raw `notebooklm-py` library unless necessary.
+- If I don't provide a Notebook ID, list the notebooks first or ask me to create one.

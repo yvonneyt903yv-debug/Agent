@@ -1,0 +1,1638 @@
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+/Library/Developer/CommandLineTools/usr/bin/python3: can't open file '/Users/yvonne/Documents/Agent/gps/ge.py': [Errno 1] Operation not permitted
+2026-02-11 14:39:03,169 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-11 14:39:03,169 - INFO - Added job "process_articles" to job store "default"
+2026-02-11 14:39:03,169 - INFO - Scheduler started
+2026-02-11 14:39:03,169 - INFO - GE HealthCare RSS Polling service started.
+2026-02-11 14:39:03,169 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-11 14:39:03,169 - INFO - - Only processes articles from today and yesterday
+2026-02-11 14:39:03,169 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-11 14:39:03,169 - INFO - - Auto-publishes to WeChat after processing
+2026-02-11 14:39:03,169 - INFO - Running initial check...
+2026-02-11 14:39:03,169 - INFO - Checking for new articles...
+2026-02-11 14:39:03,169 - INFO - ============================================================
+2026-02-11 14:39:03,169 - INFO - Fetching articles from all sources...
+2026-02-11 14:39:03,169 - INFO - ============================================================
+2026-02-11 14:39:03,169 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-11 14:39:04,170 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-11 14:39:04,171 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-11 14:39:16,235 - INFO - [Investor] Found 0 recent articles
+2026-02-11 14:39:16,386 - INFO - Total unique articles found: 0
+2026-02-11 14:39:16,386 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-11 14:39:16,387 - INFO - Processing complete
+2026-02-11 19:43:02,280 - WARNING - Run time of job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-11 18:39:03 CST)" was missed by 1:03:59.107657
+2026-02-11 22:39:03,227 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 02:39:03 CST)" (scheduled at 2026-02-11 22:39:03.168961+08:00)
+2026-02-11 22:39:03,234 - INFO - Checking for new articles...
+2026-02-11 22:39:03,238 - INFO - ============================================================
+2026-02-11 22:39:03,238 - INFO - Fetching articles from all sources...
+2026-02-11 22:39:03,238 - INFO - ============================================================
+2026-02-11 22:39:03,239 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-11 22:39:04,972 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-11 22:39:04,973 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-11 22:39:14,454 - INFO - [Investor] Found 0 recent articles
+2026-02-11 22:39:14,673 - INFO - Total unique articles found: 0
+2026-02-11 22:39:14,673 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-11 22:39:14,673 - INFO - Processing complete
+2026-02-11 22:39:14,673 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 02:39:03 CST)" executed successfully
+2026-02-12 02:39:03,270 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 06:39:03 CST)" (scheduled at 2026-02-12 02:39:03.168961+08:00)
+2026-02-12 02:39:03,283 - INFO - Checking for new articles...
+2026-02-12 02:39:03,285 - INFO - ============================================================
+2026-02-12 02:39:03,285 - INFO - Fetching articles from all sources...
+2026-02-12 02:39:03,285 - INFO - ============================================================
+2026-02-12 02:39:03,285 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 02:39:03,904 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 02:39:03,906 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-12 02:39:12,252 - INFO - [Investor] Found 0 recent articles
+2026-02-12 02:39:12,367 - INFO - Total unique articles found: 0
+2026-02-12 02:39:12,367 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-12 02:39:12,367 - INFO - Processing complete
+2026-02-12 02:39:12,367 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 06:39:03 CST)" executed successfully
+2026-02-12 06:39:03,242 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 10:39:03 CST)" (scheduled at 2026-02-12 06:39:03.168961+08:00)
+2026-02-12 06:39:03,244 - INFO - Checking for new articles...
+2026-02-12 06:39:03,244 - INFO - ============================================================
+2026-02-12 06:39:03,245 - INFO - Fetching articles from all sources...
+2026-02-12 06:39:03,245 - INFO - ============================================================
+2026-02-12 06:39:03,245 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 06:39:04,091 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 06:39:04,093 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-12 06:39:13,273 - INFO - [Investor] Found 0 recent articles
+2026-02-12 06:39:13,455 - INFO - Total unique articles found: 0
+2026-02-12 06:39:13,456 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-12 06:39:13,456 - INFO - Processing complete
+2026-02-12 06:39:13,456 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 10:39:03 CST)" executed successfully
+2026-02-12 10:39:03,288 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 14:39:03 CST)" (scheduled at 2026-02-12 10:39:03.168961+08:00)
+2026-02-12 10:39:03,295 - INFO - Checking for new articles...
+2026-02-12 10:39:03,296 - INFO - ============================================================
+2026-02-12 10:39:03,296 - INFO - Fetching articles from all sources...
+2026-02-12 10:39:03,296 - INFO - ============================================================
+2026-02-12 10:39:03,296 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 10:39:03,942 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 10:39:03,944 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-12 10:39:14,520 - INFO - [Investor] Found 0 recent articles
+2026-02-12 10:39:14,774 - INFO - Total unique articles found: 0
+2026-02-12 10:39:14,774 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-12 10:39:14,774 - INFO - Processing complete
+2026-02-12 10:39:14,774 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 14:39:03 CST)" executed successfully
+2026-02-12 14:39:03,287 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 18:39:03 CST)" (scheduled at 2026-02-12 14:39:03.168961+08:00)
+2026-02-12 14:39:03,294 - INFO - Checking for new articles...
+2026-02-12 14:39:03,295 - INFO - ============================================================
+2026-02-12 14:39:03,295 - INFO - Fetching articles from all sources...
+2026-02-12 14:39:03,295 - INFO - ============================================================
+2026-02-12 14:39:03,295 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 14:39:03,931 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 14:39:03,933 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-12 14:39:13,674 - INFO - [Investor] Found 0 recent articles
+2026-02-12 14:39:13,924 - INFO - Total unique articles found: 0
+2026-02-12 14:39:13,924 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-12 14:39:13,924 - INFO - Processing complete
+2026-02-12 14:39:13,925 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 18:39:03 CST)" executed successfully
+2026-02-12 18:39:03,252 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 22:39:03 CST)" (scheduled at 2026-02-12 18:39:03.168961+08:00)
+2026-02-12 18:39:03,261 - INFO - Checking for new articles...
+2026-02-12 18:39:03,261 - INFO - ============================================================
+2026-02-12 18:39:03,261 - INFO - Fetching articles from all sources...
+2026-02-12 18:39:03,261 - INFO - ============================================================
+2026-02-12 18:39:03,261 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 18:39:03,870 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 18:39:03,873 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-12 18:39:13,081 - INFO - [Investor] Found 0 recent articles
+2026-02-12 18:39:13,185 - INFO - Total unique articles found: 0
+2026-02-12 18:39:13,185 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-12 18:39:13,185 - INFO - Processing complete
+2026-02-12 18:39:13,185 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-12 22:39:03 CST)" executed successfully
+2026-02-12 22:39:03,255 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 02:39:03 CST)" (scheduled at 2026-02-12 22:39:03.168961+08:00)
+2026-02-12 22:39:03,259 - INFO - Checking for new articles...
+2026-02-12 22:39:03,260 - INFO - ============================================================
+2026-02-12 22:39:03,260 - INFO - Fetching articles from all sources...
+2026-02-12 22:39:03,260 - INFO - ============================================================
+2026-02-12 22:39:03,260 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 22:39:03,898 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-12 22:39:03,900 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-12 22:39:12,851 - INFO - [Investor] Found 0 recent articles
+2026-02-12 22:39:13,037 - INFO - Total unique articles found: 0
+2026-02-12 22:39:13,037 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-12 22:39:13,037 - INFO - Processing complete
+2026-02-12 22:39:13,037 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 02:39:03 CST)" executed successfully
+2026-02-13 02:39:03,263 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 06:39:03 CST)" (scheduled at 2026-02-13 02:39:03.168961+08:00)
+2026-02-13 02:39:03,265 - INFO - Checking for new articles...
+2026-02-13 02:39:03,265 - INFO - ============================================================
+2026-02-13 02:39:03,265 - INFO - Fetching articles from all sources...
+2026-02-13 02:39:03,265 - INFO - ============================================================
+2026-02-13 02:39:03,265 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 02:39:03,867 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 02:39:03,869 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-13 02:39:12,406 - INFO - [Investor] Found 0 recent articles
+2026-02-13 02:39:12,502 - INFO - Total unique articles found: 0
+2026-02-13 02:39:12,502 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-13 02:39:12,502 - INFO - Processing complete
+2026-02-13 02:39:12,502 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 06:39:03 CST)" executed successfully
+2026-02-13 12:27:00,299 - WARNING - Run time of job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 14:39:03 CST)" was missed by 1:47:57.125126
+2026-02-13 14:39:03,236 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 18:39:03 CST)" (scheduled at 2026-02-13 14:39:03.168961+08:00)
+2026-02-13 14:39:03,245 - INFO - Checking for new articles...
+2026-02-13 14:39:03,251 - INFO - ============================================================
+2026-02-13 14:39:03,251 - INFO - Fetching articles from all sources...
+2026-02-13 14:39:03,251 - INFO - ============================================================
+2026-02-13 14:39:03,252 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 14:39:04,012 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 14:39:04,014 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-13 14:39:12,481 - INFO - [Investor] Found 0 recent articles
+2026-02-13 14:39:12,697 - INFO - Total unique articles found: 0
+2026-02-13 14:39:12,697 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-13 14:39:12,697 - INFO - Processing complete
+2026-02-13 14:39:12,697 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 18:39:03 CST)" executed successfully
+2026-02-13 18:39:03,312 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 22:39:03 CST)" (scheduled at 2026-02-13 18:39:03.168961+08:00)
+2026-02-13 18:39:03,318 - INFO - Checking for new articles...
+2026-02-13 18:39:03,371 - INFO - ============================================================
+2026-02-13 18:39:03,371 - INFO - Fetching articles from all sources...
+2026-02-13 18:39:03,371 - INFO - ============================================================
+2026-02-13 18:39:03,371 - INFO - Fetching RSS feed: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 18:39:04,044 - ERROR - Error fetching main RSS: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 18:39:04,046 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-13 18:39:13,114 - INFO - [Investor] Found 0 recent articles
+2026-02-13 18:39:13,264 - INFO - Total unique articles found: 0
+2026-02-13 18:39:13,264 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-13 18:39:13,264 - INFO - Processing complete
+2026-02-13 18:39:13,265 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 22:39:03 CST)" executed successfully
+2026-02-13 19:11:23,942 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-13 19:11:23,943 - INFO - Added job "process_articles" to job store "default"
+2026-02-13 19:11:23,943 - INFO - Scheduler started
+2026-02-13 19:11:23,943 - INFO - GE HealthCare RSS Polling service started.
+2026-02-13 19:11:23,943 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-13 19:11:23,943 - INFO - - Only processes articles from today and yesterday
+2026-02-13 19:11:23,943 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-13 19:11:23,943 - INFO - - Auto-publishes to WeChat after processing
+2026-02-13 19:11:23,943 - INFO - Running initial check...
+2026-02-13 19:11:23,943 - INFO - Checking for new articles...
+2026-02-13 19:11:23,943 - INFO - ============================================================
+2026-02-13 19:11:23,943 - INFO - Fetching articles from all sources...
+2026-02-13 19:11:23,943 - INFO - ============================================================
+2026-02-13 19:11:23,943 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 19:11:30,136 - INFO - Target dates: {datetime.date(2026, 2, 13), datetime.date(2026, 2, 12)}
+2026-02-13 19:11:30,136 - INFO - Found 20 items in RSS feed
+2026-02-13 19:11:30,146 - INFO - [Main RSS] Found 0 recent articles
+2026-02-13 19:11:30,289 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-13 19:11:41,928 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 13), datetime.date(2026, 2, 12)}
+2026-02-13 19:11:41,950 - INFO - Found 76 total links on investor page
+2026-02-13 19:11:42,329 - INFO - [Investor] Found 0 recent articles
+2026-02-13 19:11:42,481 - INFO - Total unique articles found: 0
+2026-02-13 19:11:42,482 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-13 19:11:42,482 - INFO - Processing complete
+2026-02-13 19:12:17,330 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-13 19:12:17,330 - INFO - Added job "process_articles" to job store "default"
+2026-02-13 19:12:17,330 - INFO - Scheduler started
+2026-02-13 19:12:17,330 - INFO - GE HealthCare RSS Polling service started.
+2026-02-13 19:12:17,330 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-13 19:12:17,330 - INFO - - Only processes articles from today and yesterday
+2026-02-13 19:12:17,330 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-13 19:12:17,330 - INFO - - Auto-publishes to WeChat after processing
+2026-02-13 19:12:17,330 - INFO - Running initial check...
+2026-02-13 19:12:17,330 - INFO - Checking for new articles...
+2026-02-13 19:12:17,331 - INFO - ============================================================
+2026-02-13 19:12:17,331 - INFO - Fetching articles from all sources...
+2026-02-13 19:12:17,331 - INFO - ============================================================
+2026-02-13 19:12:17,331 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 19:12:22,737 - INFO - Target dates: {datetime.date(2026, 2, 13), datetime.date(2026, 2, 12)}
+2026-02-13 19:12:22,737 - INFO - Found 20 items in RSS feed
+2026-02-13 19:12:22,741 - INFO - [Main RSS] Found 0 recent articles
+2026-02-13 19:12:22,913 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-13 19:12:33,582 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 13), datetime.date(2026, 2, 12)}
+2026-02-13 19:12:33,599 - INFO - Found 76 total links on investor page
+2026-02-13 19:12:33,943 - INFO - [Investor] Found 0 recent articles
+2026-02-13 19:12:34,058 - INFO - Total unique articles found: 0
+2026-02-13 19:12:34,058 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-13 19:12:34,058 - INFO - Processing complete
+2026-02-13 19:12:37,265 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-13 19:12:37,265 - INFO - Added job "process_articles" to job store "default"
+2026-02-13 19:12:37,265 - INFO - Scheduler started
+2026-02-13 19:12:37,265 - INFO - GE HealthCare RSS Polling service started.
+2026-02-13 19:12:37,265 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-13 19:12:37,265 - INFO - - Only processes articles from today and yesterday
+2026-02-13 19:12:37,265 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-13 19:12:37,265 - INFO - - Auto-publishes to WeChat after processing
+2026-02-13 19:12:37,265 - INFO - Running initial check...
+2026-02-13 19:12:37,265 - INFO - Checking for new articles...
+2026-02-13 19:12:37,266 - INFO - ============================================================
+2026-02-13 19:12:37,266 - INFO - Fetching articles from all sources...
+2026-02-13 19:12:37,266 - INFO - ============================================================
+2026-02-13 19:12:37,266 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 19:12:42,158 - INFO - Target dates: {datetime.date(2026, 2, 13), datetime.date(2026, 2, 12)}
+2026-02-13 19:12:42,158 - INFO - Found 20 items in RSS feed
+2026-02-13 19:12:42,161 - INFO - [Main RSS] Found 0 recent articles
+2026-02-13 19:12:42,336 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-13 19:12:52,897 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 13), datetime.date(2026, 2, 12)}
+2026-02-13 19:12:52,919 - INFO - Found 76 total links on investor page
+2026-02-13 19:12:53,348 - INFO - [Investor] Found 0 recent articles
+2026-02-13 19:12:53,491 - INFO - Total unique articles found: 0
+2026-02-13 19:12:53,492 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-13 19:12:53,492 - INFO - Processing complete
+2026-02-13 23:22:11,927 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-13 23:12:37 CST)" (scheduled at 2026-02-13 23:12:37.265508+08:00)
+2026-02-13 23:22:11,935 - INFO - Checking for new articles...
+2026-02-13 23:22:11,982 - INFO - ============================================================
+2026-02-13 23:22:11,982 - INFO - Fetching articles from all sources...
+2026-02-13 23:22:11,982 - INFO - ============================================================
+2026-02-13 23:22:11,982 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-13 23:22:19,879 - INFO - Target dates: {datetime.date(2026, 2, 13), datetime.date(2026, 2, 12)}
+2026-02-13 23:22:19,879 - INFO - Found 20 items in RSS feed
+2026-02-13 23:22:19,881 - INFO - [Main RSS] Found 0 recent articles
+2026-02-13 23:22:20,112 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-13 23:22:31,360 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 13), datetime.date(2026, 2, 12)}
+2026-02-13 23:22:31,382 - INFO - Found 76 total links on investor page
+2026-02-13 23:22:31,706 - INFO - [Investor] Found 0 recent articles
+2026-02-13 23:22:31,885 - INFO - Total unique articles found: 0
+2026-02-13 23:22:31,885 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-13 23:22:31,885 - INFO - Processing complete
+2026-02-13 23:22:31,885 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-14 03:12:37 CST)" executed successfully
+2026-02-14 11:35:43,667 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-14 15:12:37 CST)" (scheduled at 2026-02-14 11:12:37.265508+08:00)
+2026-02-14 11:35:43,671 - INFO - Checking for new articles...
+2026-02-14 11:35:43,727 - INFO - ============================================================
+2026-02-14 11:35:43,727 - INFO - Fetching articles from all sources...
+2026-02-14 11:35:43,728 - INFO - ============================================================
+2026-02-14 11:35:43,729 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-14 11:35:50,797 - INFO - Target dates: {datetime.date(2026, 2, 13), datetime.date(2026, 2, 14)}
+2026-02-14 11:35:50,798 - INFO - Found 20 items in RSS feed
+2026-02-14 11:35:50,799 - INFO - [Main RSS] Found 0 recent articles
+2026-02-14 11:35:51,039 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-14 11:36:03,033 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 13), datetime.date(2026, 2, 14)}
+2026-02-14 11:36:03,057 - INFO - Found 76 total links on investor page
+2026-02-14 11:36:03,408 - INFO - [Investor] Found 0 recent articles
+2026-02-14 11:36:03,627 - INFO - Total unique articles found: 0
+2026-02-14 11:36:03,627 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-14 11:36:03,627 - INFO - Processing complete
+2026-02-14 11:36:03,627 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-14 15:12:37 CST)" executed successfully
+2026-02-15 11:15:27,958 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-15 15:12:37 CST)" (scheduled at 2026-02-15 11:12:37.265508+08:00)
+2026-02-15 11:15:27,966 - INFO - Checking for new articles...
+2026-02-15 11:15:28,026 - INFO - ============================================================
+2026-02-15 11:15:28,026 - INFO - Fetching articles from all sources...
+2026-02-15 11:15:28,026 - INFO - ============================================================
+2026-02-15 11:15:28,028 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-15 11:15:36,363 - WARNING - There was an error managing chromedriver (error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)); using driver found in the cache
+2026-02-15 11:15:36,364 - WARNING - Error sending stats to Plausible: error sending request for url (https://plausible.io/api/event)
+2026-02-15 11:16:04,687 - ERROR - Error fetching main RSS: Message: unknown error: net::ERR_CONNECTION_RESET
+  (Session info: chrome=144.0.7559.133)
+Stacktrace:
+0   chromedriver                        0x0000000100ee7928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x0000000100edfc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x00000001009c283c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75008
+3   chromedriver                        0x00000001009baa00 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 42692
+4   chromedriver                        0x00000001009ad11c cxxbridge1$string$len + 5152
+5   chromedriver                        0x00000001009aec24 cxxbridge1$string$len + 12072
+6   chromedriver                        0x00000001009ad588 cxxbridge1$string$len + 6284
+7   chromedriver                        0x00000001009acd30 cxxbridge1$string$len + 4148
+8   chromedriver                        0x00000001009aca5c cxxbridge1$string$len + 3424
+9   chromedriver                        0x00000001009aa620 chromedriver + 222752
+10  chromedriver                        0x00000001009ab0ec chromedriver + 225516
+11  chromedriver                        0x00000001009c5d30 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 88564
+12  chromedriver                        0x0000000100a4bad4 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 636824
+13  chromedriver                        0x0000000100a4afe8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 634028
+14  chromedriver                        0x0000000100a0007c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 326976
+15  chromedriver                        0x0000000100ea6884 cxxbridge1$str$ptr + 2831984
+16  chromedriver                        0x0000000100ea9fcc cxxbridge1$str$ptr + 2846136
+17  chromedriver                        0x0000000100e8b578 cxxbridge1$str$ptr + 2720612
+18  chromedriver                        0x0000000100eaa850 cxxbridge1$str$ptr + 2848316
+19  chromedriver                        0x0000000100e7b640 cxxbridge1$str$ptr + 2655276
+20  chromedriver                        0x0000000100ece194 cxxbridge1$str$ptr + 2994048
+21  chromedriver                        0x0000000100ece310 cxxbridge1$str$ptr + 2994428
+22  chromedriver                        0x0000000100edf85c cxxbridge1$str$ptr + 3065416
+23  libsystem_pthread.dylib             0x000000019e71dc08 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000019e718ba8 thread_start + 8
+
+2026-02-15 11:16:04,965 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-15 11:16:11,919 - WARNING - There was an error managing chromedriver (error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)); using driver found in the cache
+2026-02-15 11:16:50,707 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 15), datetime.date(2026, 2, 14)}
+2026-02-15 11:17:13,770 - INFO - Found 1 total links on investor page
+2026-02-15 11:17:13,820 - INFO - [Investor] Found 0 recent articles
+2026-02-15 11:17:14,270 - INFO - Total unique articles found: 0
+2026-02-15 11:17:14,270 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-15 11:17:14,270 - INFO - Processing complete
+2026-02-15 11:17:14,270 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-15 15:12:37 CST)" executed successfully
+2026-02-15 15:12:37,452 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-15 19:12:37 CST)" (scheduled at 2026-02-15 15:12:37.265508+08:00)
+2026-02-15 15:12:37,459 - INFO - Checking for new articles...
+2026-02-15 15:12:37,561 - INFO - ============================================================
+2026-02-15 15:12:37,561 - INFO - Fetching articles from all sources...
+2026-02-15 15:12:37,561 - INFO - ============================================================
+2026-02-15 15:12:37,562 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-15 15:13:16,237 - WARNING - There was an error managing chromedriver (error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)); using driver found in the cache
+2026-02-15 15:13:16,269 - WARNING - Error sending stats to Plausible: error sending request for url (https://plausible.io/api/event)
+2026-02-15 15:14:26,821 - ERROR - Error fetching main RSS: syntax error: line 8, column 0
+2026-02-15 15:14:27,664 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-15 15:17:50,127 - WARNING - There was an error managing chromedriver (error sending request for url (https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json)); using driver found in the cache
+2026-02-15 15:18:58,524 - ERROR - Error fetching investor page: Message: unknown error: net::ERR_CONNECTION_RESET
+  (Session info: chrome=144.0.7559.133)
+Stacktrace:
+0   chromedriver                        0x0000000105083928 cxxbridge1$str$ptr + 3098388
+1   chromedriver                        0x000000010507bc04 cxxbridge1$str$ptr + 3066352
+2   chromedriver                        0x0000000104b5e83c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75008
+3   chromedriver                        0x0000000104b56a00 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 42692
+4   chromedriver                        0x0000000104b4911c cxxbridge1$string$len + 5152
+5   chromedriver                        0x0000000104b4ac24 cxxbridge1$string$len + 12072
+6   chromedriver                        0x0000000104b49588 cxxbridge1$string$len + 6284
+7   chromedriver                        0x0000000104b48d30 cxxbridge1$string$len + 4148
+8   chromedriver                        0x0000000104b48a5c cxxbridge1$string$len + 3424
+9   chromedriver                        0x0000000104b46620 chromedriver + 222752
+10  chromedriver                        0x0000000104b470ec chromedriver + 225516
+11  chromedriver                        0x0000000104b61d30 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 88564
+12  chromedriver                        0x0000000104be7ad4 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 636824
+13  chromedriver                        0x0000000104be6fe8 _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 634028
+14  chromedriver                        0x0000000104b9c07c _RNvCs5DBLTqoOdVp_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 326976
+15  chromedriver                        0x0000000105042884 cxxbridge1$str$ptr + 2831984
+16  chromedriver                        0x0000000105045fcc cxxbridge1$str$ptr + 2846136
+17  chromedriver                        0x0000000105027578 cxxbridge1$str$ptr + 2720612
+18  chromedriver                        0x0000000105046850 cxxbridge1$str$ptr + 2848316
+19  chromedriver                        0x0000000105017640 cxxbridge1$str$ptr + 2655276
+20  chromedriver                        0x000000010506a194 cxxbridge1$str$ptr + 2994048
+21  chromedriver                        0x000000010506a310 cxxbridge1$str$ptr + 2994428
+22  chromedriver                        0x000000010507b85c cxxbridge1$str$ptr + 3065416
+23  libsystem_pthread.dylib             0x000000019e71dc08 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000019e718ba8 thread_start + 8
+
+2026-02-15 15:18:59,238 - INFO - Total unique articles found: 0
+2026-02-15 15:18:59,239 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-15 15:18:59,239 - INFO - Processing complete
+2026-02-15 15:18:59,240 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-15 19:12:37 CST)" executed successfully
+2026-02-15 19:21:59,158 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-15 23:12:37 CST)" (scheduled at 2026-02-15 19:12:37.265508+08:00)
+2026-02-15 19:21:59,163 - INFO - Checking for new articles...
+2026-02-15 19:21:59,212 - INFO - ============================================================
+2026-02-15 19:21:59,212 - INFO - Fetching articles from all sources...
+2026-02-15 19:21:59,213 - INFO - ============================================================
+2026-02-15 19:21:59,213 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-15 19:22:06,114 - INFO - Target dates: {datetime.date(2026, 2, 15), datetime.date(2026, 2, 14)}
+2026-02-15 19:22:06,117 - INFO - Found 20 items in RSS feed
+2026-02-15 19:22:06,119 - INFO - [Main RSS] Found 0 recent articles
+2026-02-15 19:22:06,367 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-15 19:22:19,949 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 15), datetime.date(2026, 2, 14)}
+2026-02-15 19:22:19,973 - INFO - Found 76 total links on investor page
+2026-02-15 19:22:20,325 - INFO - [Investor] Found 0 recent articles
+2026-02-15 19:22:20,572 - INFO - Total unique articles found: 0
+2026-02-15 19:22:20,572 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-15 19:22:20,572 - INFO - Processing complete
+2026-02-15 19:22:20,573 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-15 23:12:37 CST)" executed successfully
+2026-02-16 10:34:37,712 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-16 11:12:37 CST)" (scheduled at 2026-02-16 07:12:37.265508+08:00)
+2026-02-16 10:34:37,720 - INFO - Checking for new articles...
+2026-02-16 10:34:37,737 - INFO - ============================================================
+2026-02-16 10:34:37,737 - INFO - Fetching articles from all sources...
+2026-02-16 10:34:37,737 - INFO - ============================================================
+2026-02-16 10:34:37,738 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-16 10:34:46,898 - INFO - Target dates: {datetime.date(2026, 2, 15), datetime.date(2026, 2, 16)}
+2026-02-16 10:34:46,899 - INFO - Found 20 items in RSS feed
+2026-02-16 10:34:46,900 - INFO - [Main RSS] Found 0 recent articles
+2026-02-16 10:34:47,060 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-16 10:34:58,742 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 15), datetime.date(2026, 2, 16)}
+2026-02-16 10:34:58,771 - INFO - Found 76 total links on investor page
+2026-02-16 10:34:59,096 - INFO - [Investor] Found 0 recent articles
+2026-02-16 10:34:59,236 - INFO - Total unique articles found: 0
+2026-02-16 10:34:59,236 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-16 10:34:59,236 - INFO - Processing complete
+2026-02-16 10:34:59,236 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-16 11:12:37 CST)" executed successfully
+2026-02-16 11:12:37,347 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-16 15:12:37 CST)" (scheduled at 2026-02-16 11:12:37.265508+08:00)
+2026-02-16 11:12:37,348 - INFO - Checking for new articles...
+2026-02-16 11:12:37,350 - INFO - ============================================================
+2026-02-16 11:12:37,350 - INFO - Fetching articles from all sources...
+2026-02-16 11:12:37,350 - INFO - ============================================================
+2026-02-16 11:12:37,350 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-16 11:12:43,641 - INFO - Target dates: {datetime.date(2026, 2, 15), datetime.date(2026, 2, 16)}
+2026-02-16 11:12:43,641 - INFO - Found 20 items in RSS feed
+2026-02-16 11:12:43,642 - INFO - [Main RSS] Found 0 recent articles
+2026-02-16 11:12:43,808 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-16 11:12:56,169 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 15), datetime.date(2026, 2, 16)}
+2026-02-16 11:12:56,195 - INFO - Found 76 total links on investor page
+2026-02-16 11:12:56,671 - INFO - [Investor] Found 0 recent articles
+2026-02-16 11:12:56,820 - INFO - Total unique articles found: 0
+2026-02-16 11:12:56,821 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-16 11:12:56,821 - INFO - Processing complete
+2026-02-16 11:12:56,821 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-16 15:12:37 CST)" executed successfully
+2026-02-16 15:59:15,112 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-16 19:12:37 CST)" (scheduled at 2026-02-16 15:12:37.265508+08:00)
+2026-02-16 15:59:15,119 - INFO - Checking for new articles...
+2026-02-16 15:59:15,132 - INFO - ============================================================
+2026-02-16 15:59:15,132 - INFO - Fetching articles from all sources...
+2026-02-16 15:59:15,132 - INFO - ============================================================
+2026-02-16 15:59:15,133 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-16 16:00:12,422 - INFO - Target dates: {datetime.date(2026, 2, 15), datetime.date(2026, 2, 16)}
+2026-02-16 16:00:12,423 - INFO - Found 20 items in RSS feed
+2026-02-16 16:00:12,424 - INFO - [Main RSS] Found 0 recent articles
+2026-02-16 16:00:12,678 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-16 16:00:35,433 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 15), datetime.date(2026, 2, 16)}
+2026-02-16 16:00:35,444 - INFO - Found 76 total links on investor page
+2026-02-16 16:00:35,762 - INFO - [Investor] Found 0 recent articles
+2026-02-16 16:00:35,919 - INFO - Total unique articles found: 0
+2026-02-16 16:00:35,919 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-16 16:00:35,919 - INFO - Processing complete
+2026-02-16 16:00:35,919 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-16 19:12:37 CST)" executed successfully
+2026-02-16 20:54:09,746 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-16 20:54:09,746 - INFO - Added job "process_articles" to job store "default"
+2026-02-16 20:54:09,747 - INFO - Scheduler started
+2026-02-16 20:54:09,748 - INFO - GE HealthCare RSS Polling service started.
+2026-02-16 20:54:09,748 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-16 20:54:09,748 - INFO - - Only processes articles from today and yesterday
+2026-02-16 20:54:09,748 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-16 20:54:09,748 - INFO - - Auto-publishes to WeChat after processing
+2026-02-16 20:54:09,748 - INFO - Running initial check...
+2026-02-16 20:54:09,748 - INFO - Checking for new articles...
+2026-02-16 20:54:09,750 - INFO - ============================================================
+2026-02-16 20:54:09,750 - INFO - Fetching articles from all sources...
+2026-02-16 20:54:09,750 - INFO - ============================================================
+2026-02-16 20:54:09,750 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-16 20:54:18,811 - INFO - Target dates: {datetime.date(2026, 2, 16), datetime.date(2026, 2, 15)}
+2026-02-16 20:54:18,811 - INFO - Found 20 items in RSS feed
+2026-02-16 20:54:18,814 - INFO - [Main RSS] Found 0 recent articles
+2026-02-16 20:54:18,982 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-16 20:54:30,381 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 16), datetime.date(2026, 2, 15)}
+2026-02-16 20:54:30,407 - INFO - Found 76 total links on investor page
+2026-02-16 20:54:30,881 - INFO - [Investor] Found 0 recent articles
+2026-02-16 20:54:31,008 - INFO - Total unique articles found: 0
+2026-02-16 20:54:31,008 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-16 20:54:31,008 - INFO - Processing complete
+2026-02-16 20:58:06,108 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-16 20:58:06,108 - INFO - Added job "process_articles" to job store "default"
+2026-02-16 20:58:06,108 - INFO - Scheduler started
+2026-02-16 20:58:06,108 - INFO - GE HealthCare RSS Polling service started.
+2026-02-16 20:58:06,108 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-16 20:58:06,108 - INFO - - Only processes articles from today and yesterday
+2026-02-16 20:58:06,108 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-16 20:58:06,108 - INFO - - Auto-publishes to WeChat after processing
+2026-02-16 20:58:06,108 - INFO - Running initial check...
+2026-02-16 20:58:06,108 - INFO - Checking for new articles...
+2026-02-16 20:58:06,110 - INFO - ============================================================
+2026-02-16 20:58:06,110 - INFO - Fetching articles from all sources...
+2026-02-16 20:58:06,110 - INFO - ============================================================
+2026-02-16 20:58:06,110 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-16 20:58:11,161 - INFO - Target dates: {datetime.date(2026, 2, 16), datetime.date(2026, 2, 15)}
+2026-02-16 20:58:11,161 - INFO - Found 20 items in RSS feed
+2026-02-16 20:58:11,166 - INFO - [Main RSS] Found 0 recent articles
+2026-02-16 20:58:11,376 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-16 20:58:23,317 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 16), datetime.date(2026, 2, 15)}
+2026-02-16 20:58:23,333 - INFO - Found 76 total links on investor page
+2026-02-16 20:58:23,708 - INFO - [Investor] Found 0 recent articles
+2026-02-16 20:58:23,856 - INFO - Total unique articles found: 0
+2026-02-16 20:58:23,856 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-16 20:58:23,856 - INFO - Processing complete
+2026-02-17 11:18:19,315 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-17 11:18:19,315 - INFO - Added job "process_articles" to job store "default"
+2026-02-17 11:18:19,316 - INFO - Scheduler started
+2026-02-17 11:18:19,316 - INFO - GE HealthCare RSS Polling service started.
+2026-02-17 11:18:19,316 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-17 11:18:19,316 - INFO - - Only processes articles from today and yesterday
+2026-02-17 11:18:19,316 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-17 11:18:19,316 - INFO - - Auto-publishes to WeChat after processing
+2026-02-17 11:18:19,316 - INFO - Running initial check...
+2026-02-17 11:18:19,316 - INFO - Checking for new articles...
+2026-02-17 11:18:19,316 - INFO - ============================================================
+2026-02-17 11:18:19,316 - INFO - Fetching articles from all sources...
+2026-02-17 11:18:19,316 - INFO - ============================================================
+2026-02-17 11:18:19,316 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-17 11:18:24,882 - INFO - Target dates: {datetime.date(2026, 2, 16), datetime.date(2026, 2, 17)}
+2026-02-17 11:18:24,883 - INFO - Found 20 items in RSS feed
+2026-02-17 11:18:24,885 - INFO - [Main RSS] Found 0 recent articles
+2026-02-17 11:18:25,010 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-17 11:18:36,280 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 16), datetime.date(2026, 2, 17)}
+2026-02-17 11:18:36,301 - INFO - Found 76 total links on investor page
+2026-02-17 11:18:36,604 - INFO - [Investor] Found 0 recent articles
+2026-02-17 11:18:36,762 - INFO - Total unique articles found: 0
+2026-02-17 11:18:36,763 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-17 11:18:36,763 - INFO - Processing complete
+2026-02-17 13:47:26,740 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-17 13:47:26,743 - INFO - Added job "process_articles" to job store "default"
+2026-02-17 13:47:26,743 - INFO - Scheduler started
+2026-02-17 13:47:26,744 - INFO - GE HealthCare RSS Polling service started.
+2026-02-17 13:47:26,744 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-17 13:47:26,744 - INFO - - Only processes articles from today and yesterday
+2026-02-17 13:47:26,744 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-17 13:47:26,744 - INFO - - Auto-publishes to WeChat after processing
+2026-02-17 13:47:26,744 - INFO - Running initial check...
+2026-02-17 13:47:26,744 - INFO - Checking for new articles...
+2026-02-17 13:47:26,750 - INFO - ============================================================
+2026-02-17 13:47:26,750 - INFO - Fetching articles from all sources...
+2026-02-17 13:47:26,750 - INFO - ============================================================
+2026-02-17 13:47:26,750 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-17 13:47:32,859 - INFO - Target dates: {datetime.date(2026, 2, 17), datetime.date(2026, 2, 16)}
+2026-02-17 13:47:32,859 - INFO - Found 20 items in RSS feed
+2026-02-17 13:47:32,861 - INFO - [Main RSS] Found 0 recent articles
+2026-02-17 13:47:33,081 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-17 13:47:44,299 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 17), datetime.date(2026, 2, 16)}
+2026-02-17 13:47:44,312 - INFO - Found 74 total links on investor page
+2026-02-17 13:47:44,618 - INFO - [Investor] Found 0 recent articles
+2026-02-17 13:47:44,734 - INFO - Total unique articles found: 0
+2026-02-17 13:47:44,734 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-17 13:47:44,734 - INFO - Processing complete
+2026-02-17 17:47:26,833 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-17 17:47:26 CST)" (scheduled at 2026-02-17 17:47:26.740341+08:00)
+2026-02-17 17:47:26,837 - INFO - Checking for new articles...
+2026-02-17 17:47:26,880 - INFO - ============================================================
+2026-02-17 17:47:26,880 - INFO - Fetching articles from all sources...
+2026-02-17 17:47:26,880 - INFO - ============================================================
+2026-02-17 17:47:26,881 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-17 17:47:31,636 - INFO - Target dates: {datetime.date(2026, 2, 17), datetime.date(2026, 2, 16)}
+2026-02-17 17:47:31,637 - INFO - Found 20 items in RSS feed
+2026-02-17 17:47:31,637 - INFO - [Main RSS] Found 0 recent articles
+2026-02-17 17:47:31,801 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-17 17:47:42,697 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 17), datetime.date(2026, 2, 16)}
+2026-02-17 17:47:42,719 - INFO - Found 76 total links on investor page
+2026-02-17 17:47:43,033 - INFO - [Investor] Found 0 recent articles
+2026-02-17 17:47:43,172 - INFO - Total unique articles found: 0
+2026-02-17 17:47:43,172 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-17 17:47:43,172 - INFO - Processing complete
+2026-02-17 17:47:43,172 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-17 21:47:26 CST)" executed successfully
+2026-02-17 21:47:26,784 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 01:47:26 CST)" (scheduled at 2026-02-17 21:47:26.740341+08:00)
+2026-02-17 21:47:26,785 - INFO - Checking for new articles...
+2026-02-17 21:47:26,825 - INFO - ============================================================
+2026-02-17 21:47:26,825 - INFO - Fetching articles from all sources...
+2026-02-17 21:47:26,825 - INFO - ============================================================
+2026-02-17 21:47:26,825 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-17 21:47:45,045 - INFO - Target dates: {datetime.date(2026, 2, 17), datetime.date(2026, 2, 16)}
+2026-02-17 21:47:45,046 - INFO - Found 20 items in RSS feed
+2026-02-17 21:47:45,046 - INFO - [Main RSS] Found 0 recent articles
+2026-02-17 21:47:45,298 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-17 21:47:57,891 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 17), datetime.date(2026, 2, 16)}
+2026-02-17 21:47:57,910 - INFO - Found 76 total links on investor page
+2026-02-17 21:47:58,244 - INFO - [Investor] Found 0 recent articles
+2026-02-17 21:47:58,428 - INFO - Total unique articles found: 0
+2026-02-17 21:47:58,428 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-17 21:47:58,428 - INFO - Processing complete
+2026-02-17 21:47:58,428 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 01:47:26 CST)" executed successfully
+2026-02-18 01:47:26,748 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 05:47:26 CST)" (scheduled at 2026-02-18 01:47:26.740341+08:00)
+2026-02-18 01:47:26,749 - INFO - Checking for new articles...
+2026-02-18 01:47:26,789 - INFO - ============================================================
+2026-02-18 01:47:26,789 - INFO - Fetching articles from all sources...
+2026-02-18 01:47:26,789 - INFO - ============================================================
+2026-02-18 01:47:26,789 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-18 01:47:41,929 - INFO - Target dates: {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 01:47:41,930 - INFO - Found 20 items in RSS feed
+2026-02-18 01:47:41,931 - INFO - [Main RSS] Found 0 recent articles
+2026-02-18 01:47:42,153 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-18 01:47:53,975 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 01:47:53,993 - INFO - Found 77 total links on investor page
+2026-02-18 01:47:54,309 - INFO - [Investor] Found 0 recent articles
+2026-02-18 01:47:54,567 - INFO - Total unique articles found: 0
+2026-02-18 01:47:54,567 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-18 01:47:54,567 - INFO - Processing complete
+2026-02-18 01:47:54,567 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 05:47:26 CST)" executed successfully
+2026-02-18 05:47:26,779 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 09:47:26 CST)" (scheduled at 2026-02-18 05:47:26.740341+08:00)
+2026-02-18 05:47:26,781 - INFO - Checking for new articles...
+2026-02-18 05:47:26,783 - INFO - ============================================================
+2026-02-18 05:47:26,783 - INFO - Fetching articles from all sources...
+2026-02-18 05:47:26,783 - INFO - ============================================================
+2026-02-18 05:47:26,784 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-18 05:47:42,820 - INFO - Target dates: {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 05:47:42,820 - INFO - Found 20 items in RSS feed
+2026-02-18 05:47:42,820 - INFO - [Main RSS] Found 0 recent articles
+2026-02-18 05:47:43,058 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-18 05:47:54,775 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 05:47:54,793 - INFO - Found 77 total links on investor page
+2026-02-18 05:47:55,103 - INFO - [Investor] Found 0 recent articles
+2026-02-18 05:47:55,359 - INFO - Total unique articles found: 0
+2026-02-18 05:47:55,359 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-18 05:47:55,359 - INFO - Processing complete
+2026-02-18 05:47:55,359 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 09:47:26 CST)" executed successfully
+2026-02-18 09:47:26,801 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 13:47:26 CST)" (scheduled at 2026-02-18 09:47:26.740341+08:00)
+2026-02-18 09:47:26,802 - INFO - Checking for new articles...
+2026-02-18 09:47:26,848 - INFO - ============================================================
+2026-02-18 09:47:26,848 - INFO - Fetching articles from all sources...
+2026-02-18 09:47:26,848 - INFO - ============================================================
+2026-02-18 09:47:26,848 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-18 09:47:32,024 - INFO - Target dates: {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 09:47:32,024 - INFO - Found 20 items in RSS feed
+2026-02-18 09:47:32,025 - INFO - [Main RSS] Found 0 recent articles
+2026-02-18 09:47:32,184 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-18 09:47:45,122 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 09:47:45,139 - INFO - Found 77 total links on investor page
+2026-02-18 09:47:45,464 - INFO - [Investor] Found 0 recent articles
+2026-02-18 09:47:45,665 - INFO - Total unique articles found: 0
+2026-02-18 09:47:45,665 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-18 09:47:45,665 - INFO - Processing complete
+2026-02-18 09:47:45,665 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 13:47:26 CST)" executed successfully
+2026-02-18 13:47:26,814 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 17:47:26 CST)" (scheduled at 2026-02-18 13:47:26.740341+08:00)
+2026-02-18 13:47:26,817 - INFO - Checking for new articles...
+2026-02-18 13:47:26,893 - INFO - ============================================================
+2026-02-18 13:47:26,894 - INFO - Fetching articles from all sources...
+2026-02-18 13:47:26,894 - INFO - ============================================================
+2026-02-18 13:47:26,894 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-18 13:47:39,795 - INFO - Target dates: {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 13:47:39,796 - INFO - Found 20 items in RSS feed
+2026-02-18 13:47:39,796 - INFO - [Main RSS] Found 0 recent articles
+2026-02-18 13:47:40,041 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-18 13:47:52,568 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 13:47:52,586 - INFO - Found 77 total links on investor page
+2026-02-18 13:47:52,896 - INFO - [Investor] Found 0 recent articles
+2026-02-18 13:47:53,152 - INFO - Total unique articles found: 0
+2026-02-18 13:47:53,152 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-18 13:47:53,152 - INFO - Processing complete
+2026-02-18 13:47:53,152 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 17:47:26 CST)" executed successfully
+2026-02-18 17:47:26,811 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 21:47:26 CST)" (scheduled at 2026-02-18 17:47:26.740341+08:00)
+2026-02-18 17:47:26,813 - INFO - Checking for new articles...
+2026-02-18 17:47:26,852 - INFO - ============================================================
+2026-02-18 17:47:26,852 - INFO - Fetching articles from all sources...
+2026-02-18 17:47:26,852 - INFO - ============================================================
+2026-02-18 17:47:26,852 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-18 17:47:34,110 - INFO - Target dates: {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 17:47:34,110 - INFO - Found 20 items in RSS feed
+2026-02-18 17:47:34,110 - INFO - [Main RSS] Found 0 recent articles
+2026-02-18 17:47:34,354 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-18 17:47:47,193 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 17:47:47,212 - INFO - Found 77 total links on investor page
+2026-02-18 17:47:47,523 - INFO - [Investor] Found 0 recent articles
+2026-02-18 17:47:47,780 - INFO - Total unique articles found: 0
+2026-02-18 17:47:47,780 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-18 17:47:47,780 - INFO - Processing complete
+2026-02-18 17:47:47,780 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-18 21:47:26 CST)" executed successfully
+2026-02-18 21:47:26,822 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-19 01:47:26 CST)" (scheduled at 2026-02-18 21:47:26.740341+08:00)
+2026-02-18 21:47:26,825 - INFO - Checking for new articles...
+2026-02-18 21:47:26,875 - INFO - ============================================================
+2026-02-18 21:47:26,875 - INFO - Fetching articles from all sources...
+2026-02-18 21:47:26,875 - INFO - ============================================================
+2026-02-18 21:47:26,875 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-18 21:47:33,746 - INFO - Target dates: {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 21:47:33,746 - INFO - Found 20 items in RSS feed
+2026-02-18 21:47:33,747 - INFO - [Main RSS] Found: GE HealthCare builds on BARDA collaboration with a... (2026-02-17)
+2026-02-18 21:47:33,747 - INFO - [Main RSS] Found 1 recent articles
+2026-02-18 21:47:33,913 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-18 21:47:44,657 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 17), datetime.date(2026, 2, 18)}
+2026-02-18 21:47:44,675 - INFO - Found 77 total links on investor page
+2026-02-18 21:47:44,984 - INFO - [Investor] Found 0 recent articles
+2026-02-18 21:47:45,141 - INFO - Total unique articles found: 1
+2026-02-18 21:47:45,141 - INFO - New article: https://www.gehealthcare.com/about/newsroom/press-releases/ge-healthcare-builds- (Tue, 17 Feb 2026 14:00:09 Z)
+2026-02-18 21:47:45,141 - INFO - Fetching with Jina Reader: https://www.gehealthcare.com/about/newsroom/press-releases/ge-healthcare-builds-...
+2026-02-18 21:47:50,328 - INFO - Jina Reader success: 24172 chars, title: ge healthcare builds on barda collaboration with a
+2026-02-18 21:47:50,330 - INFO - Got content (24172 chars)
+2026-02-18 21:47:50,331 - INFO - Downloading images: ge healthcare builds on barda collaboration with a...
+2026-02-18 21:47:50,332 - INFO - Downloading image: https://www.gehealthcare.com/cdn/res/images/logo.svg...
+2026-02-18 21:47:51,009 - WARNING - Failed to download image https://www.gehealthcare.com/cdn/res/images/logo.s: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/cdn/res/images/logo.svg
+2026-02-18 21:47:51,012 - INFO - Downloading image: https://www.gehealthcare.com/cdn/res/images/logo.svg...
+2026-02-18 21:47:51,625 - WARNING - Failed to download image https://www.gehealthcare.com/cdn/res/images/logo.s: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/cdn/res/images/logo.svg
+2026-02-18 21:47:51,629 - INFO - Downloading image: https://pixel.welcomesoftware.com/px.gif?key=YXJ0aWNsZT04MzF...
+2026-02-18 21:47:52,240 - INFO - Image saved: px.gif
+2026-02-18 21:47:52,242 - INFO - Downloading image: https://www.gehealthcare.com/cdn/res/images/logo.svg...
+2026-02-18 21:47:52,852 - WARNING - Failed to download image https://www.gehealthcare.com/cdn/res/images/logo.s: 403 Client Error: Forbidden for url: https://www.gehealthcare.com/cdn/res/images/logo.svg
+2026-02-18 21:47:52,856 - INFO - Translating: ge healthcare builds on barda collaboration with a...
+2026-02-18 21:47:54,506 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-18 21:48:36,607 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-18 21:49:23,522 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-18 21:52:35,629 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-18 21:54:40,918 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-18 21:55:47,701 - INFO - Reviewing (DeepSeek): ge healthcare builds on barda collaboration with a...
+2026-02-18 21:56:48,332 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-18 22:00:25,683 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-18 22:01:48,001 - INFO - Gemini pre-publish review: ge healthcare builds on barda collaboration with a...
+2026-02-18 22:01:49,058 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-18 22:01:52,474 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-18 22:01:55,891 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-18 22:02:00,374 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-18 22:02:03,782 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-18 22:02:07,196 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-18 22:02:10,272 - INFO - Gemini review completed: ge healthcare builds on barda collaboration with a
+2026-02-18 22:02:10,272 - INFO - Saving: ge healthcare builds on barda collaboration with a...
+2026-02-18 22:02:10,488 - INFO - Publishing to WeChat: ge healthcare builds on barda collaboration with a...
+2026-02-18 22:02:10,491 - WARNING - WeChat publish failed: ge healthcare builds on barda collaboration with a
+2026-02-18 22:02:10,492 - WARNING - NOTIFY_EMAIL 未配置，跳过邮件通知
+2026-02-18 22:02:10,493 - INFO - Completed: ge healthcare builds on barda collaboration with a
+2026-02-18 22:02:10,493 - INFO - Processed 1 new article(s)
+2026-02-18 22:02:10,493 - INFO - Processing complete
+2026-02-18 22:02:10,493 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-19 01:47:26 CST)" executed successfully
+2026-02-19 09:59:15,443 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-19 13:47:26 CST)" (scheduled at 2026-02-19 09:47:26.740341+08:00)
+2026-02-19 09:59:15,446 - INFO - Checking for new articles...
+2026-02-19 09:59:15,509 - INFO - ============================================================
+2026-02-19 09:59:15,509 - INFO - Fetching articles from all sources...
+2026-02-19 09:59:15,509 - INFO - ============================================================
+2026-02-19 09:59:15,509 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-19 09:59:22,930 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 18)}
+2026-02-19 09:59:22,930 - INFO - Found 20 items in RSS feed
+2026-02-19 09:59:22,931 - INFO - [Main RSS] Found 0 recent articles
+2026-02-19 09:59:23,183 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-19 09:59:34,502 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 18)}
+2026-02-19 09:59:34,524 - INFO - Found 77 total links on investor page
+2026-02-19 09:59:34,837 - INFO - [Investor] Found 0 recent articles
+2026-02-19 09:59:35,096 - INFO - Total unique articles found: 0
+2026-02-19 09:59:35,097 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-19 09:59:35,097 - INFO - Processing complete
+2026-02-19 09:59:35,097 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-19 13:47:26 CST)" executed successfully
+2026-02-19 13:47:26,823 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-19 17:47:26 CST)" (scheduled at 2026-02-19 13:47:26.740341+08:00)
+2026-02-19 13:47:26,825 - INFO - Checking for new articles...
+2026-02-19 13:47:26,869 - INFO - ============================================================
+2026-02-19 13:47:26,870 - INFO - Fetching articles from all sources...
+2026-02-19 13:47:26,870 - INFO - ============================================================
+2026-02-19 13:47:26,870 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-19 13:47:31,888 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 18)}
+2026-02-19 13:47:31,888 - INFO - Found 20 items in RSS feed
+2026-02-19 13:47:31,888 - INFO - [Main RSS] Found 0 recent articles
+2026-02-19 13:47:32,124 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-19 13:47:45,654 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 18)}
+2026-02-19 13:47:45,673 - INFO - Found 77 total links on investor page
+2026-02-19 13:47:45,984 - INFO - [Investor] Found 0 recent articles
+2026-02-19 13:47:46,244 - INFO - Total unique articles found: 0
+2026-02-19 13:47:46,244 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-19 13:47:46,245 - INFO - Processing complete
+2026-02-19 13:47:46,245 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-19 17:47:26 CST)" executed successfully
+2026-02-19 17:47:26,820 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-19 21:47:26 CST)" (scheduled at 2026-02-19 17:47:26.740341+08:00)
+2026-02-19 17:47:26,822 - INFO - Checking for new articles...
+2026-02-19 17:47:26,868 - INFO - ============================================================
+2026-02-19 17:47:26,869 - INFO - Fetching articles from all sources...
+2026-02-19 17:47:26,869 - INFO - ============================================================
+2026-02-19 17:47:26,869 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-19 17:47:32,384 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 18)}
+2026-02-19 17:47:32,384 - INFO - Found 20 items in RSS feed
+2026-02-19 17:47:32,385 - INFO - [Main RSS] Found 0 recent articles
+2026-02-19 17:47:32,628 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-19 17:47:45,302 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 18)}
+2026-02-19 17:47:45,321 - INFO - Found 77 total links on investor page
+2026-02-19 17:47:45,636 - INFO - [Investor] Found 0 recent articles
+2026-02-19 17:47:45,891 - INFO - Total unique articles found: 0
+2026-02-19 17:47:45,891 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-19 17:47:45,891 - INFO - Processing complete
+2026-02-19 17:47:45,891 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-19 21:47:26 CST)" executed successfully
+2026-02-19 21:47:26,756 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-20 01:47:26 CST)" (scheduled at 2026-02-19 21:47:26.740341+08:00)
+2026-02-19 21:47:26,759 - INFO - Checking for new articles...
+2026-02-19 21:47:26,809 - INFO - ============================================================
+2026-02-19 21:47:26,809 - INFO - Fetching articles from all sources...
+2026-02-19 21:47:26,809 - INFO - ============================================================
+2026-02-19 21:47:26,809 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-19 21:47:42,056 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 18)}
+2026-02-19 21:47:42,056 - INFO - Found 20 items in RSS feed
+2026-02-19 21:47:42,057 - INFO - [Main RSS] Found 0 recent articles
+2026-02-19 21:47:42,304 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-19 21:47:53,448 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 18)}
+2026-02-19 21:47:53,468 - INFO - Found 77 total links on investor page
+2026-02-19 21:47:53,779 - INFO - [Investor] Found 0 recent articles
+2026-02-19 21:47:54,034 - INFO - Total unique articles found: 0
+2026-02-19 21:47:54,034 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-19 21:47:54,034 - INFO - Processing complete
+2026-02-19 21:47:54,034 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-20 01:47:26 CST)" executed successfully
+2026-02-20 11:23:42,729 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 11:23:42,729 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 11:23:42,729 - INFO - Scheduler started
+2026-02-20 11:23:42,729 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 11:23:42,729 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 11:23:42,729 - INFO - - Only processes articles from today and yesterday
+2026-02-20 11:23:42,729 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 11:23:42,729 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 11:23:42,729 - INFO - Running initial check...
+2026-02-20 11:23:42,729 - INFO - Checking for new articles...
+2026-02-20 11:23:42,730 - INFO - ============================================================
+2026-02-20 11:23:42,730 - INFO - Fetching articles from all sources...
+2026-02-20 11:23:42,730 - INFO - ============================================================
+2026-02-20 11:23:42,730 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 11:23:50,113 - INFO - Target dates: {datetime.date(2026, 2, 20), datetime.date(2026, 2, 19)}
+2026-02-20 11:23:50,113 - INFO - Found 20 items in RSS feed
+2026-02-20 11:23:50,116 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 11:23:50,286 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 11:24:01,288 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 20), datetime.date(2026, 2, 19)}
+2026-02-20 11:24:01,311 - INFO - Found 78 total links on investor page
+2026-02-20 11:24:01,518 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 11:24:01,692 - INFO - [Investor] Found 1 recent articles
+2026-02-20 11:24:01,768 - INFO - Total unique articles found: 1
+2026-02-20 11:24:01,768 - INFO - New article: https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthca (February 19, 2026)
+2026-02-20 11:24:01,768 - INFO - Fetching with Jina Reader: https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthca...
+2026-02-20 11:24:04,533 - ERROR - Jina Reader failed: name 'logger' is not defined
+2026-02-20 11:24:04,533 - INFO - Falling back to Selenium...
+2026-02-20 11:24:05,074 - INFO - Fetching with Selenium: https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthca...
+2026-02-20 11:24:12,532 - INFO - Got content (10536 chars)
+2026-02-20 11:24:12,532 - INFO - Downloading images: News Release...
+2026-02-20 11:24:12,533 - INFO - Translating: News Release...
+2026-02-20 11:25:24,767 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 11:26:25,877 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 11:28:59,440 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 11:29:30,871 - INFO - Reviewing (DeepSeek): News Release...
+2026-02-20 11:29:31,243 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 11:31:04,532 - INFO - Gemini pre-publish review: News Release...
+2026-02-20 11:31:05,893 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-20 11:31:09,342 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-20 11:31:12,824 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-20 11:31:15,901 - INFO - Gemini review completed: News Release
+2026-02-20 11:31:15,902 - INFO - Saving: News Release...
+2026-02-20 11:31:16,036 - INFO - Publishing to WeChat: News Release...
+2026-02-20 11:31:16,040 - WARNING - WeChat publish failed: News Release
+2026-02-20 11:31:16,040 - WARNING - NOTIFY_EMAIL 未配置，跳过邮件通知
+2026-02-20 11:31:16,041 - INFO - Completed: News Release
+2026-02-20 11:31:16,041 - INFO - Processed 1 new article(s)
+2026-02-20 11:31:16,041 - INFO - Processing complete
+2026-02-20 11:50:16,520 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 11:50:16,520 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 11:50:16,520 - INFO - Scheduler started
+2026-02-20 11:50:16,520 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 11:50:16,520 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 11:50:16,520 - INFO - - Only processes articles from today and yesterday
+2026-02-20 11:50:16,520 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 11:50:16,520 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 11:50:16,520 - INFO - Running initial check...
+2026-02-20 11:50:16,520 - INFO - Checking for new articles...
+2026-02-20 11:50:16,521 - INFO - ============================================================
+2026-02-20 11:50:16,521 - INFO - Fetching articles from all sources...
+2026-02-20 11:50:16,521 - INFO - ============================================================
+2026-02-20 11:50:16,521 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 11:50:17,768 - WARNING - The chromedriver version (133.0.6943.141) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.77); currently, chromedriver 145.0.7632.77 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-20 11:50:18,782 - ERROR - Failed to setup Selenium driver for RSS
+2026-02-20 11:50:18,782 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 11:50:19,099 - WARNING - The chromedriver version (133.0.6943.141) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.77); currently, chromedriver 145.0.7632.77 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-20 11:50:19,476 - ERROR - Failed to setup Selenium driver for investor page
+2026-02-20 11:50:19,476 - INFO - Total unique articles found: 0
+2026-02-20 11:50:19,476 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 11:50:19,476 - INFO - Processing complete
+2026-02-20 11:50:26,560 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 11:50:26,560 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 11:50:26,560 - INFO - Scheduler started
+2026-02-20 11:50:26,560 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 11:50:26,560 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 11:50:26,560 - INFO - - Only processes articles from today and yesterday
+2026-02-20 11:50:26,560 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 11:50:26,560 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 11:50:26,560 - INFO - Running initial check...
+2026-02-20 11:50:26,560 - INFO - Checking for new articles...
+2026-02-20 11:50:26,560 - INFO - ============================================================
+2026-02-20 11:50:26,560 - INFO - Fetching articles from all sources...
+2026-02-20 11:50:26,560 - INFO - ============================================================
+2026-02-20 11:50:26,560 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 11:50:31,328 - INFO - Target dates: {datetime.date(2026, 2, 20), datetime.date(2026, 2, 19)}
+2026-02-20 11:50:31,329 - INFO - Found 20 items in RSS feed
+2026-02-20 11:50:31,332 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 11:50:31,500 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 11:50:42,141 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 11:50:42,141 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 11:50:42,141 - INFO - Scheduler started
+2026-02-20 11:50:42,141 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 11:50:42,141 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 11:50:42,141 - INFO - - Only processes articles from today and yesterday
+2026-02-20 11:50:42,141 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 11:50:42,141 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 11:50:42,141 - INFO - Running initial check...
+2026-02-20 11:50:42,141 - INFO - Checking for new articles...
+2026-02-20 11:50:42,142 - INFO - ============================================================
+2026-02-20 11:50:42,142 - INFO - Fetching articles from all sources...
+2026-02-20 11:50:42,142 - INFO - ============================================================
+2026-02-20 11:50:42,142 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 11:50:46,582 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 11:50:46,582 - INFO - Found 20 items in RSS feed
+2026-02-20 11:50:46,585 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 11:50:46,751 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 11:50:54,961 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 11:50:54,961 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 11:50:54,961 - INFO - Scheduler started
+2026-02-20 11:50:54,961 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 11:50:54,961 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 11:50:54,961 - INFO - - Only processes articles from today and yesterday
+2026-02-20 11:50:54,961 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 11:50:54,961 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 11:50:54,961 - INFO - Running initial check...
+2026-02-20 11:50:54,961 - INFO - Checking for new articles...
+2026-02-20 11:50:54,961 - INFO - ============================================================
+2026-02-20 11:50:54,961 - INFO - Fetching articles from all sources...
+2026-02-20 11:50:54,961 - INFO - ============================================================
+2026-02-20 11:50:54,961 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 11:50:59,756 - INFO - Target dates: {datetime.date(2026, 2, 20), datetime.date(2026, 2, 19)}
+2026-02-20 11:50:59,757 - INFO - Found 20 items in RSS feed
+2026-02-20 11:50:59,759 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 11:50:59,924 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 11:51:10,477 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 20), datetime.date(2026, 2, 19)}
+2026-02-20 11:51:10,496 - INFO - Found 78 total links on investor page
+2026-02-20 11:51:10,699 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 11:51:10,889 - INFO - [Investor] Found 1 recent articles
+2026-02-20 11:51:10,976 - INFO - Total unique articles found: 1
+2026-02-20 11:51:10,977 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 11:51:10,977 - INFO - Processing complete
+2026-02-20 11:51:16,363 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 11:51:16,363 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 11:51:16,363 - INFO - Scheduler started
+2026-02-20 11:51:16,363 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 11:51:16,363 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 11:51:16,363 - INFO - - Only processes articles from today and yesterday
+2026-02-20 11:51:16,363 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 11:51:16,363 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 11:51:16,363 - INFO - Running initial check...
+2026-02-20 11:51:16,363 - INFO - Checking for new articles...
+2026-02-20 11:51:16,363 - INFO - ============================================================
+2026-02-20 11:51:16,363 - INFO - Fetching articles from all sources...
+2026-02-20 11:51:16,363 - INFO - ============================================================
+2026-02-20 11:51:16,363 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 11:51:16,695 - WARNING - The chromedriver version (133.0.6943.141) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.77); currently, chromedriver 145.0.7632.77 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-20 11:51:17,124 - ERROR - Failed to setup Selenium driver for RSS
+2026-02-20 11:51:17,124 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 11:51:17,436 - WARNING - The chromedriver version (133.0.6943.141) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.77); currently, chromedriver 145.0.7632.77 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-20 11:51:17,887 - ERROR - Failed to setup Selenium driver for investor page
+2026-02-20 11:51:17,887 - INFO - Total unique articles found: 0
+2026-02-20 11:51:17,887 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 11:51:17,887 - INFO - Processing complete
+2026-02-20 11:55:28,420 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 11:55:28,421 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 11:55:28,421 - INFO - Scheduler started
+2026-02-20 11:55:28,421 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 11:55:28,421 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 11:55:28,421 - INFO - - Only processes articles from today and yesterday
+2026-02-20 11:55:28,421 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 11:55:28,421 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 11:55:28,421 - INFO - Running initial check...
+2026-02-20 11:55:28,421 - INFO - Checking for new articles...
+2026-02-20 11:55:28,421 - INFO - ============================================================
+2026-02-20 11:55:28,421 - INFO - Fetching articles from all sources...
+2026-02-20 11:55:28,421 - INFO - ============================================================
+2026-02-20 11:55:28,421 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 11:55:28,540 - WARNING - The chromedriver version (133.0.6943.141) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.77); currently, chromedriver 145.0.7632.77 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-20 11:55:29,552 - ERROR - Failed to setup Selenium driver for RSS
+2026-02-20 11:55:29,552 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 11:55:30,356 - WARNING - The chromedriver version (133.0.6943.141) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.77); currently, chromedriver 145.0.7632.77 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-20 11:55:30,772 - ERROR - Failed to setup Selenium driver for investor page
+2026-02-20 11:55:30,772 - INFO - Total unique articles found: 0
+2026-02-20 11:55:30,772 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 11:55:30,772 - INFO - Processing complete
+2026-02-20 11:57:58,178 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 11:57:58,179 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 11:57:58,179 - INFO - Scheduler started
+2026-02-20 11:57:58,179 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 11:57:58,179 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 11:57:58,179 - INFO - - Only processes articles from today and yesterday
+2026-02-20 11:57:58,179 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 11:57:58,179 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 11:57:58,179 - INFO - Running initial check...
+2026-02-20 11:57:58,179 - INFO - Checking for new articles...
+2026-02-20 11:57:58,179 - INFO - ============================================================
+2026-02-20 11:57:58,179 - INFO - Fetching articles from all sources...
+2026-02-20 11:57:58,179 - INFO - ============================================================
+2026-02-20 11:57:58,179 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 11:57:58,337 - WARNING - The chromedriver version (133.0.6943.141) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.77); currently, chromedriver 145.0.7632.77 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-20 11:57:59,377 - ERROR - Failed to setup Selenium driver for RSS
+2026-02-20 11:57:59,377 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 11:58:00,091 - WARNING - The chromedriver version (133.0.6943.141) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.77); currently, chromedriver 145.0.7632.77 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-20 11:58:00,581 - ERROR - Failed to setup Selenium driver for investor page
+2026-02-20 11:58:00,581 - INFO - Total unique articles found: 0
+2026-02-20 11:58:00,581 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 11:58:00,581 - INFO - Processing complete
+2026-02-20 14:13:27,752 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 14:13:27,752 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 14:13:27,752 - INFO - Scheduler started
+2026-02-20 14:13:27,752 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 14:13:27,752 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 14:13:27,752 - INFO - - Only processes articles from today and yesterday
+2026-02-20 14:13:27,752 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 14:13:27,752 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 14:13:27,752 - INFO - Running initial check...
+2026-02-20 14:13:27,752 - INFO - Checking for new articles...
+2026-02-20 14:13:27,752 - INFO - ============================================================
+2026-02-20 14:13:27,752 - INFO - Fetching articles from all sources...
+2026-02-20 14:13:27,752 - INFO - ============================================================
+2026-02-20 14:13:27,752 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 14:13:39,685 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 14:13:39,686 - INFO - Found 20 items in RSS feed
+2026-02-20 14:13:39,689 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 14:13:39,858 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 14:13:54,686 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 14:13:54,705 - INFO - Found 78 total links on investor page
+2026-02-20 14:13:54,932 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 14:13:55,138 - INFO - [Investor] Found 1 recent articles
+2026-02-20 14:13:55,276 - INFO - Total unique articles found: 1
+2026-02-20 14:13:55,276 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 14:13:55,276 - INFO - Processing complete
+2026-02-20 14:14:02,347 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 14:14:02,347 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 14:14:02,347 - INFO - Scheduler started
+2026-02-20 14:14:02,347 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 14:14:02,347 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 14:14:02,347 - INFO - - Only processes articles from today and yesterday
+2026-02-20 14:14:02,347 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 14:14:02,347 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 14:14:02,347 - INFO - Running initial check...
+2026-02-20 14:14:02,347 - INFO - Checking for new articles...
+2026-02-20 14:14:02,348 - INFO - ============================================================
+2026-02-20 14:14:02,348 - INFO - Fetching articles from all sources...
+2026-02-20 14:14:02,348 - INFO - ============================================================
+2026-02-20 14:14:02,348 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 14:14:07,181 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 14:14:07,181 - INFO - Found 20 items in RSS feed
+2026-02-20 14:14:07,184 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 14:14:07,348 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 14:14:19,191 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 14:14:19,210 - INFO - Found 78 total links on investor page
+2026-02-20 14:14:19,428 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 14:14:19,644 - INFO - [Investor] Found 1 recent articles
+2026-02-20 14:14:19,789 - INFO - Total unique articles found: 1
+2026-02-20 14:14:19,789 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 14:14:19,789 - INFO - Processing complete
+2026-02-20 14:14:28,485 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 14:14:28,485 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 14:14:28,485 - INFO - Scheduler started
+2026-02-20 14:14:28,486 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 14:14:28,486 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 14:14:28,486 - INFO - - Only processes articles from today and yesterday
+2026-02-20 14:14:28,486 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 14:14:28,486 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 14:14:28,486 - INFO - Running initial check...
+2026-02-20 14:14:28,486 - INFO - Checking for new articles...
+2026-02-20 14:14:28,486 - INFO - ============================================================
+2026-02-20 14:14:28,486 - INFO - Fetching articles from all sources...
+2026-02-20 14:14:28,486 - INFO - ============================================================
+2026-02-20 14:14:28,486 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 14:14:32,885 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 14:14:32,885 - INFO - Found 20 items in RSS feed
+2026-02-20 14:14:32,889 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 14:14:33,037 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 14:14:46,863 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 14:14:46,878 - INFO - Found 78 total links on investor page
+2026-02-20 14:14:47,064 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 14:14:47,237 - INFO - [Investor] Found 1 recent articles
+2026-02-20 14:14:47,377 - INFO - Total unique articles found: 1
+2026-02-20 14:14:47,377 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 14:14:47,377 - INFO - Processing complete
+2026-02-20 18:12:30,088 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 18:12:30,088 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 18:12:30,088 - INFO - Scheduler started
+2026-02-20 18:12:30,088 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 18:12:30,088 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 18:12:30,088 - INFO - - Only processes articles from today and yesterday
+2026-02-20 18:12:30,088 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 18:12:30,088 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 18:12:30,088 - INFO - Running initial check...
+2026-02-20 18:12:30,088 - INFO - Checking for new articles...
+2026-02-20 18:12:30,088 - INFO - ============================================================
+2026-02-20 18:12:30,088 - INFO - Fetching articles from all sources...
+2026-02-20 18:12:30,088 - INFO - ============================================================
+2026-02-20 18:12:30,088 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 18:12:35,129 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 18:12:35,129 - INFO - Found 20 items in RSS feed
+2026-02-20 18:12:35,133 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 18:12:35,310 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 18:12:48,543 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 18:12:48,568 - INFO - Found 78 total links on investor page
+2026-02-20 18:12:48,758 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 18:12:48,942 - INFO - [Investor] Found 1 recent articles
+2026-02-20 18:12:49,100 - INFO - Total unique articles found: 1
+2026-02-20 18:12:49,100 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 18:12:49,100 - INFO - Processing complete
+2026-02-20 18:13:37,391 - INFO - Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-02-20 18:13:37,391 - INFO - Added job "process_articles" to job store "default"
+2026-02-20 18:13:37,391 - INFO - Scheduler started
+2026-02-20 18:13:37,391 - INFO - GE HealthCare RSS Polling service started.
+2026-02-20 18:13:37,391 - INFO - - Monitoring 2 sources: Main RSS + Investor page
+2026-02-20 18:13:37,391 - INFO - - Only processes articles from today and yesterday
+2026-02-20 18:13:37,391 - INFO - - Runs every 4 hours (at least 6 times per day)
+2026-02-20 18:13:37,391 - INFO - - Auto-publishes to WeChat after processing
+2026-02-20 18:13:37,391 - INFO - Running initial check...
+2026-02-20 18:13:37,391 - INFO - Checking for new articles...
+2026-02-20 18:13:37,391 - INFO - ============================================================
+2026-02-20 18:13:37,391 - INFO - Fetching articles from all sources...
+2026-02-20 18:13:37,391 - INFO - ============================================================
+2026-02-20 18:13:37,392 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 18:13:42,726 - INFO - Target dates: {datetime.date(2026, 2, 20), datetime.date(2026, 2, 19)}
+2026-02-20 18:13:42,726 - INFO - Found 20 items in RSS feed
+2026-02-20 18:13:42,731 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 18:13:42,909 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 18:13:54,069 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 20), datetime.date(2026, 2, 19)}
+2026-02-20 18:13:54,089 - INFO - Found 78 total links on investor page
+2026-02-20 18:13:54,279 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 18:13:54,469 - INFO - [Investor] Found 1 recent articles
+2026-02-20 18:13:54,552 - INFO - Total unique articles found: 1
+2026-02-20 18:13:54,552 - INFO - New article: https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthca (February 19, 2026)
+2026-02-20 18:13:54,552 - INFO - Fetching with Jina Reader: https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthca...
+2026-02-20 18:13:55,642 - ERROR - Jina Reader failed: name 'logger' is not defined
+2026-02-20 18:13:55,643 - INFO - Falling back to Selenium...
+2026-02-20 18:13:56,103 - INFO - Fetching with Selenium: https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthca...
+2026-02-20 18:14:02,405 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-20 18:14:02 CST)" (scheduled at 2026-02-20 18:14:02.347363+08:00)
+2026-02-20 18:14:02,410 - INFO - Checking for new articles...
+2026-02-20 18:14:02,453 - INFO - ============================================================
+2026-02-20 18:14:02,453 - INFO - Fetching articles from all sources...
+2026-02-20 18:14:02,454 - INFO - ============================================================
+2026-02-20 18:14:02,454 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 18:14:03,889 - INFO - Got content (10536 chars)
+2026-02-20 18:14:03,890 - INFO - Downloading images: News Release...
+2026-02-20 18:14:03,890 - INFO - Translating: News Release...
+2026-02-20 18:14:05,355 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 18:14:07,497 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 18:14:07,497 - INFO - Found 20 items in RSS feed
+2026-02-20 18:14:07,498 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 18:14:07,662 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 18:14:18,950 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 18:14:18,977 - INFO - Found 78 total links on investor page
+2026-02-20 18:14:19,161 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 18:14:19,337 - INFO - [Investor] Found 1 recent articles
+2026-02-20 18:14:19,494 - INFO - Total unique articles found: 1
+2026-02-20 18:14:19,494 - INFO - New article: https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthca (February 19, 2026)
+2026-02-20 18:14:19,494 - INFO - Fetching with Jina Reader: https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthca...
+2026-02-20 18:14:20,806 - ERROR - Jina Reader failed: name 'logger' is not defined
+2026-02-20 18:14:20,807 - INFO - Falling back to Selenium...
+2026-02-20 18:14:21,550 - INFO - Fetching with Selenium: https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthca...
+2026-02-20 18:14:29,034 - INFO - Got content (10536 chars)
+2026-02-20 18:14:29,034 - INFO - Downloading images: News Release...
+2026-02-20 18:14:29,035 - INFO - Translating: News Release...
+2026-02-20 18:14:30,698 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 18:14:33,387 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 18:15:30,449 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 18:16:37,245 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 18:16:58,697 - INFO - Reviewing (DeepSeek): News Release...
+2026-02-20 18:17:00,208 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 18:17:33,261 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 18:17:44,224 - INFO - Reviewing (DeepSeek): News Release...
+2026-02-20 18:17:45,112 - INFO - HTTP Request: POST https://integrate.api.nvidia.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-02-20 18:19:03,475 - INFO - Gemini pre-publish review: News Release...
+2026-02-20 18:19:04,828 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-20 18:19:08,715 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-20 18:19:12,372 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-20 18:19:15,448 - INFO - Gemini review completed: News Release
+2026-02-20 18:19:15,448 - INFO - Saving: News Release...
+2026-02-20 18:19:15,585 - INFO - Publishing to WeChat: News Release...
+2026-02-20 18:19:15,585 - INFO - 请准备好微信扫码登录（如果未登录）
+2026-02-20 18:19:29,440 - INFO - Gemini pre-publish review: News Release...
+2026-02-20 18:19:30,940 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-20 18:19:34,428 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-20 18:19:37,876 - INFO - HTTP Request: POST https://hiapi.online/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2026-02-20 18:19:40,951 - INFO - Gemini review completed: News Release
+2026-02-20 18:19:40,951 - INFO - Saving: News Release...
+2026-02-20 18:19:41,080 - INFO - Publishing to WeChat: News Release...
+2026-02-20 18:19:41,082 - WARNING - WeChat publish failed: News Release
+2026-02-20 18:19:41,083 - WARNING - NOTIFY_EMAIL 未配置，跳过邮件通知
+2026-02-20 18:19:41,083 - INFO - Completed: News Release
+2026-02-20 18:19:41,083 - INFO - Processed 1 new article(s)
+2026-02-20 18:19:41,083 - INFO - Processing complete
+2026-02-20 18:19:41,083 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-20 22:14:02 CST)" executed successfully
+2026-02-20 18:19:56,873 - INFO - WeChat publish success: News Release
+2026-02-20 18:19:56,873 - WARNING - NOTIFY_EMAIL 未配置，跳过邮件通知
+2026-02-20 18:19:56,873 - INFO - Completed: News Release
+2026-02-20 18:19:56,873 - INFO - Processed 1 new article(s)
+2026-02-20 18:19:56,873 - INFO - Processing complete
+2026-02-20 23:43:47,929 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-20 22:13:37 CST)" (scheduled at 2026-02-20 22:13:37.391140+08:00)
+2026-02-20 23:43:47,931 - INFO - Checking for new articles...
+2026-02-20 23:43:47,973 - INFO - ============================================================
+2026-02-20 23:43:47,973 - INFO - Fetching articles from all sources...
+2026-02-20 23:43:47,973 - INFO - ============================================================
+2026-02-20 23:43:47,974 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 23:43:54,762 - INFO - Target dates: {datetime.date(2026, 2, 20), datetime.date(2026, 2, 19)}
+2026-02-20 23:43:54,762 - INFO - Found 20 items in RSS feed
+2026-02-20 23:43:54,763 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 23:43:55,022 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 23:44:06,019 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 20), datetime.date(2026, 2, 19)}
+2026-02-20 23:44:06,043 - INFO - Found 78 total links on investor page
+2026-02-20 23:44:06,230 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 23:44:06,408 - INFO - [Investor] Found 1 recent articles
+2026-02-20 23:44:06,666 - INFO - Total unique articles found: 1
+2026-02-20 23:44:06,666 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 23:44:06,666 - INFO - Processing complete
+2026-02-20 23:44:06,666 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 02:13:37 CST)" executed successfully
+2026-02-20 23:44:12,882 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 02:14:02 CST)" (scheduled at 2026-02-20 22:14:02.347363+08:00)
+2026-02-20 23:44:12,884 - INFO - Checking for new articles...
+2026-02-20 23:44:12,930 - INFO - ============================================================
+2026-02-20 23:44:12,930 - INFO - Fetching articles from all sources...
+2026-02-20 23:44:12,930 - INFO - ============================================================
+2026-02-20 23:44:12,930 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-20 23:44:17,628 - INFO - Target dates: {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 23:44:17,628 - INFO - Found 20 items in RSS feed
+2026-02-20 23:44:17,629 - INFO - [Main RSS] Found 0 recent articles
+2026-02-20 23:44:17,883 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-20 23:44:28,814 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 19), datetime.date(2026, 2, 20)}
+2026-02-20 23:44:28,836 - INFO - Found 78 total links on investor page
+2026-02-20 23:44:29,023 - INFO - [Investor] Found: News Release... (2026-02-19)
+2026-02-20 23:44:29,200 - INFO - [Investor] Found 1 recent articles
+2026-02-20 23:44:29,455 - INFO - Total unique articles found: 1
+2026-02-20 23:44:29,455 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-20 23:44:29,455 - INFO - Processing complete
+2026-02-20 23:44:29,455 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 02:14:02 CST)" executed successfully
+2026-02-21 13:47:15,009 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 14:13:37 CST)" (scheduled at 2026-02-21 10:13:37.391140+08:00)
+2026-02-21 13:47:15,020 - INFO - Checking for new articles...
+2026-02-21 13:47:15,073 - INFO - ============================================================
+2026-02-21 13:47:15,073 - INFO - Fetching articles from all sources...
+2026-02-21 13:47:15,074 - INFO - ============================================================
+2026-02-21 13:47:15,076 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-21 13:47:22,984 - INFO - Target dates: {datetime.date(2026, 2, 20), datetime.date(2026, 2, 21)}
+2026-02-21 13:47:22,985 - INFO - Found 20 items in RSS feed
+2026-02-21 13:47:22,988 - INFO - [Main RSS] Found 0 recent articles
+2026-02-21 13:47:23,234 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-21 13:47:36,393 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 20), datetime.date(2026, 2, 21)}
+2026-02-21 13:47:36,418 - INFO - Found 78 total links on investor page
+2026-02-21 13:47:36,800 - INFO - [Investor] Found 0 recent articles
+2026-02-21 13:47:37,051 - INFO - Total unique articles found: 0
+2026-02-21 13:47:37,051 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-21 13:47:37,051 - INFO - Processing complete
+2026-02-21 13:47:37,051 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 14:13:37 CST)" executed successfully
+2026-02-21 13:47:39,951 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 14:14:02 CST)" (scheduled at 2026-02-21 10:14:02.347363+08:00)
+2026-02-21 13:47:39,956 - INFO - Checking for new articles...
+2026-02-21 13:47:40,011 - INFO - ============================================================
+2026-02-21 13:47:40,011 - INFO - Fetching articles from all sources...
+2026-02-21 13:47:40,011 - INFO - ============================================================
+2026-02-21 13:47:40,011 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-21 13:47:46,173 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 20)}
+2026-02-21 13:47:46,174 - INFO - Found 20 items in RSS feed
+2026-02-21 13:47:46,178 - INFO - [Main RSS] Found 0 recent articles
+2026-02-21 13:47:46,437 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-21 13:47:59,126 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 20)}
+2026-02-21 13:47:59,151 - INFO - Found 78 total links on investor page
+2026-02-21 13:47:59,514 - INFO - [Investor] Found 0 recent articles
+2026-02-21 13:47:59,773 - INFO - Total unique articles found: 0
+2026-02-21 13:47:59,773 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-21 13:47:59,773 - INFO - Processing complete
+2026-02-21 13:47:59,773 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 14:14:02 CST)" executed successfully
+2026-02-21 14:13:37,541 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 18:13:37 CST)" (scheduled at 2026-02-21 14:13:37.391140+08:00)
+2026-02-21 14:13:37,543 - INFO - Checking for new articles...
+2026-02-21 14:13:37,546 - INFO - ============================================================
+2026-02-21 14:13:37,546 - INFO - Fetching articles from all sources...
+2026-02-21 14:13:37,546 - INFO - ============================================================
+2026-02-21 14:13:37,546 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-21 14:13:43,677 - INFO - Target dates: {datetime.date(2026, 2, 20), datetime.date(2026, 2, 21)}
+2026-02-21 14:13:43,677 - INFO - Found 20 items in RSS feed
+2026-02-21 14:13:43,678 - INFO - [Main RSS] Found 0 recent articles
+2026-02-21 14:13:43,929 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-21 14:13:55,235 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 20), datetime.date(2026, 2, 21)}
+2026-02-21 14:13:55,260 - INFO - Found 78 total links on investor page
+2026-02-21 14:13:55,624 - INFO - [Investor] Found 0 recent articles
+2026-02-21 14:13:55,885 - INFO - Total unique articles found: 0
+2026-02-21 14:13:55,886 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-21 14:13:55,886 - INFO - Processing complete
+2026-02-21 14:13:55,886 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 18:13:37 CST)" executed successfully
+2026-02-21 14:14:02,494 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 18:14:02 CST)" (scheduled at 2026-02-21 14:14:02.347363+08:00)
+2026-02-21 14:14:02,495 - INFO - Checking for new articles...
+2026-02-21 14:14:02,544 - INFO - ============================================================
+2026-02-21 14:14:02,544 - INFO - Fetching articles from all sources...
+2026-02-21 14:14:02,544 - INFO - ============================================================
+2026-02-21 14:14:02,545 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-21 14:14:07,347 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 20)}
+2026-02-21 14:14:07,348 - INFO - Found 20 items in RSS feed
+2026-02-21 14:14:07,348 - INFO - [Main RSS] Found 0 recent articles
+2026-02-21 14:14:07,598 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-21 14:14:20,074 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 20)}
+2026-02-21 14:14:20,097 - INFO - Found 78 total links on investor page
+2026-02-21 14:14:20,464 - INFO - [Investor] Found 0 recent articles
+2026-02-21 14:14:20,724 - INFO - Total unique articles found: 0
+2026-02-21 14:14:20,724 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-21 14:14:20,725 - INFO - Processing complete
+2026-02-21 14:14:20,725 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 18:14:02 CST)" executed successfully
+2026-02-21 18:13:37,473 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 22:13:37 CST)" (scheduled at 2026-02-21 18:13:37.391140+08:00)
+2026-02-21 18:13:37,476 - INFO - Checking for new articles...
+2026-02-21 18:13:37,514 - INFO - ============================================================
+2026-02-21 18:13:37,515 - INFO - Fetching articles from all sources...
+2026-02-21 18:13:37,515 - INFO - ============================================================
+2026-02-21 18:13:37,515 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-21 18:13:51,307 - ERROR - Error fetching main RSS: Message: unknown error: net::ERR_CONNECTION_RESET
+  (Session info: chrome=145.0.7632.77)
+Stacktrace:
+0   chromedriver                        0x0000000100a17d84 cxxbridge1$str$ptr + 3127864
+1   chromedriver                        0x0000000100a10174 cxxbridge1$str$ptr + 3096104
+2   chromedriver                        0x00000001004ed9f4 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75356
+3   chromedriver                        0x00000001004e5a78 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 42720
+4   chromedriver                        0x00000001004d8178 cxxbridge1$string$len + 4712
+5   chromedriver                        0x00000001004d9c80 cxxbridge1$string$len + 11632
+6   chromedriver                        0x00000001004d85e4 cxxbridge1$string$len + 5844
+7   chromedriver                        0x00000001004d7f34 cxxbridge1$string$len + 4132
+8   chromedriver                        0x00000001004d7c70 cxxbridge1$string$len + 3424
+9   chromedriver                        0x00000001004d59ec chromedriver + 219628
+10  chromedriver                        0x00000001004d64b8 chromedriver + 222392
+11  chromedriver                        0x00000001004f0c20 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 88200
+12  chromedriver                        0x0000000100575658 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 631488
+13  chromedriver                        0x0000000100574b8c _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 628724
+14  chromedriver                        0x000000010052a2bc _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323364
+15  chromedriver                        0x00000001009d68a8 cxxbridge1$str$ptr + 2860380
+16  chromedriver                        0x00000001009d9fe8 cxxbridge1$str$ptr + 2874524
+17  chromedriver                        0x00000001009bbcc4 cxxbridge1$str$ptr + 2750840
+18  chromedriver                        0x00000001009da86c cxxbridge1$str$ptr + 2876704
+19  chromedriver                        0x00000001009ac2cc cxxbridge1$str$ptr + 2686848
+20  chromedriver                        0x00000001009fef68 cxxbridge1$str$ptr + 3025948
+21  chromedriver                        0x00000001009ff0e4 cxxbridge1$str$ptr + 3026328
+22  chromedriver                        0x0000000100a0fdcc cxxbridge1$str$ptr + 3095168
+23  libsystem_pthread.dylib             0x000000018a0dfc08 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000018a0daba8 thread_start + 8
+
+2026-02-21 18:13:51,416 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-21 18:14:01,962 - ERROR - Error fetching investor page: Message: unknown error: net::ERR_CONNECTION_RESET
+  (Session info: chrome=145.0.7632.77)
+Stacktrace:
+0   chromedriver                        0x000000010057bd84 cxxbridge1$str$ptr + 3127864
+1   chromedriver                        0x0000000100574174 cxxbridge1$str$ptr + 3096104
+2   chromedriver                        0x00000001000519f4 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75356
+3   chromedriver                        0x0000000100049a78 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 42720
+4   chromedriver                        0x000000010003c178 cxxbridge1$string$len + 4712
+5   chromedriver                        0x000000010003dc80 cxxbridge1$string$len + 11632
+6   chromedriver                        0x000000010003c5e4 cxxbridge1$string$len + 5844
+7   chromedriver                        0x000000010003bf34 cxxbridge1$string$len + 4132
+8   chromedriver                        0x000000010003bc70 cxxbridge1$string$len + 3424
+9   chromedriver                        0x00000001000399ec chromedriver + 219628
+10  chromedriver                        0x000000010003a4b8 chromedriver + 222392
+11  chromedriver                        0x0000000100054c20 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 88200
+12  chromedriver                        0x00000001000d9658 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 631488
+13  chromedriver                        0x00000001000d8b8c _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 628724
+14  chromedriver                        0x000000010008e2bc _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323364
+15  chromedriver                        0x000000010053a8a8 cxxbridge1$str$ptr + 2860380
+16  chromedriver                        0x000000010053dfe8 cxxbridge1$str$ptr + 2874524
+17  chromedriver                        0x000000010051fcc4 cxxbridge1$str$ptr + 2750840
+18  chromedriver                        0x000000010053e86c cxxbridge1$str$ptr + 2876704
+19  chromedriver                        0x00000001005102cc cxxbridge1$str$ptr + 2686848
+20  chromedriver                        0x0000000100562f68 cxxbridge1$str$ptr + 3025948
+21  chromedriver                        0x00000001005630e4 cxxbridge1$str$ptr + 3026328
+22  chromedriver                        0x0000000100573dcc cxxbridge1$str$ptr + 3095168
+23  libsystem_pthread.dylib             0x000000018a0dfc08 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000018a0daba8 thread_start + 8
+
+2026-02-21 18:14:02,189 - INFO - Total unique articles found: 0
+2026-02-21 18:14:02,189 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-21 18:14:02,189 - INFO - Processing complete
+2026-02-21 18:14:02,189 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 22:13:37 CST)" executed successfully
+2026-02-21 18:14:02,429 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 22:14:02 CST)" (scheduled at 2026-02-21 18:14:02.347363+08:00)
+2026-02-21 18:14:02,430 - INFO - Checking for new articles...
+2026-02-21 18:14:02,470 - INFO - ============================================================
+2026-02-21 18:14:02,470 - INFO - Fetching articles from all sources...
+2026-02-21 18:14:02,470 - INFO - ============================================================
+2026-02-21 18:14:02,470 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-21 18:14:13,264 - ERROR - Error fetching main RSS: Message: unknown error: net::ERR_CONNECTION_RESET
+  (Session info: chrome=145.0.7632.77)
+Stacktrace:
+0   chromedriver                        0x0000000100d7bd84 cxxbridge1$str$ptr + 3127864
+1   chromedriver                        0x0000000100d74174 cxxbridge1$str$ptr + 3096104
+2   chromedriver                        0x00000001008519f4 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75356
+3   chromedriver                        0x0000000100849a78 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 42720
+4   chromedriver                        0x000000010083c178 cxxbridge1$string$len + 4712
+5   chromedriver                        0x000000010083dc80 cxxbridge1$string$len + 11632
+6   chromedriver                        0x000000010083c5e4 cxxbridge1$string$len + 5844
+7   chromedriver                        0x000000010083bf34 cxxbridge1$string$len + 4132
+8   chromedriver                        0x000000010083bc70 cxxbridge1$string$len + 3424
+9   chromedriver                        0x00000001008399ec chromedriver + 219628
+10  chromedriver                        0x000000010083a4b8 chromedriver + 222392
+11  chromedriver                        0x0000000100854c20 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 88200
+12  chromedriver                        0x00000001008d9658 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 631488
+13  chromedriver                        0x00000001008d8b8c _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 628724
+14  chromedriver                        0x000000010088e2bc _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323364
+15  chromedriver                        0x0000000100d3a8a8 cxxbridge1$str$ptr + 2860380
+16  chromedriver                        0x0000000100d3dfe8 cxxbridge1$str$ptr + 2874524
+17  chromedriver                        0x0000000100d1fcc4 cxxbridge1$str$ptr + 2750840
+18  chromedriver                        0x0000000100d3e86c cxxbridge1$str$ptr + 2876704
+19  chromedriver                        0x0000000100d102cc cxxbridge1$str$ptr + 2686848
+20  chromedriver                        0x0000000100d62f68 cxxbridge1$str$ptr + 3025948
+21  chromedriver                        0x0000000100d630e4 cxxbridge1$str$ptr + 3026328
+22  chromedriver                        0x0000000100d73dcc cxxbridge1$str$ptr + 3095168
+23  libsystem_pthread.dylib             0x000000018a0dfc08 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000018a0daba8 thread_start + 8
+
+2026-02-21 18:14:13,382 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-21 18:14:23,870 - ERROR - Error fetching investor page: Message: unknown error: net::ERR_CONNECTION_RESET
+  (Session info: chrome=145.0.7632.77)
+Stacktrace:
+0   chromedriver                        0x0000000100acbd84 cxxbridge1$str$ptr + 3127864
+1   chromedriver                        0x0000000100ac4174 cxxbridge1$str$ptr + 3096104
+2   chromedriver                        0x00000001005a19f4 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 75356
+3   chromedriver                        0x0000000100599a78 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 42720
+4   chromedriver                        0x000000010058c178 cxxbridge1$string$len + 4712
+5   chromedriver                        0x000000010058dc80 cxxbridge1$string$len + 11632
+6   chromedriver                        0x000000010058c5e4 cxxbridge1$string$len + 5844
+7   chromedriver                        0x000000010058bf34 cxxbridge1$string$len + 4132
+8   chromedriver                        0x000000010058bc70 cxxbridge1$string$len + 3424
+9   chromedriver                        0x00000001005899ec chromedriver + 219628
+10  chromedriver                        0x000000010058a4b8 chromedriver + 222392
+11  chromedriver                        0x00000001005a4c20 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 88200
+12  chromedriver                        0x0000000100629658 _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 631488
+13  chromedriver                        0x0000000100628b8c _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 628724
+14  chromedriver                        0x00000001005de2bc _RNvCsdExgN8vFLbb_7___rustc35___rust_no_alloc_shim_is_unstable_v2 + 323364
+15  chromedriver                        0x0000000100a8a8a8 cxxbridge1$str$ptr + 2860380
+16  chromedriver                        0x0000000100a8dfe8 cxxbridge1$str$ptr + 2874524
+17  chromedriver                        0x0000000100a6fcc4 cxxbridge1$str$ptr + 2750840
+18  chromedriver                        0x0000000100a8e86c cxxbridge1$str$ptr + 2876704
+19  chromedriver                        0x0000000100a602cc cxxbridge1$str$ptr + 2686848
+20  chromedriver                        0x0000000100ab2f68 cxxbridge1$str$ptr + 3025948
+21  chromedriver                        0x0000000100ab30e4 cxxbridge1$str$ptr + 3026328
+22  chromedriver                        0x0000000100ac3dcc cxxbridge1$str$ptr + 3095168
+23  libsystem_pthread.dylib             0x000000018a0dfc08 _pthread_start + 136
+24  libsystem_pthread.dylib             0x000000018a0daba8 thread_start + 8
+
+2026-02-21 18:14:24,050 - INFO - Total unique articles found: 0
+2026-02-21 18:14:24,050 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-21 18:14:24,050 - INFO - Processing complete
+2026-02-21 18:14:24,050 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-21 22:14:02 CST)" executed successfully
+2026-02-21 22:13:37,471 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 02:13:37 CST)" (scheduled at 2026-02-21 22:13:37.391140+08:00)
+2026-02-21 22:13:37,475 - INFO - Checking for new articles...
+2026-02-21 22:13:37,520 - INFO - ============================================================
+2026-02-21 22:13:37,520 - INFO - Fetching articles from all sources...
+2026-02-21 22:13:37,520 - INFO - ============================================================
+2026-02-21 22:13:37,520 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-21 22:13:43,221 - INFO - Target dates: {datetime.date(2026, 2, 20), datetime.date(2026, 2, 21)}
+2026-02-21 22:13:43,221 - INFO - Found 20 items in RSS feed
+2026-02-21 22:13:43,222 - INFO - [Main RSS] Found 0 recent articles
+2026-02-21 22:13:43,476 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-21 22:13:54,722 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 20), datetime.date(2026, 2, 21)}
+2026-02-21 22:13:54,749 - INFO - Found 78 total links on investor page
+2026-02-21 22:13:55,110 - INFO - [Investor] Found 0 recent articles
+2026-02-21 22:13:55,370 - INFO - Total unique articles found: 0
+2026-02-21 22:13:55,371 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-21 22:13:55,371 - INFO - Processing complete
+2026-02-21 22:13:55,371 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 02:13:37 CST)" executed successfully
+2026-02-21 22:14:02,436 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 02:14:02 CST)" (scheduled at 2026-02-21 22:14:02.347363+08:00)
+2026-02-21 22:14:02,437 - INFO - Checking for new articles...
+2026-02-21 22:14:02,441 - INFO - ============================================================
+2026-02-21 22:14:02,442 - INFO - Fetching articles from all sources...
+2026-02-21 22:14:02,442 - INFO - ============================================================
+2026-02-21 22:14:02,442 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-21 22:14:07,615 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 20)}
+2026-02-21 22:14:07,616 - INFO - Found 20 items in RSS feed
+2026-02-21 22:14:07,617 - INFO - [Main RSS] Found 0 recent articles
+2026-02-21 22:14:07,870 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-21 22:14:18,826 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 20)}
+2026-02-21 22:14:18,850 - INFO - Found 78 total links on investor page
+2026-02-21 22:14:19,212 - INFO - [Investor] Found 0 recent articles
+2026-02-21 22:14:19,470 - INFO - Total unique articles found: 0
+2026-02-21 22:14:19,470 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-21 22:14:19,470 - INFO - Processing complete
+2026-02-21 22:14:19,470 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 02:14:02 CST)" executed successfully
+2026-02-22 11:44:23,320 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 14:13:37 CST)" (scheduled at 2026-02-22 10:13:37.391140+08:00)
+2026-02-22 11:44:23,338 - INFO - Checking for new articles...
+2026-02-22 11:44:23,427 - INFO - ============================================================
+2026-02-22 11:44:23,428 - INFO - Fetching articles from all sources...
+2026-02-22 11:44:23,428 - INFO - ============================================================
+2026-02-22 11:44:23,428 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-22 11:44:30,833 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 11:44:30,833 - INFO - Found 20 items in RSS feed
+2026-02-22 11:44:30,834 - INFO - [Main RSS] Found 0 recent articles
+2026-02-22 11:44:31,091 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-22 11:44:44,026 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 11:44:44,054 - INFO - Found 78 total links on investor page
+2026-02-22 11:44:44,420 - INFO - [Investor] Found 0 recent articles
+2026-02-22 11:44:44,677 - INFO - Total unique articles found: 0
+2026-02-22 11:44:44,677 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-22 11:44:44,677 - INFO - Processing complete
+2026-02-22 11:44:44,677 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 14:13:37 CST)" executed successfully
+2026-02-22 11:44:48,375 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 14:14:02 CST)" (scheduled at 2026-02-22 10:14:02.347363+08:00)
+2026-02-22 11:44:48,376 - INFO - Checking for new articles...
+2026-02-22 11:44:48,422 - INFO - ============================================================
+2026-02-22 11:44:48,422 - INFO - Fetching articles from all sources...
+2026-02-22 11:44:48,422 - INFO - ============================================================
+2026-02-22 11:44:48,422 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-22 11:44:53,526 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 11:44:53,527 - INFO - Found 20 items in RSS feed
+2026-02-22 11:44:53,528 - INFO - [Main RSS] Found 0 recent articles
+2026-02-22 11:44:53,782 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-22 11:45:06,428 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 11:45:06,449 - INFO - Found 78 total links on investor page
+2026-02-22 11:45:06,809 - INFO - [Investor] Found 0 recent articles
+2026-02-22 11:45:06,960 - INFO - Total unique articles found: 0
+2026-02-22 11:45:06,960 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-22 11:45:06,960 - INFO - Processing complete
+2026-02-22 11:45:06,960 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 14:14:02 CST)" executed successfully
+2026-02-22 14:13:37,498 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 18:13:37 CST)" (scheduled at 2026-02-22 14:13:37.391140+08:00)
+2026-02-22 14:13:37,500 - INFO - Checking for new articles...
+2026-02-22 14:13:37,544 - INFO - ============================================================
+2026-02-22 14:13:37,544 - INFO - Fetching articles from all sources...
+2026-02-22 14:13:37,544 - INFO - ============================================================
+2026-02-22 14:13:37,544 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-22 14:13:43,436 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 14:13:43,437 - INFO - Found 20 items in RSS feed
+2026-02-22 14:13:43,438 - INFO - [Main RSS] Found 0 recent articles
+2026-02-22 14:13:43,685 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-22 14:13:55,062 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 14:13:55,084 - INFO - Found 78 total links on investor page
+2026-02-22 14:13:55,447 - INFO - [Investor] Found 0 recent articles
+2026-02-22 14:13:55,704 - INFO - Total unique articles found: 0
+2026-02-22 14:13:55,704 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-22 14:13:55,704 - INFO - Processing complete
+2026-02-22 14:13:55,705 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 18:13:37 CST)" executed successfully
+2026-02-22 14:14:02,447 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 18:14:02 CST)" (scheduled at 2026-02-22 14:14:02.347363+08:00)
+2026-02-22 14:14:02,449 - INFO - Checking for new articles...
+2026-02-22 14:14:02,487 - INFO - ============================================================
+2026-02-22 14:14:02,488 - INFO - Fetching articles from all sources...
+2026-02-22 14:14:02,488 - INFO - ============================================================
+2026-02-22 14:14:02,488 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-22 14:14:07,124 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 14:14:07,125 - INFO - Found 20 items in RSS feed
+2026-02-22 14:14:07,126 - INFO - [Main RSS] Found 0 recent articles
+2026-02-22 14:14:07,384 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-22 14:14:19,135 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 14:14:19,157 - INFO - Found 78 total links on investor page
+2026-02-22 14:14:19,521 - INFO - [Investor] Found 0 recent articles
+2026-02-22 14:14:19,781 - INFO - Total unique articles found: 0
+2026-02-22 14:14:19,781 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-22 14:14:19,781 - INFO - Processing complete
+2026-02-22 14:14:19,781 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 18:14:02 CST)" executed successfully
+2026-02-22 18:13:37,486 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 22:13:37 CST)" (scheduled at 2026-02-22 18:13:37.391140+08:00)
+2026-02-22 18:13:37,490 - INFO - Checking for new articles...
+2026-02-22 18:13:37,534 - INFO - ============================================================
+2026-02-22 18:13:37,534 - INFO - Fetching articles from all sources...
+2026-02-22 18:13:37,534 - INFO - ============================================================
+2026-02-22 18:13:37,534 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-22 18:13:46,316 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 18:13:46,316 - INFO - Found 20 items in RSS feed
+2026-02-22 18:13:46,317 - INFO - [Main RSS] Found 0 recent articles
+2026-02-22 18:13:46,483 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-22 18:13:58,419 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 18:13:58,457 - INFO - Found 78 total links on investor page
+2026-02-22 18:13:58,823 - INFO - [Investor] Found 0 recent articles
+2026-02-22 18:13:58,978 - INFO - Total unique articles found: 0
+2026-02-22 18:13:58,978 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-22 18:13:58,978 - INFO - Processing complete
+2026-02-22 18:13:58,979 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 22:13:37 CST)" executed successfully
+2026-02-22 18:14:02,430 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 22:14:02 CST)" (scheduled at 2026-02-22 18:14:02.347363+08:00)
+2026-02-22 18:14:02,432 - INFO - Checking for new articles...
+2026-02-22 18:14:02,476 - INFO - ============================================================
+2026-02-22 18:14:02,476 - INFO - Fetching articles from all sources...
+2026-02-22 18:14:02,476 - INFO - ============================================================
+2026-02-22 18:14:02,476 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-22 18:14:07,049 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 18:14:07,050 - INFO - Found 20 items in RSS feed
+2026-02-22 18:14:07,050 - INFO - [Main RSS] Found 0 recent articles
+2026-02-22 18:14:07,222 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-22 18:14:18,337 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 18:14:18,361 - INFO - Found 78 total links on investor page
+2026-02-22 18:14:18,715 - INFO - [Investor] Found 0 recent articles
+2026-02-22 18:14:18,871 - INFO - Total unique articles found: 0
+2026-02-22 18:14:18,871 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-22 18:14:18,871 - INFO - Processing complete
+2026-02-22 18:14:18,871 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-22 22:14:02 CST)" executed successfully
+2026-02-22 22:13:37,425 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 02:13:37 CST)" (scheduled at 2026-02-22 22:13:37.391140+08:00)
+2026-02-22 22:13:37,427 - INFO - Checking for new articles...
+2026-02-22 22:13:37,467 - INFO - ============================================================
+2026-02-22 22:13:37,467 - INFO - Fetching articles from all sources...
+2026-02-22 22:13:37,468 - INFO - ============================================================
+2026-02-22 22:13:37,468 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-22 22:13:42,963 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 22:13:42,964 - INFO - Found 20 items in RSS feed
+2026-02-22 22:13:42,965 - INFO - [Main RSS] Found 0 recent articles
+2026-02-22 22:13:43,131 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-22 22:13:54,708 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 22:13:54,732 - INFO - Found 78 total links on investor page
+2026-02-22 22:13:55,086 - INFO - [Investor] Found 0 recent articles
+2026-02-22 22:13:55,186 - INFO - Total unique articles found: 0
+2026-02-22 22:13:55,186 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-22 22:13:55,186 - INFO - Processing complete
+2026-02-22 22:13:55,186 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 02:13:37 CST)" executed successfully
+2026-02-22 22:14:02,352 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 02:14:02 CST)" (scheduled at 2026-02-22 22:14:02.347363+08:00)
+2026-02-22 22:14:02,353 - INFO - Checking for new articles...
+2026-02-22 22:14:02,397 - INFO - ============================================================
+2026-02-22 22:14:02,397 - INFO - Fetching articles from all sources...
+2026-02-22 22:14:02,397 - INFO - ============================================================
+2026-02-22 22:14:02,397 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-22 22:14:07,281 - INFO - Target dates: {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 22:14:07,281 - INFO - Found 20 items in RSS feed
+2026-02-22 22:14:07,282 - INFO - [Main RSS] Found 0 recent articles
+2026-02-22 22:14:07,468 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-22 22:14:19,258 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 21), datetime.date(2026, 2, 22)}
+2026-02-22 22:14:19,283 - INFO - Found 78 total links on investor page
+2026-02-22 22:14:19,638 - INFO - [Investor] Found 0 recent articles
+2026-02-22 22:14:19,794 - INFO - Total unique articles found: 0
+2026-02-22 22:14:19,794 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-22 22:14:19,794 - INFO - Processing complete
+2026-02-22 22:14:19,794 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 02:14:02 CST)" executed successfully
+2026-02-23 02:15:18,796 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 06:13:37 CST)" (scheduled at 2026-02-23 02:13:37.391140+08:00)
+2026-02-23 02:15:18,805 - INFO - Checking for new articles...
+2026-02-23 02:15:18,854 - INFO - ============================================================
+2026-02-23 02:15:18,854 - INFO - Fetching articles from all sources...
+2026-02-23 02:15:18,854 - INFO - ============================================================
+2026-02-23 02:15:18,855 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-23 02:15:24,486 - INFO - Target dates: {datetime.date(2026, 2, 22), datetime.date(2026, 2, 23)}
+2026-02-23 02:15:24,487 - INFO - Found 20 items in RSS feed
+2026-02-23 02:15:24,489 - INFO - [Main RSS] Found 0 recent articles
+2026-02-23 02:15:24,657 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-23 02:15:35,967 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 22), datetime.date(2026, 2, 23)}
+2026-02-23 02:15:35,989 - INFO - Found 78 total links on investor page
+2026-02-23 02:15:36,356 - INFO - [Investor] Found 0 recent articles
+2026-02-23 02:15:36,491 - INFO - Total unique articles found: 0
+2026-02-23 02:15:36,491 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-23 02:15:36,491 - INFO - Processing complete
+2026-02-23 02:15:36,491 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 06:13:37 CST)" executed successfully
+2026-02-23 02:15:43,809 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 06:14:02 CST)" (scheduled at 2026-02-23 02:14:02.347363+08:00)
+2026-02-23 02:15:43,817 - INFO - Checking for new articles...
+2026-02-23 02:15:43,860 - INFO - ============================================================
+2026-02-23 02:15:43,861 - INFO - Fetching articles from all sources...
+2026-02-23 02:15:43,861 - INFO - ============================================================
+2026-02-23 02:15:43,861 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-23 02:15:49,064 - INFO - Target dates: {datetime.date(2026, 2, 23), datetime.date(2026, 2, 22)}
+2026-02-23 02:15:49,066 - INFO - Found 20 items in RSS feed
+2026-02-23 02:15:49,067 - INFO - [Main RSS] Found 0 recent articles
+2026-02-23 02:15:49,240 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-23 02:16:00,529 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 23), datetime.date(2026, 2, 22)}
+2026-02-23 02:16:00,554 - INFO - Found 78 total links on investor page
+2026-02-23 02:16:00,907 - INFO - [Investor] Found 0 recent articles
+2026-02-23 02:16:01,062 - INFO - Total unique articles found: 0
+2026-02-23 02:16:01,062 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-23 02:16:01,062 - INFO - Processing complete
+2026-02-23 02:16:01,062 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 06:14:02 CST)" executed successfully
+2026-02-23 13:59:56,951 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 14:13:37 CST)" (scheduled at 2026-02-23 10:13:37.391140+08:00)
+2026-02-23 13:59:56,957 - INFO - Checking for new articles...
+2026-02-23 13:59:57,015 - INFO - ============================================================
+2026-02-23 13:59:57,015 - INFO - Fetching articles from all sources...
+2026-02-23 13:59:57,015 - INFO - ============================================================
+2026-02-23 13:59:57,015 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-23 14:00:03,069 - INFO - Target dates: {datetime.date(2026, 2, 22), datetime.date(2026, 2, 23)}
+2026-02-23 14:00:03,070 - INFO - Found 20 items in RSS feed
+2026-02-23 14:00:03,070 - INFO - [Main RSS] Found 0 recent articles
+2026-02-23 14:00:03,271 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-23 14:00:14,874 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 22), datetime.date(2026, 2, 23)}
+2026-02-23 14:00:14,902 - INFO - Found 78 total links on investor page
+2026-02-23 14:00:15,318 - INFO - [Investor] Found 0 recent articles
+2026-02-23 14:00:15,474 - INFO - Total unique articles found: 0
+2026-02-23 14:00:15,474 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-23 14:00:15,474 - INFO - Processing complete
+2026-02-23 14:00:15,474 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 14:13:37 CST)" executed successfully
+2026-02-23 14:00:21,859 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 14:14:02 CST)" (scheduled at 2026-02-23 10:14:02.347363+08:00)
+2026-02-23 14:00:21,860 - INFO - Checking for new articles...
+2026-02-23 14:00:21,897 - INFO - ============================================================
+2026-02-23 14:00:21,897 - INFO - Fetching articles from all sources...
+2026-02-23 14:00:21,897 - INFO - ============================================================
+2026-02-23 14:00:21,897 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-23 14:00:26,241 - INFO - Target dates: {datetime.date(2026, 2, 23), datetime.date(2026, 2, 22)}
+2026-02-23 14:00:26,242 - INFO - Found 20 items in RSS feed
+2026-02-23 14:00:26,244 - INFO - [Main RSS] Found 0 recent articles
+2026-02-23 14:00:26,411 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-23 14:00:37,622 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 23), datetime.date(2026, 2, 22)}
+2026-02-23 14:00:37,641 - INFO - Found 76 total links on investor page
+2026-02-23 14:00:38,009 - INFO - [Investor] Found 0 recent articles
+2026-02-23 14:00:38,118 - INFO - Total unique articles found: 0
+2026-02-23 14:00:38,118 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-23 14:00:38,118 - INFO - Processing complete
+2026-02-23 14:00:38,118 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 14:14:02 CST)" executed successfully

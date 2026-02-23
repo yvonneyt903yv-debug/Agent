@@ -1,0 +1,32 @@
+[
+  {
+    "success": false,
+    "article_id": "3",
+    "error": "处理失败: 'AskResult' object has no attribute 'content'"
+  },
+  {
+    "success": false,
+    "article_id": "0",
+    "error": "处理失败: 'AskResult' object has no attribute 'content'"
+  },
+  {
+    "success": false,
+    "article_id": "5",
+    "error": "处理失败: 'AskResult' object has no attribute 'content'"
+  },
+  {
+    "success": false,
+    "article_id": "1",
+    "error": "处理失败: 'AskResult' object has no attribute 'content'"
+  },
+  {
+    "success": false,
+    "article_id": "3",
+    "error": "处理失败: 'AskResult' object has no attribute 'content'"
+  },
+  {
+    "success": false,
+    "article_id": "2",
+    "error": "处理失败: 'AskResult' object has no attribute 'content'"
+  }
+]

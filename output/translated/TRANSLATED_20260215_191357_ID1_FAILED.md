@@ -1,0 +1,226 @@
+翻译失败: peer closed connection without sending complete message body (incomplete chunked read)
+
+原文:
+# Prof. John Mearsheimer: Political Pressure and Trump’s Peace Options (Transcript)
+
+Editor’s Notes: In this episode of Judging Freedom Podcast, Judge Andrew Napolitano sits down with renowned international relations scholar Professor John Mearsheimer to dissect the high-stakes meeting between President Donald Trump and Prime Minister Benjamin Netanyahu. The discussion centers on the growing friction between the U.S. and Israel regarding potential peace options with Iran, specifically highlighting Netanyahu’s skepticism toward a diplomatic settlement. Mearsheimer provides a deep analysis of why a military solution remains “delusional” and explores how shifting geopolitical realities, such as Iran’s advanced ballistic missile capabilities, are forcing a rethink of American foreign policy. (Feb 12, 2026)
+
+TRANSCRIPT:
+
+“Undeclared wars are commonplace. Tragically, our government engages in preemptive war, otherwise known as aggression, with no complaints from the American people. Sadly, we have become accustomed to living with the illegitimate use of force by government. To develop a truly free society, the issue of initiating force must be understood and rejected.”
+
+JUDGE ANDREW NAPOLITANO: What if sometimes to love your country, you had to alter or abolish the government? What if Jefferson was right? What if that government is best which governs least? What if it is dangerous to be right when the government is wrong? What if it is better to perish fighting for freedom than to live as a slave? What if freedom’s greatest hour of danger is now?
+
+JUDGE ANDREW NAPOLITANO: Hi everyone. Judge Andrew Napolitano here for Judging Freedom. Today is Thursday, February 12, 2026. Professor John Mearsheimer will be with us in just a moment. What did Prime Minister Netanyahu and President Trump talk about yesterday and what is likely to come from that conversation?
+
+Professor Mearsheimer, welcome here, my dear friend. Thank you as always for accommodating my schedule. What was the principal goal, in your view, of Prime Minister Netanyahu’s very quick trip to Washington yesterday? Was it to talk Donald Trump out of a negotiated settlement with Iran?
+
+## Netanyahu’s Mission to Washington
+
+JOHN MEARSHEIMER: I think that was the principal goal. I mean, he and many other Israelis of his persuasion have been arguing that a deal with Iran is a waste of time because the Iranians can’t be trusted. They’ll break the deal.
+
+But the fallback position was to make sure that a deal that was on the table involved not just the nuclear enrichment issue, but also involved the ballistic missile issue and involved Iranian support for Hezbollah and Hamas as well. So there are three big demands that the Israelis really care about if you’re going to have negotiations.
+
+And the problem that they see is that on two of those three demands, the Trump administration has been willing to take them off the table. That’s the ballistic missile threat to Israel and also Iranian support for Hamas and Hezbollah. And all you’re left with is the nuclear enrichment issue.
+
+And there it even looks like Trump might be willing to cave in ways that are unacceptable to the Israelis because the Israelis insist that all nuclear enrichment facilities be eliminated and the Iranians say we want some. And it looks like Trump is inclined to go along with the Iranians. So the Israelis really had their work cut out for them.
+
+JUDGE ANDREW NAPOLITANO: Have the Israeli demands actually increased over time so as to make agreement between the US and Iran, the JCPOA having been ripped up, in my view foolishly, more unlikely or less likely, I should say?
+
+JOHN MEARSHEIMER: I think the intensity of the Israeli commitment to those other demands, the missile issue and support for Hamas and Hezbollah, has increased with time. As you remember going back to last year when you had the 12-day war, I think the Israelis were surprised at how effective the Iranian ballistic missile attacks were on Israel and they understood that they were facing a serious problem that they did not fully understand.
+
+And as we have talked about, on January 14th of this year, when President Trump looked like he was ready to attack Iran, it was Benjamin Netanyahu who called him up and asked him not to attack, in large part because Israel felt at that point it could not defend itself against the ballistic missiles. So the ballistic missile issue has become, as the Israelis put it, an existential threat to them.
+
+And then with regard to Hamas and Hezbollah, despite all the talk in the west about how Israel delivered a decisive blow against Hamas and Hezbollah, both of those actors are alive, they’re reconstituting themselves. And the Israelis are not back to square one, but being close to being back to square one with regard to Hamas and Hezbollah. So these issues are front and center for the Israelis now, as well as the nuclear enrichment issue.
+
+## The Ballistic Missile Question
+
+JUDGE ANDREW NAPOLITANO: Well, let’s talk about ballistic missiles. Trump never mentioned that in any of his rantings and ravings about the Iranians until recently. So is this one of the Netanyahu government originated add-ons to the original demands the Americans made? I don’t think, I haven’t read the JCPOA. I don’t think it touches the area of ballistic missiles, does it?
+
+JOHN MEARSHEIMER: No. The JCPOA simply deals with nuclear enrichment, and it does not require the Iranians to get rid of all of their nuclear enrichment capability. And this is why the Israelis hate the JCPOA. But the other reason they hate the JCPOA is that it doesn’t deal with the ballistic missile issue or with the Hamas and Hezbollah issue. And what’s happened, as I said before, is that with the passage of time, those two issues have become increasingly important to the Israelis.
+
+JUDGE ANDREW NAPOLITANO: What government would ever give up its ability to have in storage the weapons with which to attack an enemy that has publicly vowed to destroy it? That would be like Iran surrendering its sovereignty.
+
+JOHN MEARSHEIMER: Well, yes. And that’s why the Iranians are unwilling to even negotiate on the ballistic missile issue and even willing to negotiate on the Hamas-Hezbollah issue.
+
+And then when you turn to the nuclear enrichment issue, it does look like President Trump is headed towards an improved version of the JCPOA, whatever that means, which again enrages the Israelis because they want to get rid of the nuclear enrichment capability altogether.
+
+And I think what happened yesterday when Prime Minister Netanyahu went to the White House is that he realized after talking to President Trump that not only was Trump going to continue with the negotiations, but he was not going to deal with the ballistic missile issue or the Hamas-Hezbollah issue, and he was willing to accept some nuclear enrichment capability. And, of course, this is a disaster for Netanyahu.
+
+## The January Attack Theory
+
+JUDGE ANDREW NAPOLITANO: There is a theory going around in the west yesterday and today that the decision in January to call off the attack was a stroke of Trumpian genius, if you’ll pardon that oxymoronic phrase. Because once the Iranians believed that an attack was imminent, they maneuvered and manipulated and moved their defensive capability and their intelligence assets in ways that were monitored by the CIA and MI6 and Mossad, which now knows where they’ll be when the moment of attack comes. Do you buy that?
+
+JOHN MEARSHEIMER: I’m not sure exactly what you’re saying. In other words, we called off the attack so that we could figure out what the target would look like down the road?
+
+JUDGE ANDREW NAPOLITANO: Well, this theory, which I reject, but friends have pushed it on me, is that when the attack became apparent, and it was never real, but when it became apparent, the Iranians reacted to it, and their reaction tells us what they’ll do when the real attack comes. So we know what they’re going to do. That’s at least the theory. Does this make sense to you?
+
+JOHN MEARSHEIMER: Not really. I think that the Iranians are smart enough to figure out that they’ll do something different next time because the Americans and the Israelis saw what they did last time.
+
+JUDGE ANDREW NAPOLITANO: Right? Right. And Israel must know it cannot attack Iran on its own. It cannot do to Iran what it’s done to Lebanon or Syria.
+
+## No Military Solution
+
+JOHN MEARSHEIMER: That’s correct. Nor can the United States. The key point you want to keep in mind here is that we have no war-winning strategy. And I believe that this is what Trump has figured out. You can never be absolutely certain with Trump, as you know as well as I do, but I think Trump has figured out that he cannot use military force and win a quick and decisive victory.
+
+And it’s not even clear he can win a victory in a protracted war, a forever war, but the last thing he needs at this point in time, given his situation with regard to the polls, is a forever war. So I think that Trump is very slowly but steadily pulling away from using military force.
+
+JUDGE ANDREW NAPOLITANO: Is it fair to say that in your view, there is no rational, feasible military solution to what Netanyahu wants Trump to do in Iran?
+
+JOHN MEARSHEIMER: There is no military solution. There’s only a political solution. The only solution to this is to come up with a revised version of the JCPOA and then do everything you can to foster some sort of rapprochement between the United States and hopefully even Israel and the Iranians.
+
+The idea that you can solve this problem militarily is delusional. There’s just no way you can do it. And as I like to say, all these people who are proposing that Israel and the United States, one of the two, attack Iran, never provide any strategy or any plan or any explanation for how this is going to work.
+
+Please tell me what the target sets are and how that allows us to achieve a particular goal. We just never hear anything. People just say, you know, if we use military force now, we have a window of opportunity, it will produce all these great results. But they never tell you how that happens. And the fact is that there’s no way it happens.
+
+## Analyzing Trump’s Truth Social Post
+
+JUDGE ANDREW NAPOLITANO: Here’s President Trump’s Truth Social last night. Some of this I think is nonsense, but it at least conveys what he wants the American people to understand. I’m going to read it.
+
+“I have just finished meeting with Prime Minister Netanyahu of Israel and various of his representatives. It was a very good meeting. The tremendous relationship between our two countries. There was nothing definitive reached other than I insisted that negotiations with Iran continue to see whether or not a deal can be consummated. If it can, I let the prime minister know that will be a preference. If it cannot, we will just have to see what the outcome will be.
+
+Last time Iran decided that they were better off not making a deal and they were hit with Midnight Hammer. That did not work out well for them. Hopefully this time they will be more reasonable and responsible. Additionally, we discussed the tremendous progress being made in Gaza and in the region. There is truly peace in the Middle East. Thank you for attention this matter.”
+
+There is no peace in the Middle East. Iran did not decide to do anything last time. The US decided to bomb while the Iranian negotiators were on the way to the place of negotiation. Do I have that right?
+
+JOHN MEARSHEIMER: Absolutely. There’s no question about it. But I think this is a very revealing Truth Social post by President Trump. First of all, he says it’s just a very good meeting. As you know, he uses hyperbolic language to describe almost everything. And we’re talking about the United States and Israel meeting. To say that this was a very good meeting tells you it was not a good meeting.
+
+Then he says nothing definitive. Those are his words. Nothing definitive came out of the meeting. And then he says that he insisted, he, President Trump, insisted that negotiations continue, which tells you that Benjamin Netanyahu was opposed to continuing those negotiations. And then he said, if the negotiations fail, we’ll see what happens. He didn’t say if the negotiations fail, we’ll use military force.
+
+JUDGE ANDREW NAPOLITANO: You’re right. You’re right. Your analysis is very astute.
+
+JOHN MEARSHEIMER: I think these are very revealing comments by him. I think this language matters, especially when you consider how hyperbolic he usually is.
+
+## Netanyahu’s Tarmac Statement
+
+JUDGE ANDREW NAPOLITANO: Yeah. Well, here is Prime Minister Netanyahu on the tarmac before he gets on his plane to go back to Israel. Now, this is a very interesting statement. It’s made in the United States at Dulles International Airport in Hebrew, not in English. I don’t know what Max Blumenthal tells us. He, Netanyahu is often more candid in Hebrew than he is in English. We’re going to hear it with an AI translation. Chris, number 16.
+
+VIDEO CLIP BEGINS:
+
+BENJAMIN NETANYAHU: I have just finished a short but important visit to Washington, a conversation with our great friend President Trump. There is a very close, very genuine and very open relationship between us. Of course, the talks focused on several topics. In fact, on the negotiations with Iran.
+
+The president believes that the Iranians have already learned who they are dealing with. He thinks that the conditions he is creating combined with the fact that they surely understand they made a mistake last time by not making an agreement might lead to the conditions for achieving a good agreement. He wanted to hear my opinion.
+
+I won’t hide from you that I expressed general skepticism about the possibility of reaching any good agreement with Iran. But I said that if an agreement is indeed reached, then it must has to include elements that are very important from our perspective, from Israel’s perspective, and in my opinion, not just Israel’s. That is to say, it’s not just the nuclear issue, it’s also the ballistic missiles and also the Iranian proxies that in.
+
+Well, that was the essence of the conversation, I would say. Although of course, it also touched on Gaza and the region, the entire region, and also on other general matters.
+
+VIDEO CLIP ENDS:
+
+JUDGE ANDREW NAPOLITANO: Did he look very happy to you?
+
+## Israel’s Ballistic Missile Concerns
+
+JOHN MEARSHEIMER: No. The body language is consistent with what you see in Trump’s Truth Social. They clearly were at loggerheads in the meeting. And as I said, Trump has made it clear that the ballistic missile issue and the support for Hamas and Hezbollah is effectively off the table. And this is disastrous for Netanyahu.
+
+You know, you can’t underestimate how important the ballistic missile issue has become for Israel. You know, before the war last year, the 12 Day War, nobody thought that the ballistic missile threat was that great because Israel had these supposedly superb defensive systems that would allow them, with help from the United States, to deal with the problem.
+
+And at first it looked like that was the case. The Israelis did very well in the beginning of the 12 Day War, knocking down those incoming ballistic missiles and cruise missiles and drones. But as the war wore on, the Iranians began to make giant strides forward and really pound Israel with ballistic missiles.
+
+And as we’ve talked about before on the show, it was the Israelis who wanted to end the 12 day war because they were running out of defensive missiles and the Iranians were learning how to break through their defenses and pound Israel. And this problem is only going to get worse over time. It’s not going to get any better for the Israelis because if the Iranians have a triple digit IQ, and they do have a triple digit IQ, they’ll build a lot more and a lot better ballistic missiles so that they can deter Israel down the road.
+
+## Netanyahu’s Urgent Visit
+
+JUDGE ANDREW NAPOLITANO: Let’s bore into this a little deeper. Netanyahu was originally planning to come next week so that he could address his friends at AIPAC. I’m not sure where they were meeting. They usually meet in D.C. He moved it up a week. And the Israeli press, several, not just Haaretz, but several, use the word urgent. What was in Netanyahu’s mind, urgent, the fear that the US and Iran would come to a deal without him, without meeting his demands?
+
+JOHN MEARSHEIMER: Absolutely. That’s exactly what’s going on here. He fully understands the direction that Trump is moving in, and he’s panicking, and he got on an airplane and he flew here. And if you look at the footage we just saw of his press conference on the tarmac before he left to go back to Israel, you can tell from the body language that it didn’t work out very well.
+
+And you just have a very good sense of how much trouble he is in with regard to these negotiations with Iran. The Iranians hold the upper hand here. It’s not the Americans and the Israelis. And you want to remember we’ve been talking here in the show about the Iranians possibly attacking the Israeli homeland if a war were to break out.
+
+But you also want to remember that the Iranians have the capability to shut down the Persian Gulf or shut down the flow of oil out of the Persian Gulf through the Straits of Hormuz. And 25% of the world’s oil and gas comes through the Persian Gulf, 25%. So if the Iranians were to shut that down, it would have a huge negative consequence for the international economy.
+
+## The Straits of Hormuz Factor
+
+JUDGE ANDREW NAPOLITANO: You know, the way oil is traded, the oil traders are always betting on the future, future price of it. Just the closing of the Straits of Hormuz, even though the United States has plenty of oil in the pipeline and gasoline ready for people to put in their cars, just the closing of the Strait of Hormuz would cause the price of gas in the United States and Western Europe to skyrocket.
+
+JOHN MEARSHEIMER: Yeah, and that would have all sorts of other. Yeah, exactly.
+
+JUDGE ANDREW NAPOLITANO: Correct. Correct. Here is. Now we just saw Netanyahu looking unhappy. Here’s somebody looking very confident. Chris. Rick Sanchez, who’s my former Fox colleague now at Russia Today, interviewing the foreign minister of Iran.
+
+VIDEO CLIP BEGINS:
+
+RICK SANCHEZ: Need Mr. Trump to tell you personally that since he’s the one who broke the promise last time.
+
+IRANIAN FOREIGN MINISTER: We need a guarantee, we need an objective guarantee that the same scenario is not going to be repeated, and the United States is not using force to resolve differences with others or with Iran, at least that’s a fair point. They tried it once last year and they failed. Iran’s nuclear program cannot be bombed and destroyed because it’s a technology that we have developed by ourselves. So there is no solution but a diplomatic solution.
+
+VIDEO CLIP ENDS:
+
+JUDGE ANDREW NAPOLITANO: There’s no solution but a diplomatic solution. What do you mean? I think I know the same scenario is not going to be repeated.
+
+## Iran’s Lessons Learned
+
+JOHN MEARSHEIMER: Well, the last time, you remember, we bamboozled the Iranians into thinking that we were involved in serious negotiations. And instead the Israelis launched an attack on June 13, caught the Iranians with their pants down and did significant damage in terms of decapitating the leadership. They killed lots of scientists, they killed generals, and they killed political leaders.
+
+And what I think the foreign minister is saying that that’s not going to happen again. That, you know, we’ve learned our lesson. And I think that’s true. But even though they achieved surprise last time, they didn’t produce a decisive victory.
+
+You know, just to talk a second about the whole attack on the nuclear facilities in the 12 day war, you remember President Trump said that we obliterated their nuclear capability.
+
+JUDGE ANDREW NAPOLITANO: Oh, my God. He used the word obliterated a thousand times.
+
+## The Pitchfork Mountain Facility
+
+JOHN MEARSHEIMER: Yes, he did. You know, there’s a big story in the Jerusalem Post this morning which talks about this nuclear enrichment site that the Iranians are now building in a mountain called Pitchfork. It’s Pitchfork Mountain. And Pitchfork mountain is approximately 1,600 meters above the ground. That’s how high up it goes. 1,600 meters.
+
+Well, Fordow, you remember Fordow, which we attacked? Attacked, which was the most difficult target imaginable at the time. Fordow is 960 meters high. And again, Pitchfork is 1,608 meters high. That’s a 67.5% difference.
+
+Okay, so what that means is that the Iranians are now just building a new site, a replacement for Fordow that is going to be almost impossible for us to attack. This is the problem that you face. You’re not going to shut down this nuclear enrichment capability. You may blow up one site, they’ll build a new site, and the end result is they will maybe someday have nuclear weapons because they may be driven to think that the only way they can protect themselves is with a nuclear deterrent.
+
+But the idea that the IDF or the American military can come in, even if they’re working together, and eliminate this problem for once and for all is simply delusional.
+
+JUDGE ANDREW NAPOLITANO: This number of kilometers. Chris just did the math. It’s nearly a mile. It’s 5,249 feet. A mile is 5,280 feet. It’s enormous.
+
+JOHN MEARSHEIMER: Yes, it’s 67. I did the math before. It’s 67.5% higher than the mountain that Fordow. The Fordow site is in. Right. We’re not going to have a penetrator that can get into it.
+
+And again, also, the Iranians have learned from what happened in the twelve Day War, and they will make all sorts of adjustments to protect the Pitchfork site, and they’ll build other sites as well. They have the know how, and there’s no way we can take that away. And they are utterly determined to keep their nuclear enrichment capability.
+
+We can think that’s a bad thing. The Israelis can think that’s a bad thing. We can desire very much to want to eliminate that nuclear enrichment capability once and for all. I can understand why the Israelis want to do that, but the fact is they can’t do it.
+
+## Trump’s Political Dilemma
+
+JUDGE ANDREW NAPOLITANO: Wow. What does your gut tell you will be the state of affairs in the next couple of weeks or even month or two?
+
+JOHN MEARSHEIMER: You mean with whether. With regard to whether President Trump will attack or not?
+
+JUDGE ANDREW NAPOLITANO: Yes.
+
+JOHN MEARSHEIMER: I find it hard to imagine that he would attack. You know, you look at his poll ratings.
+
+JUDGE ANDREW NAPOLITANO: Oh, Lord. He’s got a 56% disapproval rating. That is Nixonian.
+
+JOHN MEARSHEIMER: Yeah. And there’s some polls that have now come out that three of them in particular, that show that people, more people think that Joe Biden was a better president than President Trump, and he’s just in trouble. And the last thing he needs is a war, a forever war.
+
+And, you know, he can go in there and he can blast Iran and declare victory, but that’s not going to convince many people if he goes in. I think that he has to go in in a way. And again, then he ends up in a forever war, and that is just not in his interest.
+
+And, you know, for all Trump’s faults, you have to admit that he has been smart enough not to get involved in any conflicts that involve the extended use of military force. I mean, if you look at what he did in Venezuela, you know, he went in, took a couple hours, kidnapped Maduro, and that was the end of the story. Right. He didn’t get into a huge bombing campaign. He didn’t have troops on the boots, on the ground, and so forth and so on.
+
+So I don’t think he even. I don’t think he’s inclined to use military force unless he can do it in a very quick and decisive kind of way.
+
+## The AIPAC Factor
+
+JUDGE ANDREW NAPOLITANO: So what happens if Mrs. Adelson and her AIPAC friends, who will be denied the luxury of the presence of Benjamin Netanyahu when they have their annual meeting next week, orders him to bomb Iran?
+
+JOHN MEARSHEIMER: Well, this may be one of those highly unusual cases where he tells them he can’t do it. The fallback argument is that he’ll launch a limited strike. You know, he’ll take. It’d be like the June 22, 2025 attack, you know, one day. Attack one and done. And he’ll declare victory afterwards.
+
+I don’t think he can do it here because he doesn’t have a target set this time around. That looks like the target set that he had on June 22nd. Remember, on June 22nd, he went after, I think, basically three targets, Fordow, Natanz and Isfahan, and he hit them very hard with Tomahawk missiles and bombs dropped by B2 bombers. And he declared victory. He said, we obliterated all these targets and that was the end of it. But what’s the target set this time? That target set is no longer relevant.
+
+JUDGE ANDREW NAPOLITANO: What case would he make to the American public to justify this use of military hardware?
+
+JOHN MEARSHEIMER: You tell me. I don’t know what it is. That’s what I’m saying. If you go after the nuclear sites like he did last June, you can say, I obliterated the nuclear sites. Whether he did or not is a different. You can say I obliterated the nuclear sites, nuclear enrichment sites, and that’s the end of the story. And you get away with it. Right.
+
+Even though we now know it didn’t work so well, but that target set is just not there today. Right. So what is he going to do? Aim at regime change?
+
+JUDGE ANDREW NAPOLITANO: I mean, do we just assume that he’s not going to go to Congress, that he’s not going to go to the UN, to the Security Council? I mean, Iran is a member of the UN. The Constitution’s the supreme law of the land. The UN Charter is a treaty which ranks with the Constitution and its supremacy. He doesn’t care.
+
+JOHN MEARSHEIMER: He doesn’t care. He is the paradigmatic unilateralist. He just does whatever he sees fit to do. He doesn’t care about rules. He doesn’t care about laws. Whether you’re talking about the Constitution or international law. It just doesn’t matter to him. He just does what he thinks is best for the country and for him.
+
+And of course, what’s good for him is good for the country in his mind, I’m sure. But the problem that he faces, and I’m sure he’s aware of this, is that he has no good military solution. It’s not like there’s a military solution staring him in the face that involves some risks.
+
+You know, sometimes there is a military strategy that a state can employ that is likely to work, but you can’t be certain. And then the question is, do you want to take a leap in the dark or do you want to pursue a risky strategy? That’s not the case here. There’s no risky strategy he can pursue. Nobody can tell you or me a story about how President Trump uses military force to achieve one of those goals that Prime Minister Netanyahu wants. It’s just impossible.
+
+JUDGE ANDREW NAPOLITANO: Well, time will tell. Thank you, Professor Mearsheimer. Great, great in depth analysis. Needless to say, I hope you’re right on all of this. Nobody wants more war and death and destruction. But thank you very much for your time as always. We’ll look forward to seeing you next week, my dear friend.
+
+JOHN MEARSHEIMER: My pleasure, Judge. Have a great weekend and I’ll see you soon.
+
+JUDGE ANDREW NAPOLITANO: You as well. Thank you. Coming up tomorrow, Friday at four in the afternoon, the end of the day, the end of the week with Larry Johnson and Ray McGovern, the intelligence community Roundtable. Judge Napolitano for judging Freedom.
+
+### Related Posts
