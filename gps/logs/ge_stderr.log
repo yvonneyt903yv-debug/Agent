@@ -1636,3 +1636,13 @@ Stacktrace:
 2026-02-23 14:00:38,118 - INFO - No new articles found (only today/yesterday articles are processed)
 2026-02-23 14:00:38,118 - INFO - Processing complete
 2026-02-23 14:00:38,118 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 14:14:02 CST)" executed successfully
+2026-02-23 14:13:37,458 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 18:13:37 CST)" (scheduled at 2026-02-23 14:13:37.391140+08:00)
+2026-02-23 14:13:37,462 - INFO - Checking for new articles...
+2026-02-23 14:13:37,468 - INFO - ============================================================
+2026-02-23 14:13:37,468 - INFO - Fetching articles from all sources...
+2026-02-23 14:13:37,469 - INFO - ============================================================
+2026-02-23 14:13:37,469 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-23 14:13:44,654 - INFO - Target dates: {datetime.date(2026, 2, 22), datetime.date(2026, 2, 23)}
+2026-02-23 14:13:44,655 - INFO - Found 20 items in RSS feed
+2026-02-23 14:13:44,655 - INFO - [Main RSS] Found 0 recent articles
+2026-02-23 14:13:44,829 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
