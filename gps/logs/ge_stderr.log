@@ -1646,3 +1646,27 @@ Stacktrace:
 2026-02-23 14:13:44,655 - INFO - Found 20 items in RSS feed
 2026-02-23 14:13:44,655 - INFO - [Main RSS] Found 0 recent articles
 2026-02-23 14:13:44,829 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-23 14:13:56,048 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 22), datetime.date(2026, 2, 23)}
+2026-02-23 14:13:56,073 - INFO - Found 78 total links on investor page
+2026-02-23 14:13:56,452 - INFO - [Investor] Found 0 recent articles
+2026-02-23 14:13:56,541 - INFO - Total unique articles found: 0
+2026-02-23 14:13:56,541 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-23 14:13:56,541 - INFO - Processing complete
+2026-02-23 14:13:56,541 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 18:13:37 CST)" executed successfully
+2026-02-23 14:14:02,414 - INFO - Running job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 18:14:02 CST)" (scheduled at 2026-02-23 14:14:02.347363+08:00)
+2026-02-23 14:14:02,415 - INFO - Checking for new articles...
+2026-02-23 14:14:02,460 - INFO - ============================================================
+2026-02-23 14:14:02,460 - INFO - Fetching articles from all sources...
+2026-02-23 14:14:02,460 - INFO - ============================================================
+2026-02-23 14:14:02,460 - INFO - Fetching RSS feed via Selenium: https://www.gehealthcare.com/about/newsroom/feed.xml
+2026-02-23 14:14:07,585 - INFO - Target dates: {datetime.date(2026, 2, 23), datetime.date(2026, 2, 22)}
+2026-02-23 14:14:07,586 - INFO - Found 20 items in RSS feed
+2026-02-23 14:14:07,586 - INFO - [Main RSS] Found 0 recent articles
+2026-02-23 14:14:07,760 - INFO - Fetching investor page: https://investor.gehealthcare.com/news-events/news-releases
+2026-02-23 14:14:18,613 - INFO - Target dates for investor page (2 days): {datetime.date(2026, 2, 23), datetime.date(2026, 2, 22)}
+2026-02-23 14:14:18,636 - INFO - Found 78 total links on investor page
+2026-02-23 14:14:19,003 - INFO - [Investor] Found 0 recent articles
+2026-02-23 14:14:19,078 - INFO - Total unique articles found: 0
+2026-02-23 14:14:19,078 - INFO - No new articles found (only today/yesterday articles are processed)
+2026-02-23 14:14:19,078 - INFO - Processing complete
+2026-02-23 14:14:19,078 - INFO - Job "process_articles (trigger: interval[4:00:00], next run at: 2026-02-23 18:14:02 CST)" executed successfully
