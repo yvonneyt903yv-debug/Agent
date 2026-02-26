@@ -7,7 +7,7 @@ import asyncio
 import re
 import hashlib
 import platform
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -35,6 +35,7 @@ sys.path.append(BASE_DIR)
 
 from src.agent import run_agent
 from src.crawler import fetch_latest_articles
+from src import crawler as crawler_module
 from src import translator
 from src.reviewer import review_article
 from src.gemini_brain import analyze_single_article_content, decide_best_articles, generate_attractive_title
@@ -145,6 +146,35 @@ def save_tracked_articles(articles):
     """保存已处理文章记录"""
     with open(TRACKED_FILE, 'w', encoding='utf-8') as f:
         json.dump(articles, f, ensure_ascii=False, indent=2)
+
+
+def normalize_article_for_hash(article_text: str) -> str:
+    """规范化文章文本用于稳定哈希，减少抓取噪音造成的重复。"""
+    return re.sub(r"\s+", " ", article_text.strip())
+
+
+def stable_content_hash(article_text: str) -> str:
+    """对全文做稳定哈希，避免仅取前500字符导致重复。"""
+    normalized = normalize_article_for_hash(article_text)
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+
+
+def extract_source_url(article_text: str) -> str | None:
+    """从文章内容中提取来源URL（Jina常见格式）。"""
+    patterns = [
+        r"(?m)^URL来源[:：]\s*(https?://\S+)\s*$",
+        r"(?m)^URL Source[:：]\s*(https?://\S+)\s*$",
+        r"(?m)^URL[:：]\s*(https?://\S+)\s*$",
+    ]
+    for p in patterns:
+        m = re.search(p, article_text)
+        if m:
+            return m.group(1).strip()
+    return None
+
+
+def stable_url_hash(url: str) -> str:
+    return hashlib.sha256(url.strip().lower().encode("utf-8")).hexdigest()
 
 
 def run_full_pipeline(articles):
@@ -533,6 +563,10 @@ def monitor():
     print("🔔 网站自动监控已启动")
     print(f"⏰ 检查间隔: 每{CHECK_INTERVAL//3600}小时")
     print("📡 运行时间: 全天24小时")
+    print(
+        f"🧭 抓取窗口: 发布时间 >= now-{getattr(crawler_module, 'RECENT_WINDOW_HOURS', '未知')}h "
+        f"(UTC, 仅下限过滤)"
+    )
     print("="*60)
 
     last_run_time = None  # Track last run time to handle sleep/wake
@@ -577,31 +611,58 @@ def monitor():
             print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M')}] 🔍 检查网站更新...")
 
             tracked = load_tracked_articles()
-            tracked_hashes = set(a.get("content_hash") for a in tracked if a.get("content_hash"))
+            tracked_content_hashes = {
+                a.get("content_hash") for a in tracked if a.get("content_hash")
+            }
+            tracked_url_hashes = {
+                a.get("url_hash") for a in tracked if a.get("url_hash")
+            }
 
             articles = fetch_latest_articles()
+            print(f"📥 本轮抓取到候选文章: {len(articles)} 篇")
 
             if not articles:
                 print("⏳ 暂未发现新文章")
             else:
                 new_articles = []
                 for article in articles:
-                    # 使用 hashlib 生成稳定的哈希值（跨进程一致）
-                    article_hash = hashlib.md5(article[:500].encode('utf-8')).hexdigest()
-                    if article_hash not in tracked_hashes:
-                        new_articles.append(article)
-                        tracked.append({
-                            "url": f"article_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
-                            "content_hash": article_hash,
-                            "processed_at": datetime.now().strftime("%Y%m%d_%H%M%S")
-                        })
+                    content_hash = stable_content_hash(article)
+                    source_url = extract_source_url(article)
+                    url_hash = stable_url_hash(source_url) if source_url else None
+
+                    is_dup = False
+                    if content_hash in tracked_content_hashes:
+                        is_dup = True
+                    if url_hash and url_hash in tracked_url_hashes:
+                        is_dup = True
+
+                    if is_dup:
+                        continue
+
+                    new_articles.append(article)
+                    tracked.append({
+                        "url": source_url or f"article_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+                        "url_hash": url_hash,
+                        "content_hash": content_hash,
+                        "processed_at": datetime.now(timezone.utc).isoformat()
+                    })
+                    tracked_content_hashes.add(content_hash)
+                    if url_hash:
+                        tracked_url_hashes.add(url_hash)
+
+                duplicate_count = len(articles) - len(new_articles)
+                print(
+                    f"📊 抓取统计: 原始={len(articles)} 篇, "
+                    f"新文章={len(new_articles)} 篇, 重复={duplicate_count} 篇"
+                )
 
                 if not new_articles:
                     print("⏳ 没有发现新文章（已全部处理过）")
                 else:
                     print(f"\n发现 {len(new_articles)} 篇新文章，准备自动处理...")
-                    run_full_pipeline(new_articles)
+                    # 先落盘去重记录，避免中途失败后重复跑同批文章
                     save_tracked_articles(tracked)
+                    run_full_pipeline(new_articles)
 
             # Update last run time after successful check
             last_run_time = datetime.now()
