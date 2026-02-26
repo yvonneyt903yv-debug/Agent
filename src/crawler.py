@@ -1,5 +1,5 @@
 import time
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
@@ -12,6 +12,7 @@ import dateutil.parser
 
 URL_SITE_1 = "https://singjupost.com"
 JINA_READER_BASE = "https://r.jina.ai/"
+RECENT_WINDOW_HOURS = 72
 
 print("🔥 USING JINA READER + SELENIUM FALLBACK 🔥")
 
@@ -251,10 +252,10 @@ def fetch_latest_articles() -> list[str]:
         except Exception:
             pass
 
-        # --- Calculate Target Dates ---
-        today_date = datetime.now().date()
-        yesterday_date = (datetime.now() - timedelta(days=1)).date()
-        target_date_objects = {today_date, yesterday_date}
+        # --- Calculate Absolute Time Window (UTC) ---
+        now_utc = datetime.now(timezone.utc)
+        cutoff_utc = now_utc - timedelta(hours=RECENT_WINDOW_HOURS)
+        print(f"🕒 仅抓取最近 {RECENT_WINDOW_HOURS} 小时文章: {cutoff_utc.isoformat()} ~ {now_utc.isoformat()}")
 
         # --- Scroll to load more ---
         scroll_page(driver, pause=1.5, max_scroll=5)
@@ -265,22 +266,30 @@ def fetch_latest_articles() -> list[str]:
         for article in article_elements:
             try:
                 # Check date
-                parsed_article_date = None
+                parsed_article_dt = None
                 try:
                     date_element = article.find_element(By.CSS_SELECTOR, "time.entry-date")
                     article_datetime_str = date_element.get_attribute('datetime')
                     if article_datetime_str:
-                         parsed_article_date = dateutil.parser.parse(article_datetime_str).date()
+                        parsed_article_dt = dateutil.parser.parse(article_datetime_str)
 
-                    if not parsed_article_date:
+                    if not parsed_article_dt:
                         inner_text_date_str = date_element.get_attribute('innerText').strip()
                         if inner_text_date_str:
-                            parsed_article_date = dateutil.parser.parse(inner_text_date_str).date()
+                            parsed_article_dt = dateutil.parser.parse(inner_text_date_str)
                 except Exception:
                     pass
 
-                # Only get today/yesterday articles
-                if parsed_article_date and parsed_article_date in target_date_objects:
+                if parsed_article_dt:
+                    # 没有时区信息时，按 UTC 解释，避免本机时区和站点时区错位导致漏抓
+                    if parsed_article_dt.tzinfo is None:
+                        parsed_article_dt = parsed_article_dt.replace(tzinfo=timezone.utc)
+                    parsed_article_utc = parsed_article_dt.astimezone(timezone.utc)
+                else:
+                    parsed_article_utc = None
+
+                # 仅抓取最近窗口内文章
+                if parsed_article_utc and parsed_article_utc >= cutoff_utc:
                     link_element = article.find_element(By.CSS_SELECTOR, "h2.entry-title a")
                     href = link_element.get_attribute("href")
                     if href:
