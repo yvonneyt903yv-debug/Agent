@@ -29,6 +29,9 @@ def find_baoyu_script():
     possible_paths = [
         os.path.join(PROJECT_ROOT, "baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts"),
         os.path.join(PROJECT_ROOT, "baoyu-skills/baoyu-post-to-wechat/scripts/wechat-article.ts"),
+        # VPS 某些部署将 baoyu-skills 放在 gps/src 下
+        os.path.join(PROJECT_ROOT, "gps/src/baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts"),
+        os.path.join(PROJECT_ROOT, "gps/src/baoyu-skills/baoyu-post-to-wechat/scripts/wechat-article.ts"),
     ]
 
     for path in possible_paths:

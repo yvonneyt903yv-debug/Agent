@@ -591,8 +591,17 @@ def tool_generate_final():
 
 def tool_publish_to_wechat():
     """
-    步骤7：发布到微信公众号（使用 baoyu-post-to-wechat）
+    步骤7：发布到微信公众号（统一复用 gps/publish_to_wechat.py）
     """
+    # 统一发布底层模块，避免与 gps 链路多头维护
+    gps_dir = os.path.join(PROJECT_ROOT, "gps")
+    if gps_dir not in sys.path:
+        sys.path.insert(0, gps_dir)
+    try:
+        from publish_to_wechat import publish_to_wechat as publish_article_to_wechat
+    except Exception as e:
+        return f"错误：无法导入统一发布模块 gps/publish_to_wechat.py: {e}"
+
     approved_items = [i for i in GLOBAL_DB if i["status"] == "approved"]
 
     if not approved_items:
@@ -622,55 +631,14 @@ def tool_publish_to_wechat():
         md_file = md_files[0]  # 使用第一个匹配的文件
         print(f"  - 📄 找到文章文件: {os.path.basename(md_file)}")
 
-        # 调用 baoyu-post-to-wechat
-        baoyu_script = os.path.join(
-            PROJECT_ROOT,
-            "baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts"
-        )
-
-        if not os.path.exists(baoyu_script):
-            results.append(f"❌ 未找到 baoyu-post-to-wechat 脚本: {baoyu_script}")
-            continue
-
-        # 构建命令
-        cmd = [
-            "npx", "-y", "bun",
-            baoyu_script,
-            "--markdown", md_file,
-            "--theme", "grace"  # 使用 grace 主题（优雅风格）
-        ]
-
-        print(f"  - 🌐 正在启动浏览器自动化...")
-        print(f"  - ⚠️  请确保：")
-        print(f"    1. Chrome 浏览器已安装")
-        print(f"    2. 准备好微信扫码登录")
-        print(f"    3. 不要操作浏览器窗口")
-
         try:
-            # 执行命令
-            result = subprocess.run(
-                cmd,
-                capture_output=True,
-                text=True,
-                timeout=300,  # 5分钟超时
-                cwd=os.path.dirname(baoyu_script)
-            )
-
-            if result.returncode == 0:
+            publish_ok = publish_article_to_wechat(md_file, theme="grace", skip_review=True)
+            if publish_ok:
                 results.append(f"✅ ID{item['id']} 《{item.get('generated_title', '文章')}》已发布到微信公众号")
                 print(f"  - ✅ 发布成功！")
             else:
-                error_msg = result.stderr if result.stderr else result.stdout
-                results.append(f"❌ ID{item['id']} 发布失败: {error_msg[:200]}")
-                print(f"  - ❌ 发布失败: {error_msg[:200]}")
-
-        except subprocess.TimeoutExpired:
-            results.append(f"⚠️ ID{item['id']} 发布超时（可能需要手动扫码）")
-            print(f"  - ⚠️ 发布超时，请检查浏览器窗口")
-        except FileNotFoundError:
-            results.append(f"❌ 未安装 Node.js 或 Bun，无法执行发布")
-            print(f"  - ❌ 请先安装 Node.js: https://nodejs.org/")
-            break
+                results.append(f"❌ ID{item['id']} 发布失败（统一发布模块返回 false）")
+                print(f"  - ❌ 发布失败")
         except Exception as e:
             results.append(f"❌ ID{item['id']} 发布异常: {str(e)}")
             print(f"  - ❌ 发布异常: {e}")
