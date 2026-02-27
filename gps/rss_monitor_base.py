@@ -129,7 +129,7 @@ def get_target_dates():
 
 # ===== 内容提取 =====
 
-def clean_content(content):
+def clean_content(content, logger=None):
     """清理内容中的 Cookie 政策、隐私政策等无关信息"""
     import re
 
@@ -186,7 +186,7 @@ def clean_content(content):
     content = re.sub(r'\n{3,}', '\n\n', content)
 
     cleaned_len = len(content)
-    if original_len != cleaned_len:
+    if logger and original_len != cleaned_len:
         logger.info(f"Content cleaned: removed {original_len - cleaned_len} chars of metadata")
 
     return content.strip()
@@ -222,7 +222,7 @@ def get_article_content_jina(url, logger):
             title = url.split('/')[-1].replace('-', ' ').replace('.html', '')
 
         # 清理内容中的 Cookie/隐私政策等无关信息
-        content = clean_content(content)
+        content = clean_content(content, logger=logger)
 
         logger.info(f"Jina Reader success: {len(content)} chars, title: {title[:50]}")
         return {"title": title, "content": content}
