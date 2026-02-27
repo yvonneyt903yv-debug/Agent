@@ -6,7 +6,7 @@ GE HealthCare RSS 监控脚本
 监控 GE HealthCare 新闻并自动翻译、发布到微信公众号
 - 数据源：主站 RSS + 投资者页面 + Newsroom 列表页
 - 每 4 小时运行一次
-- 默认处理最近 7 天（可配置）
+- 默认处理发布时间在 now-36h 之后的文章
 - 增加每日回补任务，降低时区/延迟导致的漏抓
 """
 
@@ -27,6 +27,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from rss_monitor_base import (
     load_state, save_state, load_processed, save_processed,
     parse_date,
+    get_target_dates,
     get_article_content_jina,
     process_single_article,
     setup_driver
@@ -60,6 +61,7 @@ IMAGES_DIR = "downloaded_images/ge"
 LOCK_FILE = os.path.join(SCRIPT_DIR, "ge_processing.lock")
 RECENT_DAYS = max(2, int(os.getenv("GE_RECENT_DAYS", "7")))
 EMPTY_RUN_ALERT_THRESHOLD = max(3, int(os.getenv("GE_EMPTY_RUN_ALERT_THRESHOLD", "3")))
+RECENT_HOURS = max(1, int(os.getenv("GE_RECENT_HOURS", "36")))
 TRACKING_QUERY_KEYS = {
     "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content",
     "gclid", "fbclid", "mc_cid", "mc_eid"
@@ -88,21 +90,20 @@ def normalize_link(url):
 # ===== GE 特有的日期解析 =====
 
 def parse_ge_rss_date(date_str):
-    """解析 GE RSS 日期格式: 'Thu, 05 Feb 2026 14:00:03 Z'"""
+    """解析 GE RSS 日期时间格式: 'Thu, 05 Feb 2026 14:00:03 Z' (UTC)"""
     try:
-        parts = date_str.split()
-        if len(parts) >= 5:
-            date_part = f"{parts[1]} {parts[2]} {parts[3]}"  # "05 Feb 2026"
-            return datetime.strptime(date_part, "%d %b %Y").date()
+        ds = (date_str or "").strip()
+        if ds.endswith(" Z"):
+            ds = ds[:-2] + " +0000"
+        return datetime.strptime(ds, "%a, %d %b %Y %H:%M:%S %z")
     except (ValueError, IndexError):
         pass
     return None
 
 
-def get_target_dates(days):
-    """生成最近 days 天的目标日期集合（含今天）"""
-    today = datetime.now().date()
-    return {today - timedelta(days=i) for i in range(days)}
+def get_cutoff_utc():
+    """计算抓取下限时间（UTC）"""
+    return datetime.now().astimezone() - timedelta(hours=RECENT_HOURS)
 
 
 def extract_date_from_text(text):
@@ -182,8 +183,8 @@ def get_rss_links():
                 else:
                     raise Exception("Cannot extract XML content from page")
 
-        target_dates = get_target_dates(RECENT_DAYS)
-        logger.info(f"Target dates: {target_dates}")
+        cutoff_utc = get_cutoff_utc()
+        logger.info(f"Cutoff datetime (local): {cutoff_utc.isoformat()}")
 
         links = []
         seen = set()
@@ -203,11 +204,11 @@ def get_rss_links():
             link = normalize_link(link_elem.text.strip())
             title = title_elem.text.strip() if title_elem is not None else ""
 
-            article_date = parse_ge_rss_date(pub_date_str)
-            logger.debug(f"RSS item: {title[:30]}... date={pub_date_str} -> {article_date}")
+            article_dt = parse_ge_rss_date(pub_date_str)
+            logger.debug(f"RSS item: {title[:30]}... date={pub_date_str} -> {article_dt}")
 
             # RSS 日期异常时也保留，避免漏抓
-            if (not article_date) or (article_date in target_dates):
+            if (not article_dt) or (article_dt.astimezone(cutoff_utc.tzinfo) >= cutoff_utc):
                 if link not in seen:
                     seen.add(link)
                     link_hash = hashlib.md5(link.encode()).hexdigest()
@@ -218,7 +219,7 @@ def get_rss_links():
                         "title": title,
                         "source": "main_rss"
                     })
-                    logger.info(f"[Main RSS] Found: {title[:50]}... ({article_date or 'unknown_date'})")
+                    logger.info(f"[Main RSS] Found: {title[:50]}... ({article_dt or 'unknown_date'})")
 
         logger.info(f"[Main RSS] Found {len(links)} recent articles")
         return links
@@ -251,8 +252,9 @@ def get_investor_links():
 
         from selenium.webdriver.common.by import By
 
-        target_dates = get_target_dates(RECENT_DAYS)
-        logger.info(f"Target dates for investor page ({RECENT_DAYS} days): {target_dates}")
+        cutoff_utc = get_cutoff_utc()
+        cutoff_date = cutoff_utc.date()
+        logger.info(f"Cutoff datetime for investor page (local): {cutoff_utc.isoformat()}")
 
         links = []
         seen = set()
@@ -307,8 +309,8 @@ def get_investor_links():
                     continue
 
                 article_date = parse_date(date_str)
-                # 投资者页面日期提取偶发失败，允许无日期项进入候选，避免漏抓
-                if (not article_date) or (article_date in target_dates):
+                # 投资者页面通常只有日期（无时间），按截止日期兜底过滤
+                if (not article_date) or (article_date >= cutoff_date):
                     link_hash = hashlib.md5(href.encode()).hexdigest()
                     links.append({
                         "link": href,
@@ -352,7 +354,9 @@ def get_newsroom_press_links():
         from selenium.webdriver.common.by import By
 
         target_dates = get_target_dates(RECENT_DAYS)
-        logger.info(f"Target dates for newsroom page ({RECENT_DAYS} days): {target_dates}")
+        cutoff_utc = get_cutoff_utc()
+        cutoff_date = cutoff_utc.date()
+        logger.info(f"Cutoff datetime for newsroom page (local): {cutoff_utc.isoformat()}")
 
         links = []
         seen = set()
@@ -381,7 +385,7 @@ def get_newsroom_press_links():
                         continue
 
                 # 无日期也纳入候选，避免列表结构变化导致漏抓
-                if article_date and article_date not in target_dates:
+                if article_date and article_date < cutoff_date:
                     continue
 
                 seen.add(href)
@@ -569,7 +573,7 @@ def main():
 
     logger.info("GE HealthCare RSS Polling service started.")
     logger.info("- Monitoring 3 sources: Main RSS + Investor page + Newsroom page")
-    logger.info(f"- Processes recent {RECENT_DAYS} days (default=7)")
+    logger.info(f"- Processes articles published after now-{RECENT_HOURS}h")
     logger.info("- Runs every 4 hours (at least 6 times per day)")
     logger.info("- Daily backfill at 09:10 local time")
     logger.info(f"- Empty run alert threshold: {EMPTY_RUN_ALERT_THRESHOLD}")
