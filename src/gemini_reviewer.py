@@ -163,8 +163,18 @@ def review_markdown_for_wechat(markdown_content: str, max_retries: int = 3) -> s
                     break
             except Exception as e:
                 print(f"    ⚠️ 审核失败 (尝试 {attempt + 1}/{max_retries}): {e}")
+                # API 令牌额度耗尽时无需重复重试，直接保留原文
+                if "TokenStatusExhausted" in str(e):
+                    print("    ⚠️ 检测到令牌额度已用尽，跳过后续重试")
+                    break
                 time.sleep(3)
         else:
+            print(f"    ❌ 第 {i} 部分审核失败，保留原文")
+            reviewed_chunks.append(chunk)
+            continue
+
+        # 额度耗尽场景会提前 break 到这里，仍需保留原文
+        if len(reviewed_chunks) < i:
             print(f"    ❌ 第 {i} 部分审核失败，保留原文")
             reviewed_chunks.append(chunk)
 

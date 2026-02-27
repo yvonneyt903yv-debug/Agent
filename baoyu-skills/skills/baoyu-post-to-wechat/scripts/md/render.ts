@@ -182,6 +182,11 @@ export function initRenderer(opts: IOpts = {}): RendererAPI {
     return `<${tag} class="${className}"${headingAttr}>${content}</${tag}>`;
   }
 
+  function renderInline(token: { text?: string; raw?: string }): string {
+    const source = token.text || token.raw || "";
+    return marked.parseInline(source) as string;
+  }
+
   function addFootnote(title: string, link: string): number {
     const existingFootnote = footnotes.find(([, , existingLink]) => existingLink === link);
     if (existingFootnote) {
@@ -236,11 +241,12 @@ export function initRenderer(opts: IOpts = {}): RendererAPI {
   const renderer: RendererObject = {
     heading({ text, depth, raw }: Tokens.Heading) {
       const tag = `h${depth}`;
-      return styledContent(tag, text || raw || "");
+      const content = renderInline({ text, raw });
+      return styledContent(tag, content);
     },
 
     paragraph({ text, raw }: Tokens.Paragraph): string {
-      const content = text || raw || "";
+      const content = renderInline({ text, raw });
       const isFigureImage = content.includes("<figure") && content.includes("<img");
       const isEmpty = content.trim() === "";
       if (isFigureImage || isEmpty) {
@@ -250,7 +256,8 @@ export function initRenderer(opts: IOpts = {}): RendererAPI {
     },
 
     blockquote({ text, raw }: Tokens.Blockquote): string {
-      return styledContent("blockquote", text || raw || "");
+      const content = renderInline({ text, raw });
+      return styledContent("blockquote", content);
     },
 
     code({ text, lang = "" }: Tokens.Code): string {
@@ -317,7 +324,7 @@ export function initRenderer(opts: IOpts = {}): RendererAPI {
 
       const prefix = ordered ? `${idx}. ` : "• ";
 
-      const content = token.text || "";
+      const content = renderInline(token as unknown as { text?: string; raw?: string });
 
       return styledContent("listitem", `${prefix}${content}`, "li");
     },

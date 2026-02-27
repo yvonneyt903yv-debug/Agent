@@ -61,7 +61,12 @@ export function findChromeExecutable(): string | undefined {
 }
 
 export function getDefaultProfileDir(): string {
-  const base = process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share');
+  let base: string;
+  if (process.platform === 'darwin') {
+    base = path.join(os.homedir(), 'Library', 'Application Support');
+  } else {
+    base = process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share');
+  }
   return path.join(base, 'wechat-browser-profile');
 }
 
@@ -218,23 +223,75 @@ export async function launchChrome(url: string, profileDir?: string): Promise<{ 
   const chromePath = findChromeExecutable();
   if (!chromePath) throw new Error('Chrome not found. Set WECHAT_BROWSER_CHROME_PATH env var.');
 
-  const profile = profileDir ?? getDefaultProfileDir();
-  await mkdir(profile, { recursive: true });
+  const defaultProfile = profileDir ?? getDefaultProfileDir();
+  const freePort = await getFreePort();
+  const tmpProfile = path.join(os.tmpdir(), `wechat-browser-profile-${Date.now()}`);
 
-  const port = await getFreePort();
-  console.log(`[cdp] Launching Chrome (profile: ${profile})`);
+  const launchScenarios: Array<{ profile: string; port: number; label: string }> = [
+    { profile: defaultProfile, port: freePort, label: 'default-profile-random-port' },
+    { profile: tmpProfile, port: 9222, label: 'temp-profile-port-9222' },
+  ];
 
-  const chrome = spawn(chromePath, [
+  let chrome: ReturnType<typeof spawn> | null = null;
+  let wsUrl: string | null = null;
+  let lastErr: unknown = null;
+
+  const buildChromeArgs = (profile: string, port: number): string[] => [
     `--remote-debugging-port=${port}`,
+    '--remote-debugging-address=127.0.0.1',
     `--user-data-dir=${profile}`,
     '--no-first-run',
     '--no-default-browser-check',
     '--disable-blink-features=AutomationControlled',
     '--start-maximized',
     url,
-  ], { stdio: 'ignore' });
+  ];
 
-  const wsUrl = await waitForChromeDebugPort(port, 30_000);
+  for (const scenario of launchScenarios) {
+    await mkdir(scenario.profile, { recursive: true });
+    console.log(`[cdp] Launching Chrome scenario: ${scenario.label} (profile: ${scenario.profile}, port: ${scenario.port})`);
+
+    const chromeArgs = buildChromeArgs(scenario.profile, scenario.port);
+    const launchCandidates: Array<{ cmd: string; args: string[]; label: string }> = [];
+
+    // On macOS, prefer direct binary launch first. Some environments fail to pass
+    // remote-debugging args reliably via `open -n -a ... --args`.
+    if (process.platform === 'darwin') {
+      launchCandidates.push({ cmd: chromePath, args: chromeArgs, label: 'direct-binary' });
+
+      const appMarker = '.app/Contents/MacOS/';
+      const appIndex = chromePath.indexOf(appMarker);
+      const appBundle = appIndex > 0 ? chromePath.slice(0, appIndex + 4) : '';
+      if (appBundle && fs.existsSync(appBundle)) {
+        launchCandidates.push({ cmd: 'open', args: ['-n', '-a', appBundle, '--args', ...chromeArgs], label: 'open-app' });
+      }
+    } else {
+      launchCandidates.push({ cmd: chromePath, args: chromeArgs, label: 'default' });
+    }
+
+    for (const candidate of launchCandidates) {
+      console.log(`[cdp] Launch attempt: ${scenario.label}/${candidate.label}`);
+      chrome = spawn(candidate.cmd, candidate.args, { stdio: 'ignore' });
+      try {
+        wsUrl = await waitForChromeDebugPort(scenario.port, 45_000);
+        break;
+      } catch (err) {
+        lastErr = err;
+        console.log(`[cdp] Launch attempt failed: ${scenario.label}/${candidate.label}`);
+      }
+    }
+
+    if (wsUrl) break;
+  }
+
+  if (!wsUrl) {
+    throw new Error(
+      `Chrome debug port not ready after multiple launch scenarios. ` +
+      `Try closing existing Chrome windows and rerun, or manually start Chrome with ` +
+      `"--remote-debugging-port=9222". ` +
+      `Original error: ${lastErr instanceof Error ? lastErr.message : String(lastErr)}`
+    );
+  }
   const cdp = await CdpConnection.connect(wsUrl, 30_000);
 
   return { cdp, chrome };
