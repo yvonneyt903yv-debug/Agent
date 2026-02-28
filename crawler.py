@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, WebDriverException
@@ -89,6 +90,7 @@ def setup_driver():
         chrome_options.add_argument(f"--proxy-server={PROXY_URL}")
     
     # Anti-detection & Stability
+    chrome_options.binary_location = "/usr/bin/chromium-browser"
     chrome_options.add_argument("--headless=new")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-dev-shm-usage")
@@ -97,7 +99,8 @@ def setup_driver():
     chrome_options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
     chrome_options.page_load_strategy = 'eager'
 
-    driver = webdriver.Chrome(options=chrome_options)
+    service = Service("/usr/bin/chromedriver")
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.set_page_load_timeout(PAGE_LOAD_TIMEOUT_SECONDS)
     return driver
 
