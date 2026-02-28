@@ -26,17 +26,51 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'src'))
 
 def find_baoyu_script():
     """查找 baoyu-post-to-wechat 脚本路径"""
-    possible_paths = [
-        os.path.join(PROJECT_ROOT, "baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts"),
-        os.path.join(PROJECT_ROOT, "baoyu-skills/baoyu-post-to-wechat/scripts/wechat-article.ts"),
-        # VPS 某些部署将 baoyu-skills 放在 gps/src 下
-        os.path.join(PROJECT_ROOT, "gps/src/baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts"),
-        os.path.join(PROJECT_ROOT, "gps/src/baoyu-skills/baoyu-post-to-wechat/scripts/wechat-article.ts"),
+    env_override = os.environ.get("BAOYU_WECHAT_SCRIPT")
+    if env_override and os.path.exists(env_override):
+        return env_override
+
+    project_root = Path(PROJECT_ROOT)
+    script_dir = Path(__file__).resolve().parent
+    search_roots = [
+        project_root,
+        project_root.parent,
+        script_dir,
+        script_dir.parent,
+        Path.cwd(),
+    ]
+    candidate_suffixes = [
+        "baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts",
+        "baoyu-skills/baoyu-post-to-wechat/scripts/wechat-article.ts",
+        "gps/baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts",
+        "gps/baoyu-skills/baoyu-post-to-wechat/scripts/wechat-article.ts",
+        "gps/src/baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts",
+        "gps/src/baoyu-skills/baoyu-post-to-wechat/scripts/wechat-article.ts",
     ]
 
-    for path in possible_paths:
-        if os.path.exists(path):
-            return path
+    checked = set()
+    for root in search_roots:
+        for suffix in candidate_suffixes:
+            candidate = (root / suffix).resolve()
+            candidate_str = str(candidate)
+            if candidate_str in checked:
+                continue
+            checked.add(candidate_str)
+            if candidate.exists():
+                return candidate_str
+
+    # 兜底：在常见根目录下做一次轻量搜索，适配不同部署结构
+    glob_patterns = [
+        "**/baoyu-post-to-wechat/scripts/wechat-article.ts",
+        "**/skills/baoyu-post-to-wechat/scripts/wechat-article.ts",
+    ]
+    for root in search_roots:
+        if not root.exists():
+            continue
+        for pattern in glob_patterns:
+            for match in root.glob(pattern):
+                if match.is_file():
+                    return str(match.resolve())
 
     return None
 
@@ -110,7 +144,7 @@ def publish_to_wechat(md_file_path, theme="grace", skip_review=False):
     baoyu_script = find_baoyu_script()
     if not baoyu_script:
         print("❌ 未找到 baoyu-post-to-wechat 脚本")
-        print("请确保 baoyu-skills 文件夹存在且包含正确的脚本")
+        print("请确保 baoyu-skills 文件夹存在，或设置 BAOYU_WECHAT_SCRIPT 指向 wechat-article.ts")
         return False
 
     print(f"\n{'='*60}")

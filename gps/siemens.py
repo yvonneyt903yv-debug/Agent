@@ -245,6 +245,14 @@ def get_article_links():
 
         links = []
         seen = set()
+        ignored_cta = 0
+        cta_titles = {
+            "learn more",
+            "read more",
+            "more",
+            "details",
+            "find out more",
+        }
 
         # 只抓取 releases，不抓取 features（features 页面包含大量 Cookie 等元数据）
         articles = driver.find_elements(By.CSS_SELECTOR, "a[href*='/press/releases/']")
@@ -265,23 +273,67 @@ def get_article_links():
 
                 seen.add(href)
 
-                # 获取文章标题
-                title = article.text.strip()
-                if not title:
-                    # 尝试从子元素获取
+                # 尽量从链接附近的卡片容器提取真实标题，避免把 CTA 的 "Learn more" 当作标题
+                scope = article
+                try:
+                    scope = article.find_element(
+                        By.XPATH,
+                        "./ancestor::*[self::article or self::li or contains(@class,'teaser') or contains(@class,'tile') or contains(@class,'card')][1]"
+                    )
+                except Exception:
+                    pass
+
+                title_candidates = [
+                    article.text.strip(),
+                    (article.get_attribute("aria-label") or "").strip(),
+                    (article.get_attribute("title") or "").strip(),
+                ]
+                selector_candidates = [
+                    "h1", "h2", "h3", "h4", "h5", "h6",
+                    "[class*='title']",
+                    "[class*='headline']",
+                    "[class*='teaser']",
+                    "[class*='copy']",
+                ]
+                for selector in selector_candidates:
                     try:
-                        title_elem = article.find_element(By.CSS_SELECTOR, "h5, h6, span")
-                        title = title_elem.text.strip()
-                    except:
-                        title = href.split('/')[-1]
+                        elems = scope.find_elements(By.CSS_SELECTOR, selector)
+                    except Exception:
+                        continue
+                    for elem in elems:
+                        text = " ".join(elem.text.split()).strip()
+                        if text:
+                            title_candidates.append(text)
+
+                title = ""
+                for candidate in title_candidates:
+                    normalized = " ".join(candidate.split()).strip()
+                    if not normalized:
+                        continue
+                    if normalized.lower() in cta_titles:
+                        continue
+                    if len(normalized) < 8:
+                        continue
+                    title = normalized
+                    break
+
+                if not title:
+                    # CTA 链接经常只有 "Learn more"，此时退回到 URL slug，至少保住真实 release 链接
+                    slug = href.rstrip("/").split("/")[-1]
+                    slug = re.sub(r"[-_]+", " ", slug).strip()
+                    slug = re.sub(r"\s+", " ", slug)
+                    if slug and len(slug) >= 6 and slug.lower() not in cta_titles:
+                        title = slug
+                    else:
+                        ignored_cta += 1
+                        continue
 
                 # 尝试获取日期（在父元素或相邻元素中查找）
                 date_str = ""
                 try:
-                    parent = article.find_element(By.XPATH, "./..")
-                    date_elem = parent.find_element(By.CSS_SELECTOR, "time, .date, span")
+                    date_elem = scope.find_element(By.CSS_SELECTOR, "time, .date, [class*='date']")
                     date_str = date_elem.text.strip()
-                except:
+                except Exception:
                     pass
 
                 link_hash = hashlib.md5(href.encode()).hexdigest()
@@ -293,9 +345,11 @@ def get_article_links():
                 })
                 logger.info(f"Found article: {title[:50]}...")
 
-            except Exception as e:
+            except Exception:
                 continue
 
+        if ignored_cta:
+            logger.info(f"Ignored {ignored_cta} CTA-style release links")
         logger.info(f"Found {len(links)} article links")
         return links
 
