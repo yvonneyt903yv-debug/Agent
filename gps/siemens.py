@@ -14,6 +14,8 @@ import time
 import logging
 import os
 import re
+import xml.etree.ElementTree as ET
+import requests
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -47,6 +49,154 @@ PROCESSED_FILE = "siemens_processed.json"
 IMAGES_DIR = "downloaded_images/siemens"
 
 from urllib.parse import urljoin
+
+
+def _parse_lastmod_date(lastmod_text):
+    """解析 sitemap 的 lastmod 字段为 date 对象。"""
+    if not lastmod_text:
+        return None
+    text = lastmod_text.strip()
+    if not text:
+        return None
+
+    # 常见格式: 2026-03-04T12:34:56Z / 2026-03-04
+    try:
+        return datetime.fromisoformat(text.replace("Z", "+00:00")).date()
+    except Exception:
+        pass
+    try:
+        return datetime.strptime(text[:10], "%Y-%m-%d").date()
+    except Exception:
+        return None
+
+
+def _slug_to_title(url):
+    slug = url.rstrip("/").split("/")[-1]
+    slug = re.sub(r"[-_]+", " ", slug).strip()
+    slug = re.sub(r"\s+", " ", slug)
+    return slug or "Unknown"
+
+
+def extract_release_links_from_html(page_html):
+    """从页面源码中提取 /press/releases/ 链接（含脚本/隐藏块中的链接）。"""
+    if not page_html:
+        return []
+
+    links = set()
+    patterns = [
+        r'https?://www\.siemens-healthineers\.com/press/releases/[a-zA-Z0-9\-_/]+',
+        r'"/press/releases/[a-zA-Z0-9\-_/]+"',
+        r"'/press/releases/[a-zA-Z0-9\-_/]+'",
+    ]
+    for pat in patterns:
+        for m in re.findall(pat, page_html):
+            url = m.strip('"').strip("'")
+            if url.startswith("/"):
+                url = f"https://www.siemens-healthineers.com{url}"
+            # 去掉尾随标点或查询参数片段
+            url = url.split("#", 1)[0]
+            links.add(url.rstrip("/"))
+
+    cleaned = []
+    for u in links:
+        if "/press/releases/" not in u:
+            continue
+        if "/press/features/" in u:
+            continue
+        tail = u.rsplit("/", 1)[-1]
+        if not tail or tail in {"releases", "features"}:
+            continue
+        cleaned.append(u)
+    return cleaned
+
+
+def fetch_release_links_from_sitemaps(target_dates, logger):
+    """
+    从 sitemap 兜底抓取 /press/releases/ 链接，避免前端列表页漏展示。
+    优先保留 lastmod 在目标日期内的链接。
+    """
+    base = "https://www.siemens-healthineers.com"
+    sitemap_indexes = [
+        f"{base}/sitemap.xml",
+        f"{base}/sitemap-index.xml",
+    ]
+
+    release_links = []
+    seen = set()
+    unknown_lastmod_candidates = []
+
+    def add_candidate(url, lastmod_text=""):
+        if "/press/releases/" not in url or "/press/features/" in url:
+            return
+        if url in seen:
+            return
+        seen.add(url)
+
+        lm_date = _parse_lastmod_date(lastmod_text)
+        item = {
+            "link": url,
+            "link_hash": hashlib.md5(url.encode()).hexdigest(),
+            "date": lastmod_text or "",
+            "title": _slug_to_title(url),
+            "lastmod_date": lm_date,
+        }
+        if lm_date in target_dates:
+            release_links.append(item)
+        elif lm_date is None:
+            unknown_lastmod_candidates.append(item)
+
+    sitemap_urls = []
+    for idx_url in sitemap_indexes:
+        try:
+            resp = requests.get(idx_url, timeout=15)
+            if resp.status_code >= 400:
+                logger.info(f"Sitemap index not available: {idx_url} ({resp.status_code})")
+                continue
+            root = ET.fromstring(resp.content)
+            root_name = root.tag.split("}", 1)[-1]
+            if root_name == "sitemapindex":
+                for node in root.findall(".//{*}sitemap"):
+                    loc = (node.findtext("{*}loc") or "").strip()
+                    if loc:
+                        sitemap_urls.append(loc)
+            elif root_name == "urlset":
+                for node in root.findall(".//{*}url"):
+                    loc = (node.findtext("{*}loc") or "").strip()
+                    lastmod = (node.findtext("{*}lastmod") or "").strip()
+                    if loc:
+                        add_candidate(loc, lastmod)
+        except Exception as e:
+            logger.debug(f"Sitemap index fetch failed: {idx_url} ({e})")
+
+    for sm_url in sitemap_urls:
+        # 只优先扫可能相关的 sitemap，降低请求开销
+        sm_lower = sm_url.lower()
+        if "press" not in sm_lower and "release" not in sm_lower and "news" not in sm_lower:
+            continue
+        try:
+            resp = requests.get(sm_url, timeout=15)
+            if resp.status_code >= 400:
+                continue
+            root = ET.fromstring(resp.content)
+            if root.tag.split("}", 1)[-1] != "urlset":
+                continue
+            for node in root.findall(".//{*}url"):
+                loc = (node.findtext("{*}loc") or "").strip()
+                lastmod = (node.findtext("{*}lastmod") or "").strip()
+                if loc:
+                    add_candidate(loc, lastmod)
+        except Exception as e:
+            logger.debug(f"Sitemap fetch failed: {sm_url} ({e})")
+
+    # 对缺少 lastmod 的候选做小规模兜底，避免漏抓但不至于全量扫历史
+    if unknown_lastmod_candidates:
+        release_links.extend(unknown_lastmod_candidates[:20])
+
+    if release_links:
+        logger.info(f"Sitemap fallback found {len(release_links)} release link(s)")
+    else:
+        logger.info("Sitemap fallback found 0 release links")
+    return release_links
 
 
 def extract_article_date_from_content(content):
@@ -318,6 +468,34 @@ def get_article_links():
                     if not clicked:
                         break
 
+                # releases 页面是无限滚动，很多条目不会通过按钮加载，需主动滚动触发懒加载
+                prev_count = len(driver.find_elements(By.CSS_SELECTOR, "a[href*='/press/releases/']"))
+                stable_rounds = 0
+                for _ in range(12):
+                    try:
+                        driver.execute_script(
+                            "window.scrollTo({top: document.body.scrollHeight, behavior: 'instant'});"
+                        )
+                        # 某些布局使用独立滚动容器
+                        driver.execute_script(
+                            """
+                            const scrollers = document.querySelectorAll('.infinite-scroll-component');
+                            scrollers.forEach((el) => { el.scrollTop = el.scrollHeight; });
+                            """
+                        )
+                    except Exception:
+                        pass
+
+                    time.sleep(1.5)
+                    current_count = len(driver.find_elements(By.CSS_SELECTOR, "a[href*='/press/releases/']"))
+                    if current_count > prev_count:
+                        prev_count = current_count
+                        stable_rounds = 0
+                    else:
+                        stable_rounds += 1
+                        if stable_rounds >= 3:
+                            break
+
                 # 只抓取 releases，不抓取 features（features 页面包含大量 Cookie 等元数据）
                 articles = driver.find_elements(By.CSS_SELECTOR, "a[href*='/press/releases/']")
 
@@ -411,9 +589,39 @@ def get_article_links():
 
                     except Exception:
                         continue
+
+                # 兜底：从页面源码抽取 release 链接（可见区域之外的脚本数据也能覆盖）
+                source_html_links = extract_release_links_from_html(driver.page_source)
+                for href in source_html_links:
+                    if href in seen:
+                        continue
+                    seen.add(href)
+                    link_hash = hashlib.md5(href.encode()).hexdigest()
+                    links.append({
+                        "link": href,
+                        "link_hash": link_hash,
+                        "date": "",
+                        "title": _slug_to_title(href)
+                    })
+                    logger.info(f"Found article (source): {_slug_to_title(href)[:50]}...")
             except Exception as e:
                 logger.warning(f"Failed scanning page {source_page}: {e}")
                 continue
+
+        # 兜底：从 sitemap 抓取 releases 链接，避免前端列表页漏展示
+        sitemap_links = fetch_release_links_from_sitemaps(target_dates, logger)
+        for item in sitemap_links:
+            href = item["link"]
+            if href in seen:
+                continue
+            seen.add(href)
+            links.append({
+                "link": href,
+                "link_hash": item["link_hash"],
+                "date": item.get("date", ""),
+                "title": item.get("title", "")
+            })
+            logger.info(f"Found article (sitemap): {item.get('title', '')[:50]}...")
 
         if ignored_cta:
             logger.info(f"Ignored {ignored_cta} CTA-style release links")
