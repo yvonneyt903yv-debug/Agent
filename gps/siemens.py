@@ -16,12 +16,12 @@ import os
 import re
 import xml.etree.ElementTree as ET
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from rss_monitor_base import (
     load_state, save_state, load_processed, save_processed,
-    get_target_dates, parse_date,
+    parse_date,
     get_article_content_jina,
     process_single_article,
     setup_driver
@@ -49,6 +49,12 @@ PROCESSED_FILE = "siemens_processed.json"
 IMAGES_DIR = "downloaded_images/siemens"
 
 from urllib.parse import urljoin
+
+
+def get_siemens_target_dates():
+    """Siemens 仅处理今天和昨天。"""
+    today = datetime.now().date()
+    return {today - timedelta(days=i) for i in range(2)}
 
 
 def _parse_lastmod_date(lastmod_text):
@@ -234,6 +240,79 @@ def extract_article_date_from_content(content):
                 return d
 
     return None
+
+
+def _extract_date_from_text(raw_text):
+    """从任意文本片段中提取日期。"""
+    if not raw_text:
+        return None
+
+    text = " ".join(str(raw_text).split()).strip(" '\"\t\r\n,;")
+    if not text:
+        return None
+
+    # 先直接尝试公共解析器
+    direct = parse_date(text)
+    if direct:
+        return direct
+
+    # ISO 日期/时间
+    iso_match = re.search(r"\b\d{4}-\d{2}-\d{2}(?:[T\s]\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:?\d{2})?)?\b", text)
+    if iso_match:
+        iso_raw = iso_match.group(0)
+        parsed_iso = _parse_lastmod_date(iso_raw)
+        if parsed_iso:
+            return parsed_iso
+        fallback_iso = parse_date(iso_raw[:10])
+        if fallback_iso:
+            return fallback_iso
+
+    # 英文月份格式
+    month_match = re.search(
+        r"(January|February|March|April|May|June|July|August|September|October|November|December|"
+        r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\s+\d{1,2},?\s+\d{4}",
+        text,
+        flags=re.IGNORECASE
+    )
+    if month_match:
+        parsed_month = parse_date(month_match.group(0))
+        if parsed_month:
+            return parsed_month
+
+    return None
+
+
+def extract_article_date_from_page(url, logger):
+    """从页面 HTML 的 meta/time/json-ld 中提取发布日期。"""
+    try:
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
+        }
+        resp = requests_get_with_retry(url, headers=headers, timeout=30)
+        resp.raise_for_status()
+        html = resp.text
+    except Exception as e:
+        logger.debug(f"Date extraction from page failed to fetch html: {e}")
+        return None, ""
+
+    patterns = [
+        ("meta:article:published_time", r'<meta[^>]+property=["\']article:published_time["\'][^>]+content=["\']([^"\']+)["\']'),
+        ("meta:publish-date", r'<meta[^>]+(?:name|property)=["\'](?:publish-date|pubdate|datePublished|date)["\'][^>]+content=["\']([^"\']+)["\']'),
+        ("jsonld:datePublished", r'"datePublished"\s*:\s*"([^"]+)"'),
+        ("time:datetime", r'<time[^>]+datetime=["\']([^"\']+)["\']'),
+        ("html:text", r'(?:Published|Publication date|Date)\s*[:\-]?\s*([A-Za-z]{3,9}\s+\d{1,2},?\s+\d{4}|\d{4}-\d{2}-\d{2})'),
+    ]
+
+    for source, pattern in patterns:
+        match = re.search(pattern, html, flags=re.IGNORECASE)
+        if not match:
+            continue
+        candidate = match.group(1).strip()
+        parsed = _extract_date_from_text(candidate)
+        if parsed:
+            return parsed, source
+
+    return None, ""
 
 def extract_images_with_selenium(url, logger):
     """
@@ -427,7 +506,7 @@ def get_article_links():
 
         from selenium.webdriver.common.by import By
 
-        target_dates = get_target_dates()
+        target_dates = get_siemens_target_dates()
         logger.info(f"Target dates: {sorted(target_dates)}")
 
         links = []
@@ -681,11 +760,33 @@ def process_articles():
             content = enhance_content_with_images(content, link, logger)
 
             # 从正文提取日期，无法提取时跳过并标记，避免历史文章反复被推送
-            article_date = extract_article_date_from_content(content)
-            target_dates = get_target_dates()
+            target_dates = get_siemens_target_dates()
+
+            article_date = None
+            article_date_source = ""
+
+            list_date = _extract_date_from_text(item.get("date", ""))
+            if list_date:
+                article_date = list_date
+                article_date_source = "list_page"
 
             if not article_date:
-                logger.warning(f"Skipping article with unknown date: {link[:80]}")
+                content_date = extract_article_date_from_content(content)
+                if content_date:
+                    article_date = content_date
+                    article_date_source = "content_text"
+
+            if not article_date:
+                page_date, page_source = extract_article_date_from_page(link, logger)
+                if page_date:
+                    article_date = page_date
+                    article_date_source = page_source or "page_html"
+
+            if not article_date:
+                logger.warning(
+                    f"Skipping article with unknown date: {link[:80]} "
+                    f"(title={item.get('title', '')[:40]!r}, list_date={item.get('date', '')!r})"
+                )
                 processed_links.add(link_hash)
                 state["processed_links"] = list(processed_links)
                 save_state(state, STATE_FILE)
@@ -693,10 +794,13 @@ def process_articles():
                     "title": article.get("title", "Unknown"),
                     "url": link,
                     "processed_at": datetime.now().isoformat(),
-                    "status": "skipped_unknown_date"
+                    "status": "skipped_unknown_date",
+                    "list_date_raw": item.get("date", "")
                 }
                 save_processed(processed, PROCESSED_FILE)
                 continue
+
+            logger.info(f"Resolved article date: {article_date} (source={article_date_source})")
 
             if article_date not in target_dates:
                 logger.info(f"Skipping old article: {article_date} {link[:80]}")
