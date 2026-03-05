@@ -1,5 +1,4 @@
 from openai import OpenAI
-import httpx
 import os
 import time
 
@@ -14,12 +13,18 @@ MAX_RETRIES = 5
 RETRY_DELAY = 10
 
 # ===== Client 初始化 =====
+# 临时清除代理环境变量，确保 httpx 不走 SOCKS5 代理直连 NVIDIA API
+_proxy_env_keys = ['HTTP_PROXY', 'HTTPS_PROXY', 'ALL_PROXY', 'http_proxy', 'https_proxy', 'all_proxy']
+_saved_proxies = {k: os.environ.pop(k) for k in _proxy_env_keys if k in os.environ}
+
 client = OpenAI(
     base_url=BASE_URL,
     api_key=DEEPSEEK_API_KEY,
     timeout=TIMEOUT,
-    http_client=httpx.Client(proxy=None),  # 绕过系统 SOCKS5 代理，直连 NVIDIA API
 )
+
+# 恢复代理环境变量（供其他模块如 requests 使用）
+os.environ.update(_saved_proxies)
 
 
 def call_deepseek_api(prompt: str) -> str:
