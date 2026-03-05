@@ -13,6 +13,7 @@ import hashlib
 import time
 import logging
 import os
+import re
 from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 
@@ -26,7 +27,7 @@ from rss_monitor_base import (
 from server_utils import requests_get_with_retry
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-LOG_FILE = os.path.join(SCRIPT_DIR, "log.txt")
+LOG_FILE = os.path.join(SCRIPT_DIR, "siemens.log")
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -40,12 +41,49 @@ logger = logging.getLogger(__name__)
 # ===== Siemens 特有配置 =====
 PRESS_URL = "https://www.siemens-healthineers.com/press"
 BASE_URL = "https://www.siemens-healthineers.com"
+RELEASES_URL = "https://www.siemens-healthineers.com/press/releases"
 STATE_FILE = "siemens_state.json"
 PROCESSED_FILE = "siemens_processed.json"
 IMAGES_DIR = "downloaded_images/siemens"
 
-import re
 from urllib.parse import urljoin
+
+
+def extract_article_date_from_content(content):
+    """
+    从正文中提取文章日期，支持常见格式：
+    - March 5, 2026 / Mar 5, 2026
+    - 2026-03-05
+    """
+    if not content:
+        return None
+
+    lines = [ln.strip() for ln in content.split('\n') if ln.strip()]
+    head_lines = lines[:120]
+
+    month_pat = (
+        r"(January|February|March|April|May|June|July|August|September|October|November|December|"
+        r"Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\s+\d{1,2},\s+\d{4}"
+    )
+    iso_pat = r"\b\d{4}-\d{2}-\d{2}\b"
+
+    for line in head_lines:
+        cleaned = line.replace("**", " ").replace("Published:", " ").replace("Publish date:", " ")
+        cleaned = " ".join(cleaned.split())
+
+        m = re.search(month_pat, cleaned, flags=re.IGNORECASE)
+        if m:
+            d = parse_date(m.group(0))
+            if d:
+                return d
+
+        m = re.search(iso_pat, cleaned)
+        if m:
+            d = parse_date(m.group(0))
+            if d:
+                return d
+
+    return None
 
 def extract_images_with_selenium(url, logger):
     """
@@ -229,14 +267,13 @@ def get_article_links():
     """通过 Selenium 抓取 Press 页面获取文章链接"""
     driver = None
     try:
-        logger.info(f"Fetching press page: {PRESS_URL}")
+        # 优先抓 releases 列表页，press 首页受地区/活动卡片影响更大
+        source_pages = [RELEASES_URL, PRESS_URL]
+        logger.info(f"Fetching press pages: {source_pages}")
 
         driver = setup_driver()
         if not driver:
             return []
-
-        driver.get(PRESS_URL)
-        time.sleep(5)
 
         from selenium.webdriver.common.by import By
 
@@ -254,98 +291,128 @@ def get_article_links():
             "find out more",
         }
 
-        # 只抓取 releases，不抓取 features（features 页面包含大量 Cookie 等元数据）
-        articles = driver.find_elements(By.CSS_SELECTOR, "a[href*='/press/releases/']")
-
-        for article in articles:
+        for source_page in source_pages:
             try:
-                href = article.get_attribute("href")
-                if not href or href in seen:
-                    continue
+                driver.get(source_page)
+                time.sleep(4)
 
-                # 跳过列表页链接
-                if href.endswith('/releases') or href.endswith('/features'):
-                    continue
+                # releases 列表页常有“加载更多/更多”按钮，点击几轮尽量展开
+                for _ in range(4):
+                    clicked = False
+                    for xp in [
+                        "//button[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'load more')]",
+                        "//button[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'more')]",
+                        "//a[contains(translate(normalize-space(.),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'load more')]",
+                    ]:
+                        try:
+                            btns = driver.find_elements(By.XPATH, xp)
+                            visible_btns = [b for b in btns if b.is_displayed() and b.is_enabled()]
+                            if not visible_btns:
+                                continue
+                            driver.execute_script("arguments[0].click();", visible_btns[0])
+                            clicked = True
+                            time.sleep(2)
+                            break
+                        except Exception:
+                            continue
+                    if not clicked:
+                        break
 
-                # 跳过 features 页面（包含大量 Cookie 等元数据）
-                if '/press/features/' in href:
-                    continue
+                # 只抓取 releases，不抓取 features（features 页面包含大量 Cookie 等元数据）
+                articles = driver.find_elements(By.CSS_SELECTOR, "a[href*='/press/releases/']")
 
-                seen.add(href)
-
-                # 尽量从链接附近的卡片容器提取真实标题，避免把 CTA 的 "Learn more" 当作标题
-                scope = article
-                try:
-                    scope = article.find_element(
-                        By.XPATH,
-                        "./ancestor::*[self::article or self::li or contains(@class,'teaser') or contains(@class,'tile') or contains(@class,'card')][1]"
-                    )
-                except Exception:
-                    pass
-
-                title_candidates = [
-                    article.text.strip(),
-                    (article.get_attribute("aria-label") or "").strip(),
-                    (article.get_attribute("title") or "").strip(),
-                ]
-                selector_candidates = [
-                    "h1", "h2", "h3", "h4", "h5", "h6",
-                    "[class*='title']",
-                    "[class*='headline']",
-                    "[class*='teaser']",
-                    "[class*='copy']",
-                ]
-                for selector in selector_candidates:
+                for article in articles:
                     try:
-                        elems = scope.find_elements(By.CSS_SELECTOR, selector)
+                        href = article.get_attribute("href")
+                        if not href or href in seen:
+                            continue
+
+                        # 跳过列表页链接
+                        if href.endswith('/releases') or href.endswith('/features'):
+                            continue
+
+                        # 跳过 features 页面（包含大量 Cookie 等元数据）
+                        if '/press/features/' in href:
+                            continue
+
+                        seen.add(href)
+
+                        # 尽量从链接附近的卡片容器提取真实标题，避免把 CTA 的 "Learn more" 当作标题
+                        scope = article
+                        try:
+                            scope = article.find_element(
+                                By.XPATH,
+                                "./ancestor::*[self::article or self::li or contains(@class,'teaser') or contains(@class,'tile') or contains(@class,'card')][1]"
+                            )
+                        except Exception:
+                            pass
+
+                        title_candidates = [
+                            article.text.strip(),
+                            (article.get_attribute("aria-label") or "").strip(),
+                            (article.get_attribute("title") or "").strip(),
+                        ]
+                        selector_candidates = [
+                            "h1", "h2", "h3", "h4", "h5", "h6",
+                            "[class*='title']",
+                            "[class*='headline']",
+                            "[class*='teaser']",
+                            "[class*='copy']",
+                        ]
+                        for selector in selector_candidates:
+                            try:
+                                elems = scope.find_elements(By.CSS_SELECTOR, selector)
+                            except Exception:
+                                continue
+                            for elem in elems:
+                                text = " ".join(elem.text.split()).strip()
+                                if text:
+                                    title_candidates.append(text)
+
+                        title = ""
+                        for candidate in title_candidates:
+                            normalized = " ".join(candidate.split()).strip()
+                            if not normalized:
+                                continue
+                            if normalized.lower() in cta_titles:
+                                continue
+                            if len(normalized) < 8:
+                                continue
+                            title = normalized
+                            break
+
+                        if not title:
+                            # CTA 链接经常只有 "Learn more"，此时退回到 URL slug，至少保住真实 release 链接
+                            slug = href.rstrip("/").split("/")[-1]
+                            slug = re.sub(r"[-_]+", " ", slug).strip()
+                            slug = re.sub(r"\s+", " ", slug)
+                            if slug and len(slug) >= 6 and slug.lower() not in cta_titles:
+                                title = slug
+                            else:
+                                ignored_cta += 1
+                                continue
+
+                        # 尝试获取日期（在父元素或相邻元素中查找）
+                        date_str = ""
+                        try:
+                            date_elem = scope.find_element(By.CSS_SELECTOR, "time, .date, [class*='date']")
+                            date_str = date_elem.text.strip()
+                        except Exception:
+                            pass
+
+                        link_hash = hashlib.md5(href.encode()).hexdigest()
+                        links.append({
+                            "link": href,
+                            "link_hash": link_hash,
+                            "date": date_str,
+                            "title": title
+                        })
+                        logger.info(f"Found article: {title[:50]}...")
+
                     except Exception:
                         continue
-                    for elem in elems:
-                        text = " ".join(elem.text.split()).strip()
-                        if text:
-                            title_candidates.append(text)
-
-                title = ""
-                for candidate in title_candidates:
-                    normalized = " ".join(candidate.split()).strip()
-                    if not normalized:
-                        continue
-                    if normalized.lower() in cta_titles:
-                        continue
-                    if len(normalized) < 8:
-                        continue
-                    title = normalized
-                    break
-
-                if not title:
-                    # CTA 链接经常只有 "Learn more"，此时退回到 URL slug，至少保住真实 release 链接
-                    slug = href.rstrip("/").split("/")[-1]
-                    slug = re.sub(r"[-_]+", " ", slug).strip()
-                    slug = re.sub(r"\s+", " ", slug)
-                    if slug and len(slug) >= 6 and slug.lower() not in cta_titles:
-                        title = slug
-                    else:
-                        ignored_cta += 1
-                        continue
-
-                # 尝试获取日期（在父元素或相邻元素中查找）
-                date_str = ""
-                try:
-                    date_elem = scope.find_element(By.CSS_SELECTOR, "time, .date, [class*='date']")
-                    date_str = date_elem.text.strip()
-                except Exception:
-                    pass
-
-                link_hash = hashlib.md5(href.encode()).hexdigest()
-                links.append({
-                    "link": href,
-                    "link_hash": link_hash,
-                    "date": date_str,
-                    "title": title
-                })
-                logger.info(f"Found article: {title[:50]}...")
-
-            except Exception:
+            except Exception as e:
+                logger.warning(f"Failed scanning page {source_page}: {e}")
                 continue
 
         if ignored_cta:
@@ -405,18 +472,37 @@ def process_articles():
             logger.info("Enhancing content with images...")
             content = enhance_content_with_images(content, link, logger)
 
-            # 从内容中提取日期，判断是否为今天/昨天
-            # Siemens 文章日期格式: "February 5, 2026"
-            article_date = None
-            for line in content.split('\n')[:20]:
-                if 'Published' in line or '2026' in line or '2025' in line:
-                    article_date = parse_date(line.replace('Published:', '').replace('**', '').strip())
-                    if article_date:
-                        break
-
+            # 从正文提取日期，无法提取时跳过并标记，避免历史文章反复被推送
+            article_date = extract_article_date_from_content(content)
             target_dates = get_target_dates()
-            if article_date and article_date not in target_dates:
-                logger.info(f"Skipping old article: {article_date}")
+
+            if not article_date:
+                logger.warning(f"Skipping article with unknown date: {link[:80]}")
+                processed_links.add(link_hash)
+                state["processed_links"] = list(processed_links)
+                save_state(state, STATE_FILE)
+                processed[link_hash] = {
+                    "title": article.get("title", "Unknown"),
+                    "url": link,
+                    "processed_at": datetime.now().isoformat(),
+                    "status": "skipped_unknown_date"
+                }
+                save_processed(processed, PROCESSED_FILE)
+                continue
+
+            if article_date not in target_dates:
+                logger.info(f"Skipping old article: {article_date} {link[:80]}")
+                processed_links.add(link_hash)
+                state["processed_links"] = list(processed_links)
+                save_state(state, STATE_FILE)
+                processed[link_hash] = {
+                    "title": article.get("title", "Unknown"),
+                    "url": link,
+                    "processed_at": datetime.now().isoformat(),
+                    "status": "skipped_old",
+                    "article_date": article_date.isoformat()
+                }
+                save_processed(processed, PROCESSED_FILE)
                 continue
 
             # 生成 article_id，确保与 enhance_content_with_images 中使用的相同
@@ -440,8 +526,10 @@ def process_articles():
                     "title": article["title"],
                     "url": link,
                     "content_length": content_len,
-                    "translated_length": len(result),
-                    "processed_at": datetime.now().isoformat()
+                    "translated_length": len(result.get("content", "")) if isinstance(result, dict) else len(str(result)),
+                    "processed_at": datetime.now().isoformat(),
+                    "status": "success",
+                    "article_date": article_date.isoformat()
                 }
                 save_processed(processed, PROCESSED_FILE)
                 logger.info(f"Completed: {article['title'][:50]}")
