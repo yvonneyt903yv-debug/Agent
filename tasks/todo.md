@@ -6,7 +6,7 @@
 - [x] Confirm Siemens missing-article issue root cause from logs and source behavior.
 - [x] Update `gps/siemens.py` to support infinite-scroll loading on `/press/releases`.
 - [x] Verify `get_article_links()` can include `/press/releases/new-artis-family`.
-- [ ] Commit only related files with a short English message.
+- [x] Commit only related files with a short English message.
 
 # Review
 
@@ -21,5 +21,5 @@
 - Scope: Siemens releases page missing `new-artis-family` in crawler results
 - Files: `gps/siemens.py`, `tasks/todo.md`
 - Change path: add infinite-scroll trigger loop in `get_article_links()` before extracting release anchors
-- Git commit: pending
+- Git commit: `b51f865` (`Fix Siemens releases infinite scroll`)
 - Sync status: local updated; VPS not yet synced
