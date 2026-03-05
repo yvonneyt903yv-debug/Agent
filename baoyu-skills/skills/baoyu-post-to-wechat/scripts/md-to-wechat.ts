@@ -192,12 +192,23 @@ async function parseMarkdownForWechat(
 
   const contentImages: ImageInfo[] = [];
   for (const img of images) {
-    const localPath = await resolveImagePath(img.src, baseDir, tempDir);
-    contentImages.push({
-      placeholder: img.placeholder,
-      localPath,
-      originalPath: img.src,
-    });
+    try {
+      const localPath = await resolveImagePath(img.src, baseDir, tempDir);
+      contentImages.push({
+        placeholder: img.placeholder,
+        localPath,
+        originalPath: img.src,
+      });
+    } catch (error) {
+      const reason = error instanceof Error ? error.message : String(error);
+      console.error(`[md-to-wechat] Warning: skip image due to download failure: ${img.src} (${reason})`);
+      // Keep placeholder metadata so caller can clean placeholder text from editor.
+      contentImages.push({
+        placeholder: img.placeholder,
+        localPath: '',
+        originalPath: img.src,
+      });
+    }
   }
 
   return {

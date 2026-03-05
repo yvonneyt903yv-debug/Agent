@@ -509,10 +509,19 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
 
           await sleep(500);
 
+          if (!img.localPath) {
+            console.warn('[wechat] Missing local image path, deleting placeholder only');
+            await pressDeleteKey(session);
+            await sleep(300);
+            continue;
+          }
+
           console.log(`[wechat] Copying image: ${path.basename(img.localPath)}`);
           const copied = await copyImageToClipboard(img.localPath);
           if (!copied) {
-            console.warn(`[wechat] Skipping image due to copy failure`);
+            console.warn('[wechat] Skipping image due to copy failure, deleting placeholder');
+            await pressDeleteKey(session);
+            await sleep(300);
             continue;
           }
           await sleep(300);

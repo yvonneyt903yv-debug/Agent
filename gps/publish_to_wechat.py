@@ -162,7 +162,7 @@ def publish_to_wechat(md_file_path, theme="grace", skip_review=False):
         "--theme", theme
     ]
 
-    # 设置环境变量以禁用代理
+    # 默认保留当前环境，仅补充本地直连
     env = os.environ.copy()
     env['NO_PROXY'] = '127.0.0.1,localhost'
 
@@ -183,6 +183,26 @@ def publish_to_wechat(md_file_path, theme="grace", skip_review=False):
             cwd=os.path.dirname(baoyu_script),
             env=env
         )
+
+        # 某些 Node fetch 实现不支持 socks5 代理，检测到后自动无代理重试一次
+        error_text = f"{result.stderr}\n{result.stdout}"
+        if result.returncode != 0 and "UnsupportedProxyProtocol" in error_text:
+            print("⚠️ 检测到代理协议不受支持，正在自动切换为无代理重试...")
+            retry_env = env.copy()
+            for key in (
+                "HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY",
+                "http_proxy", "https_proxy", "all_proxy",
+            ):
+                retry_env.pop(key, None)
+
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=300,  # 5分钟超时
+                cwd=os.path.dirname(baoyu_script),
+                env=retry_env
+            )
 
         if result.returncode == 0:
             print(f"\n{'='*60}")
