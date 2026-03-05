@@ -134,29 +134,34 @@ def clean_content(content, logger=None):
     import re
 
     # 定义需要移除的内容模式
-    patterns_to_remove = [
-        # Cookie 相关（支持中英文、有无空格）
-        r'##?\s*.*Cookie[^\n]*\n.*?##?\s*',
-        r'Cookie\s*(?:名称|Name)[^\n]*\n.*?\n\n',
-        r'##?\s*(?:Cookie\s*名称|Cookie\s*Name|服务提供商|Purpose|目的|有效期|Provider)[^\n]*\n.*?\n\n',
-        r'##?\s*偏好Cookie[^\n]*\n.*?##?\s*',  # Siemens 网站的 Cookie 标题
-        # 隐私政策相关
-        r'##?\s*(?:Privacy Policy|隐私政策|Datenschutz)[^\n]*\n.*?##?\s*',
-        r'##?\s*(?:Consent|同意|Einwilligung)[^\n]*\n.*?##?\s*',
-        # 通用页脚/法律信息
-        r'##?\s*(?:Legal Notice|法律声明|Imprint|Impressum)[^\n]*\n.*?##?\s*',
-        r'##?\s*(?:Terms of Use|使用条款|Nutzungsbedingungen)[^\n]*\n.*?##?\s*',
-        # 社交媒体链接块
-        r'##?\s*(?:Share|分享|Teilen)[^\n]*\n.*?##?\s*',
-        # 网站导航/页脚链接
-        r'\[.*?\]\(.*?\)\s*\[.*?\]\(.*?\)\s*\[.*?\]\(.*?\)',
+    # 注意：使用 re.MULTILINE 而非 re.DOTALL，避免 . 跨行匹配导致误删正文
+    # 对于需要跨行匹配的"标题到下一个标题"模式，用 [\s\S]*? 并严格限定边界
+    section_keywords = [
+        'Cookie', '偏好Cookie',
+        'Privacy Policy', '隐私政策', 'Datenschutz',
+        'Consent', '同意', 'Einwilligung',
+        'Legal Notice', '法律声明', 'Imprint', 'Impressum',
+        'Terms of Use', '使用条款', 'Nutzungsbedingungen',
+        'Share', '分享', 'Teilen',
     ]
 
     original_len = len(content)
 
-    # 应用所有清理模式
-    for pattern in patterns_to_remove:
-        content = re.sub(pattern, '', content, flags=re.IGNORECASE | re.DOTALL)
+    # 按 Markdown 标题分段，只删除标题匹配关键词的整个段落
+    # 段落 = 从 # 标题行到下一个 # 标题行（或文末）
+    for keyword in section_keywords:
+        pattern = r'^#{1,3}\s*[^\n]*' + re.escape(keyword) + r'[^\n]*\n(?:(?!^#{1,3}\s)[\s\S])*'
+        content = re.sub(pattern, '', content, flags=re.IGNORECASE | re.MULTILINE)
+
+    # 单行模式清理：Cookie 表格行、导航链接块
+    simple_patterns = [
+        r'Cookie\s*(?:名称|Name)[^\n]*\n(?:[^\n]*\n){0,5}\n',
+        r'##?\s*(?:Cookie\s*名称|Cookie\s*Name|服务提供商|Purpose|目的|有效期|Provider)[^\n]*\n(?:[^\n]*\n){0,10}\n',
+        # 连续3个以上的 Markdown 链接（导航/页脚链接）
+        r'(?:\[.*?\]\(.*?\)\s*){3,}',
+    ]
+    for pattern in simple_patterns:
+        content = re.sub(pattern, '', content, flags=re.IGNORECASE)
 
     # 清理 Cookie 表格（Markdown 表格形式）
     # 匹配包含 Cookie 关键词的表格

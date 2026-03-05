@@ -1,4 +1,5 @@
 from openai import OpenAI
+import httpx
 import os
 import time
 
@@ -17,6 +18,7 @@ client = OpenAI(
     base_url=BASE_URL,
     api_key=DEEPSEEK_API_KEY,
     timeout=TIMEOUT,
+    http_client=httpx.Client(proxy=None),  # 绕过系统 SOCKS5 代理，直连 NVIDIA API
 )
 
 
