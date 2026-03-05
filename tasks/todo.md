@@ -21,5 +21,5 @@
 - Scope: Siemens releases page missing `new-artis-family` in crawler results
 - Files: `gps/siemens.py`, `tasks/todo.md`
 - Change path: add infinite-scroll trigger loop in `get_article_links()` before extracting release anchors
-- Git commit: `b51f865` (`Fix Siemens releases infinite scroll`)
+- Git commit: `b51f865` (`Fix Siemens releases infinite scroll`), `f2a9187` (`Update Siemens task log`)
 - Sync status: local updated; VPS not yet synced
