@@ -5,7 +5,7 @@
 - [x] Fix Siemens image enhancement replacement to avoid nested markdown URL corruption.
 - [x] Add markdown image download guard to skip non-http malformed URLs.
 - [x] Re-run March 4 Siemens article (`new-artis-family`) with corrected logic and verify output.
-- [ ] Commit only related files with a short English message.
+- [x] Commit only related files with a short English message.
 
 - [x] Confirm Siemens "today/yesterday" mismatch root cause (`get_target_dates()` returns 7 days in shared module).
 - [x] Update `gps/siemens.py` to use Siemens-local target dates (today + yesterday only).
@@ -60,5 +60,5 @@
 - Scope: Siemens date correctness and malformed image URL parsing during translation
 - Files: `gps/siemens.py`, `gps/rss_monitor_base.py`, `tasks/todo.md`
 - Change path: prefer page published date over `Last-Modified`; avoid nested markdown image replacement; guard non-http image URLs; rerun `new-artis-family` with corrected date (`2026-03-04`)
-- Git commit: not yet
+- Git commit: `3de6fb3` (`Fix Siemens date and image parsing`)
 - Sync status: local updated; VPS not yet synced
