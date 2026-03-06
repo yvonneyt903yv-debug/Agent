@@ -17,6 +17,7 @@ import re
 import xml.etree.ElementTree as ET
 import requests
 from datetime import datetime, timedelta
+from email.utils import parsedate_to_datetime
 from apscheduler.schedulers.background import BackgroundScheduler
 
 from rss_monitor_base import (
@@ -294,6 +295,16 @@ def extract_article_date_from_page(url, logger):
     except Exception as e:
         logger.debug(f"Date extraction from page failed to fetch html: {e}")
         return None, ""
+
+    # 先用 Last-Modified 头兜底，Siemens Press 页面通常会提供准确修改时间
+    try:
+        last_modified = (resp.headers.get("Last-Modified") or "").strip()
+        if last_modified:
+            parsed_dt = parsedate_to_datetime(last_modified)
+            if parsed_dt:
+                return parsed_dt.date(), "header:last-modified"
+    except Exception:
+        pass
 
     patterns = [
         ("meta:article:published_time", r'<meta[^>]+property=["\']article:published_time["\'][^>]+content=["\']([^"\']+)["\']'),

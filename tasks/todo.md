@@ -3,6 +3,7 @@
 - [x] Confirm Siemens "today/yesterday" mismatch root cause (`get_target_dates()` returns 7 days in shared module).
 - [x] Update `gps/siemens.py` to use Siemens-local target dates (today + yesterday only).
 - [x] Add multi-source article date resolution (list date -> content date -> page meta/time/json-ld).
+- [x] Add HTTP `Last-Modified` header fallback to page-level date extraction.
 - [x] Improve unknown-date logging to include title/list raw date for debugging.
 - [ ] Verify on local runtime (`python3 siemens.py`) that new links show `Resolved article date` and no longer skip as unknown.
 
@@ -33,6 +34,6 @@
 - Date: 2026-03-06
 - Scope: Siemens unknown-date skipping on new releases
 - Files: `gps/siemens.py`, `tasks/todo.md`
-- Change path: align target window to today+yesterday and add fallback date extraction from list/content/page html metadata
+- Change path: align target window to today+yesterday, add page date fallback, and add `Last-Modified` header date fallback
 - Git commit: not yet
 - Sync status: local updated; VPS not yet synced
