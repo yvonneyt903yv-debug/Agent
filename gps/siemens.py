@@ -6,7 +6,7 @@ Siemens Healthineers 新闻监控脚本
 监控 Siemens Healthineers 新闻并自动翻译、发布到微信公众号
 - 数据源：Press 页面（无 RSS，需 Selenium 抓取）
 - 每 4 小时运行一次
-- 仅处理今天和昨天的文章
+- 仅处理最近 3 天（今天/昨天/前天）的文章
 """
 
 import hashlib
@@ -53,9 +53,9 @@ from urllib.parse import urljoin
 
 
 def get_siemens_target_dates():
-    """Siemens 仅处理今天和昨天。"""
+    """Siemens 仅处理最近 3 天（今天/昨天/前天）。"""
     today = datetime.now().date()
-    return {today - timedelta(days=i) for i in range(2)}
+    return {today - timedelta(days=i) for i in range(3)}
 
 
 def _parse_lastmod_date(lastmod_text):
@@ -882,7 +882,7 @@ def main():
     scheduler.start()
 
     logger.info("Siemens Healthineers Polling service started.")
-    logger.info("- Only processes articles from today and yesterday")
+    logger.info("- Only processes articles from the last 3 days (today/yesterday/day before yesterday)")
     logger.info("- Runs every 4 hours")
     logger.info("- Auto-publishes to WeChat after processing")
 
