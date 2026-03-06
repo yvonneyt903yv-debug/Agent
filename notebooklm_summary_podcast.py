@@ -138,7 +138,8 @@ async def process_document_with_notebooklm(file_path, file_content):
                 print(f"⏳ 等待播客生成完成（最多等待 15 分钟）...")
                 await skill.client.artifacts.wait_for_completion(nb_id, generation_status.task_id, timeout=900)
 
-                podcast_filename = f"podcast_{file_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp3"
+                # Keep the downloaded audio extension aligned with NotebookLM container format.
+                podcast_filename = f"podcast_{file_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.m4a"
                 podcast_full_path = os.path.join(TARGET_OUTPUT_DIR, podcast_filename)
 
                 await skill.client.artifacts.download_audio(nb_id, podcast_full_path)

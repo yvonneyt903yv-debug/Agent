@@ -1,5 +1,12 @@
 # Todo
 
+- [x] Confirm local runtime file for Philips pipeline is `/Users/yvonne/Documents/Agent/gps/ph.py`.
+- [x] Reproduce and verify bad Philips outputs are shell-content pages (disclaimer/browser tip) rather than real article body.
+- [x] Add Philips-specific low-quality content gate in `gps/ph.py` to block shell/noise extraction.
+- [x] Add Philips direct HTML fallback extraction (`article/main/p`) when Jina output is low quality.
+- [x] Add encoding safety fallback (`apparent_encoding`) in Philips direct extraction to reduce mojibake risk.
+- [ ] Run one full local Philips cycle and verify new `ph_processed.json` entries no longer show short/garbled content.
+
 - [x] Confirm local runtime file is `/Users/yvonne/Documents/Agent/gps/siemens.py` from active process.
 - [x] Fix Siemens date resolution priority: parse page published date first, use `Last-Modified` only as fallback.
 - [x] Fix Siemens image enhancement replacement to avoid nested markdown URL corruption.
@@ -25,6 +32,11 @@
 - [x] Confirm local `ph.py` processed record does not persist readable content body (only lengths/path).
 - [x] Update `gps/ph.py` to store `content_preview` in `ph_processed.json` for local inspection.
 - [ ] Run one full local ph cycle and verify latest `ph_processed.json` entry contains `content_preview`.
+
+- [x] Confirm podcast "no sound" report root cause by probing target output file stream/container and volume.
+- [x] Change NotebookLM audio download naming to preserve source container format (`.m4a`) instead of forcing `.mp3`.
+- [x] Apply the same extension fix to duplicate NotebookSkill implementation and standalone summary script to avoid regression.
+- [x] Validate updated code paths with syntax checks and spot-check existing podcast files for container/extension consistency.
 
 # Review
 
@@ -61,4 +73,18 @@
 - Files: `gps/siemens.py`, `gps/rss_monitor_base.py`, `tasks/todo.md`
 - Change path: prefer page published date over `Last-Modified`; avoid nested markdown image replacement; guard non-http image URLs; rerun `new-artis-family` with corrected date (`2026-03-04`)
 - Git commit: `3de6fb3` (`Fix Siemens date and image parsing`)
+- Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-06
+- Scope: local `ph.py` content garbling and body-loss mitigation for Philips pages
+- Files: `gps/ph.py`, `tasks/todo.md`
+- Change path: add low-quality shell-content detection, Philips direct HTML body extraction fallback, and response encoding fallback to `apparent_encoding`
+- Git commit: not yet
+- Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-07
+- Scope: NotebookLM podcast extension mismatch causing occasional silent playback in some players
+- Files: `src/notebook_tool.py`, `notebook_tool.py`, `notebooklm_summary_podcast.py`, `tasks/todo.md`
+- Change path: stop forcing `.mp3` filename for downloaded NotebookLM audio; preserve `.m4a` container naming
+- Git commit: not yet
 - Sync status: local updated; VPS not yet synced

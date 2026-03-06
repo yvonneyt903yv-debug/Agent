@@ -144,7 +144,8 @@ class NotebookSkill:
             # 下载播客（使用绝对路径）
             output_dir = os.path.join(OUTPUT_DIR, "podcasts")
             os.makedirs(output_dir, exist_ok=True)
-            podcast_path = os.path.join(output_dir, f"podcast_{notebook_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.mp3")
+            # Respect NotebookLM original container format instead of forcing ".mp3".
+            podcast_path = os.path.join(output_dir, f"podcast_{notebook_id}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.m4a")
             
             await self.client.artifacts.download_audio(notebook_id, podcast_path)
             print(f"✅ 播客已保存到: {podcast_path}")
