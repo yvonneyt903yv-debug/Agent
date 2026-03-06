@@ -296,22 +296,12 @@ def extract_article_date_from_page(url, logger):
         logger.debug(f"Date extraction from page failed to fetch html: {e}")
         return None, ""
 
-    # 先用 Last-Modified 头兜底，Siemens Press 页面通常会提供准确修改时间
-    try:
-        last_modified = (resp.headers.get("Last-Modified") or "").strip()
-        if last_modified:
-            parsed_dt = parsedate_to_datetime(last_modified)
-            if parsed_dt:
-                return parsed_dt.date(), "header:last-modified"
-    except Exception:
-        pass
-
     patterns = [
         ("meta:article:published_time", r'<meta[^>]+property=["\']article:published_time["\'][^>]+content=["\']([^"\']+)["\']'),
         ("meta:publish-date", r'<meta[^>]+(?:name|property)=["\'](?:publish-date|pubdate|datePublished|date)["\'][^>]+content=["\']([^"\']+)["\']'),
         ("jsonld:datePublished", r'"datePublished"\s*:\s*"([^"]+)"'),
         ("time:datetime", r'<time[^>]+datetime=["\']([^"\']+)["\']'),
-        ("html:text", r'(?:Published|Publication date|Date)\s*[:\-]?\s*([A-Za-z]{3,9}\s+\d{1,2},?\s+\d{4}|\d{4}-\d{2}-\d{2})'),
+        ("html:text", r'(?:Published(?:\s+on)?|Publication date|Date)\s*[:\-]?\s*([A-Za-z]{3,9}\s+\d{1,2},?\s+\d{4}|\d{4}-\d{2}-\d{2})'),
     ]
 
     for source, pattern in patterns:
@@ -322,6 +312,16 @@ def extract_article_date_from_page(url, logger):
         parsed = _extract_date_from_text(candidate)
         if parsed:
             return parsed, source
+
+    # 页面内未命中发布时间时，再用 Last-Modified 作为兜底
+    try:
+        last_modified = (resp.headers.get("Last-Modified") or "").strip()
+        if last_modified:
+            parsed_dt = parsedate_to_datetime(last_modified)
+            if parsed_dt:
+                return parsed_dt.date(), "header:last-modified"
+    except Exception:
+        pass
 
     return None, ""
 
@@ -425,39 +425,57 @@ def enhance_content_with_images(content, url, logger):
     for pattern in image_patterns:
         matches = re.findall(pattern, content, re.IGNORECASE)
         for img_url in matches:
-            if 'markdown' not in content.lower() or f'![{img_url}' not in content:
-                # 下载图片
-                try:
-                    filename = os.path.basename(img_url.split('?')[0])
-                    if not filename or '.' not in filename:
-                        ext = '.jpg'
-                        if 'png' in img_url.lower():
-                            ext = '.png'
-                        elif 'gif' in img_url.lower():
-                            ext = '.gif'
-                        filename = hashlib.md5(img_url.encode()).hexdigest()[:12] + ext
+            # 已经在 Markdown 链接/图片中出现时跳过，避免生成嵌套语法
+            if re.search(r'!\[[^\]]*\]\(\s*' + re.escape(img_url) + r'\s*\)', content):
+                continue
+            if re.search(r'\[[^\]]+\]\(\s*' + re.escape(img_url) + r'\s*\)', content):
+                continue
 
-                    local_path = os.path.join(full_images_dir, filename)
+            # 下载图片
+            try:
+                filename = os.path.basename(img_url.split('?')[0])
+                if not filename or '.' not in filename:
+                    ext = '.jpg'
+                    if 'png' in img_url.lower():
+                        ext = '.png'
+                    elif 'gif' in img_url.lower():
+                        ext = '.gif'
+                    filename = hashlib.md5(img_url.encode()).hexdigest()[:12] + ext
 
-                    logger.info(f"Downloading image from content: {img_url[:60]}...")
-                    response = requests_get_with_retry(img_url, timeout=30, stream=True)
-                    response.raise_for_status()
+                local_path = os.path.join(full_images_dir, filename)
 
-                    with open(local_path, 'wb') as f:
-                        for chunk in response.iter_content(chunk_size=8192):
-                            f.write(chunk)
+                logger.info(f"Downloading image from content: {img_url[:60]}...")
+                response = requests_get_with_retry(img_url, timeout=30, stream=True)
+                response.raise_for_status()
 
-                    logger.info(f"Image saved: {filename}")
+                with open(local_path, 'wb') as f:
+                    for chunk in response.iter_content(chunk_size=8192):
+                        f.write(chunk)
 
-                    # 替换内容中的链接
-                    markdown_img = f'\n\n![{filename}]({local_path})\n\n'
-                    content = content.replace(img_url, markdown_img)
+                logger.info(f"Image saved: {filename}")
 
-                except Exception as e:
-                    logger.warning(f"Failed to download image {img_url[:50]}: {e}")
-                    # 仍转换为 Markdown 格式，但不下载
-                    markdown_img = f'\n\n![image]({img_url})\n\n'
-                    content = content.replace(img_url, markdown_img)
+                markdown_img = f'\n\n![{filename}]({local_path})\n\n'
+
+            except Exception as e:
+                logger.warning(f"Failed to download image {img_url[:50]}: {e}")
+                markdown_img = f'\n\n![image]({img_url})\n\n'
+
+            # 仅替换独立文本行或 Image: 标签，避免污染原有 Markdown 结构
+            content = re.sub(
+                r'(?mi)^\s*\[Image\]:?\s*' + re.escape(img_url) + r'\s*$',
+                markdown_img.strip(),
+                content
+            )
+            content = re.sub(
+                r'(?mi)^\s*Image:\s*' + re.escape(img_url) + r'\s*$',
+                markdown_img.strip(),
+                content
+            )
+            content = re.sub(
+                r'(?mi)^\s*' + re.escape(img_url) + r'\s*$',
+                markdown_img.strip(),
+                content
+            )
 
     # Step 2: 使用 Selenium 提取更多图片
     logger.info("Extracting additional images with Selenium...")

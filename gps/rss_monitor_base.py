@@ -229,7 +229,29 @@ def get_article_content_jina(url, logger):
         # 清理内容中的 Cookie/隐私政策等无关信息
         content = clean_content(content, logger=logger)
 
-        logger.info(f"Jina Reader success: {len(content)} chars, title: {title[:50]}")
+        content_len = len(content)
+
+        # Jina 对部分动态页面会返回大量 Cookie/导航文本，清洗后只剩很短内容
+        # 这种情况下回退 Selenium，避免把“空正文”送去翻译/发布
+        if content_len < 1200:
+            logger.warning(
+                f"Jina content too short after cleaning ({content_len} chars), "
+                "falling back to Selenium for fuller content"
+            )
+            selenium_article = get_article_content_selenium(url, logger)
+            if selenium_article and selenium_article.get("content"):
+                selenium_content = clean_content(selenium_article["content"], logger=logger)
+                if len(selenium_content) > content_len:
+                    logger.info(
+                        f"Selenium fallback used: {len(selenium_content)} chars "
+                        f"(vs Jina {content_len})"
+                    )
+                    return {
+                        "title": selenium_article.get("title") or title,
+                        "content": selenium_content
+                    }
+
+        logger.info(f"Jina Reader success: {content_len} chars, title: {title[:50]}")
         return {"title": title, "content": content}
 
     except Exception as e:
@@ -313,6 +335,10 @@ def download_images_from_markdown(markdown_content, article_id, images_dir, logg
 
         # 跳过 data URI
         if img_url.startswith('data:'):
+            return match.group(0)
+
+        # 只处理真正的远程图片 URL，避免嵌套/损坏 Markdown 被当成 URL
+        if not (img_url.startswith('http://') or img_url.startswith('https://')):
             return match.group(0)
 
         try:
