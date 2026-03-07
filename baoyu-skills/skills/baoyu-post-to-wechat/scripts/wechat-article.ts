@@ -33,11 +33,11 @@ const WECHAT_INLINE_STYLES: Record<string, string> = {
   'h2': 'border-bottom: 2px solid rgb(89, 89, 89); margin-bottom: 8px; margin-top: 1.5em; color: rgb(89, 89, 89); font-size: 22px; padding-bottom: 6px; font-weight: bold; line-height: 1.4;',
   'h3': 'color: rgb(89, 89, 89); font-size: 20px; margin-top: 1.2em; margin-bottom: 0.5em; border-left: 4px solid rgb(71, 193, 168); padding-left: 10px; font-weight: bold; line-height: 1.4;',
   'h4': 'color: rgb(89, 89, 89); font-size: 18px; margin-top: 1em; margin-bottom: 0.5em; font-weight: bold; line-height: 1.4;',
-  'p': 'margin-top: 8px; margin-bottom: 8px; line-height: 1.75; letter-spacing: 1.5px; text-align: justify; color: #3e3e3e; font-size: 17px; word-spacing: 2px;',
+  'p': 'margin-top: 16px; margin-bottom: 16px; line-height: 1.75; letter-spacing: 1.5px; text-align: justify; color: #3e3e3e; font-size: 18px; word-spacing: 2px;',
   'blockquote': 'font-style: normal; padding: 12px 16px; line-height: 1.75; border: none; color: #888; background: #f7f7f7; border-left: 4px solid rgb(71, 193, 168); margin: 1em 0; font-size: 16px;',
   'ul': 'padding-left: 1.5em; list-style: disc; margin: 0.8em 0;',
   'ol': 'padding-left: 1.5em; margin: 0.8em 0;',
-  'li': 'margin: 0.5em 0; line-height: 1.75; color: #3e3e3e; font-size: 17px;',
+  'li': 'margin: 0.6em 0; line-height: 1.75; color: #3e3e3e; font-size: 18px;',
   'a': 'color: rgb(71, 193, 168); border-bottom: 1px solid rgb(71, 193, 168); text-decoration: none;',
   'strong': 'color: rgb(89, 89, 89); font-weight: bold;',
   'em': 'color: rgb(71, 193, 168); font-style: italic;',
@@ -50,7 +50,7 @@ const WECHAT_INLINE_STYLES: Record<string, string> = {
   'img': 'max-width: 100%; border-radius: 4px; margin: 1em 0; display: block;',
   'figcaption': 'text-align: center; color: #888; font-size: 14px; margin-top: 8px;',
   'figure': 'margin: 1em 0; text-align: center;',
-  'section': 'font-family: -apple-system-font, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei UI, Microsoft YaHei, Arial, sans-serif; font-size: 17px; line-height: 1.75; text-align: left; color: #3e3e3e;',
+  'section': 'font-family: -apple-system-font, BlinkMacSystemFont, Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei UI, Microsoft YaHei, Arial, sans-serif; font-size: 18px; line-height: 1.75; text-align: left; color: #3e3e3e;',
 };
 
 function addInlineStylesToHtml(html: string): string {
