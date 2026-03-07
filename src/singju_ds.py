@@ -23,6 +23,7 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from selenium.common.exceptions import StaleElementReferenceException
 import subprocess
 import platform
+import shutil
 
 # --- 配置区 (macOS 版本) ---
 # !!! 用户需要修改这里 !!!
@@ -68,16 +69,17 @@ def setup_driver():
     # <<< 关键修改 (5): 解决 "ERR_INTERNET_DISCONNECTED" 和 "error sending request"
     # 当系统存在网络代理(如Clash)时, 不仅浏览器需要代理, Selenium Manager(用于下载驱动)本身也需要。
     # 下面的代码为Python脚本和将要启动的浏览器同时设置代理。
+    # 代理只给 Chrome 浏览器用，不污染 os.environ（避免影响 deepseek API 直连）
     PROXY_URL = "http://127.0.0.1:7890" if platform.system() == "Darwin" else None
-    if PROXY_URL:
-        os.environ['HTTP_PROXY'] = PROXY_URL
-        os.environ['HTTPS_PROXY'] = PROXY_URL
-        # 同时, 必须告诉程序访问本地地址时不要走代理, 避免 "Bad Gateway" 错误。
-        os.environ['NO_PROXY'] = 'localhost,127.0.0.1'
     try:
+        # 避免 Selenium Python 客户端访问本地 chromedriver(127.0.0.1) 时被系统代理劫持
+        no_proxy_hosts = "127.0.0.1,localhost"
+        os.environ["NO_PROXY"] = no_proxy_hosts
+        os.environ["no_proxy"] = no_proxy_hosts
+
         chrome_options = webdriver.ChromeOptions()
 
-        # 为浏览器明确指定代理服务器
+        # 只给浏览器设代理参数，不写 os.environ
         if PROXY_URL:
             chrome_options.add_argument(f'--proxy-server={PROXY_URL}')
 
@@ -109,8 +111,24 @@ def setup_driver():
         # 我们使用 'eager' 来提高效率，避免被慢速资源卡住
         chrome_options.page_load_strategy = 'eager'
 
-        # 在 VPS 上显式指定浏览器与驱动路径，避免 systemd 环境中自动发现失败
-        service = Service("/usr/bin/chromedriver") if platform.system() == "Linux" else Service()
+        # 优先使用本机已安装的 chromedriver，避免 Selenium Manager 在线下载失败
+        chromedriver_path = None
+        if CHROME_DRIVER_PATH and os.path.exists(CHROME_DRIVER_PATH):
+            chromedriver_path = CHROME_DRIVER_PATH
+        else:
+            candidate_paths = [
+                "/opt/homebrew/bin/chromedriver",  # macOS (Apple Silicon Homebrew)
+                "/usr/local/bin/chromedriver",     # macOS (Intel/Homebrew)
+                "/usr/bin/chromedriver",           # Linux
+            ]
+            for p in candidate_paths:
+                if os.path.exists(p):
+                    chromedriver_path = p
+                    break
+            if not chromedriver_path:
+                chromedriver_path = shutil.which("chromedriver")
+
+        service = Service(chromedriver_path) if chromedriver_path else Service()
         driver = webdriver.Chrome(service=service, options=chrome_options)
 
         # --- [关键修改 2] 设置页面加载超时时间 ---
@@ -716,10 +734,23 @@ def _create_name_glossary(text):
     ---
     {text}
     """
-    max_retries = 2
+    # 术语抽取只用于提升一致性，不应阻塞主翻译流程。
+    # 这里采用短超时 + 单次尝试，失败直接降级为空术语表。
+    glossary_timeout_seconds = int(os.getenv("GLOSSARY_TIMEOUT_SECONDS", "45"))
+    max_retries = 1
     for attempt in range(max_retries):
         try:
-            response_text = generate_text_basic(prompt)
+            response_text = call_deepseek_api(
+                prompt,
+                timeout=glossary_timeout_seconds,
+                max_retries=1,
+                retry_delay=1,
+                thinking=False,
+                max_tokens=1200,
+                stream=False,
+                temperature=0.2,
+                top_p=0.9,
+            )
             if not response_text:
                 continue
 
@@ -730,9 +761,9 @@ def _create_name_glossary(text):
             if glossary:
                 print(f"术语表创建成功: {glossary}")
                 return glossary
-        except (json.JSONDecodeError, AttributeError) as e:
+        except Exception as e:
             print(f"创建术语表尝试 {attempt + 1} 失败: {e}")
-            time.sleep(3)
+            time.sleep(1)
             continue
     print("警告: 创建术语表失败，将不使用术语表继续翻译。")
     return {}

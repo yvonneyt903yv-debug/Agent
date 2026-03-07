@@ -12,6 +12,7 @@ Philips RSS 监控脚本
 import hashlib
 import time
 import logging
+import re
 import xml.etree.ElementTree as ET
 import requests
 from datetime import datetime
@@ -22,9 +23,11 @@ from rss_monitor_base import (
     PROXIES,
     load_state, save_state, load_processed, save_processed,
     get_target_dates,
+    clean_content,
     get_article_content_jina,
     process_single_article
 )
+from server_utils import requests_get_with_retry
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -49,6 +52,150 @@ def parse_philips_rss_date(pub_date_str):
     except (ValueError, IndexError) as e:
         logger.warning(f"Failed to parse date '{pub_date_str}': {e}")
         return None
+
+
+# ===== Philips 特有的正文质量检查与回退提取 =====
+
+LOW_QUALITY_MARKERS = [
+    "you are leaving the philips global content page",
+    "you are about to visit a philips global content page",
+    "by clicking on the link, you will be leaving",
+    "our site can best be viewed with the latest version",
+    "our site is best viewed using the latest version",
+    "i understand",
+    "continue",
+    "cookie",
+    "privacy policy",
+    "microsoft edge, google chrome or firefox",
+    "通过点击此链接，您将离开皇家飞利浦",
+    "您即将访问飞利浦的全球内容页面",
+]
+
+
+def is_low_quality_content(content):
+    """判断提取结果是否为壳内容（导航/声明/Cookie）"""
+    if not content:
+        return True
+
+    normalized = re.sub(r'\s+', ' ', content).strip().lower()
+    marker_hits = sum(1 for marker in LOW_QUALITY_MARKERS if marker in normalized)
+
+    # Markdown 导航链接占比过高通常不是正文
+    lines = [line.strip() for line in content.splitlines() if line.strip()]
+    link_lines = [line for line in lines if line.startswith('*   [') or line.startswith('- [')]
+    link_ratio = (len(link_lines) / len(lines)) if lines else 0
+
+    # 过短正文通常是壳层页面或抽取失败
+    if len(content) < 450:
+        return True
+
+    # 标题 + 声明 + 浏览器提示，基本可判定为无效正文
+    too_short_with_noise = len(content) < 900 and marker_hits >= 2
+
+    return too_short_with_noise or marker_hits >= 4 or link_ratio >= 0.35
+
+
+def _extract_main_text_from_html(html):
+    """
+    从 Philips 页面 HTML 中提取正文文本。
+    若 bs4 不可用则返回空字符串，保持兼容。
+    """
+    try:
+        from bs4 import BeautifulSoup
+    except Exception:
+        return ""
+
+    soup = BeautifulSoup(html, "html.parser")
+
+    # 去掉明显噪声节点
+    for tag in soup.select("script, style, nav, footer, header, form, button, noscript, svg"):
+        tag.decompose()
+
+    selectors = [
+        "article",
+        "main article",
+        "main",
+        "[itemprop='articleBody']",
+        ".article-content",
+        ".news-article-content",
+        ".cmp-text",
+        ".richtext",
+    ]
+
+    best_text = ""
+    for selector in selectors:
+        for elem in soup.select(selector):
+            text = elem.get_text("\n", strip=True)
+            if len(text) > len(best_text):
+                best_text = text
+
+    # 兜底：从段落拼接
+    if len(best_text) < 400:
+        paragraphs = [p.get_text(" ", strip=True) for p in soup.select("p")]
+        paragraphs = [p for p in paragraphs if len(p) >= 40]
+        best_text = "\n".join(paragraphs[:60])
+
+    return best_text.strip()
+
+
+def get_article_content_philips(url, rss_title=""):
+    """
+    Philips 专用内容提取：
+    1) 先走 Jina（通用路径）
+    2) 若命中壳内容，再尝试直连页面提取正文
+    """
+    article = get_article_content_jina(url, logger)
+    if article and article.get("content"):
+        jina_content = article["content"]
+        jina_len = len(jina_content)
+        low_quality = is_low_quality_content(jina_content)
+
+        if not low_quality:
+            return article
+
+        # Philips 页面常把正文与导航混在一起返回；长文本通常仍包含可用主体内容
+        if jina_len >= 8000:
+            logger.warning(
+                f"Jina flagged low-quality but content is long ({jina_len} chars), "
+                "using Jina result to avoid false negative"
+            )
+            return article
+
+    logger.warning("Jina result appears low-quality for Philips page, trying direct extraction...")
+
+    try:
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+            )
+        }
+        response = requests_get_with_retry(url, headers=headers, timeout=45)
+
+        # 防止 requests 错误猜测编码导致乱码
+        if not response.encoding or response.encoding.lower() == "iso-8859-1":
+            response.encoding = response.apparent_encoding or "utf-8"
+
+        raw_text = _extract_main_text_from_html(response.text)
+        if not raw_text:
+            return article
+
+        title = rss_title.strip()
+        if not title:
+            title = url.split("/")[-1].replace("-", " ").replace(".html", "")
+
+        merged = f"# {title}\n\n{raw_text}"
+        cleaned = clean_content(merged, logger=logger)
+
+        if is_low_quality_content(cleaned):
+            logger.warning("Direct extraction is still low-quality; skip this article to avoid bad content.")
+            return None
+
+        logger.info(f"Direct extraction success: {len(cleaned)} chars")
+        return {"title": title, "content": cleaned}
+    except Exception as e:
+        logger.error(f"Direct Philips extraction failed: {e}")
+        return article
 
 
 # ===== Philips 特有的数据源 =====
@@ -132,7 +279,7 @@ def process_articles():
         logger.info(f"New article: {link[:80]} ({item.get('date', '')})")
 
         # 使用 Jina Reader 获取内容
-        article = get_article_content_jina(link, logger)
+        article = get_article_content_philips(link, rss_title=item.get("title", ""))
 
         if article and article.get("content"):
             content_len = len(article["content"])
@@ -168,6 +315,8 @@ def process_articles():
                     "url": link,
                     "content_length": content_len,
                     "translated_length": len(content) if content else 0,
+                    "content_preview": (content[:1000] if content else ""),
+                    "content_preview_length": min(len(content), 1000) if content else 0,
                     "processed_at": datetime.now().isoformat(),
                     "status": status,
                     "wechat_published": wechat_published,
