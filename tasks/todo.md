@@ -38,6 +38,14 @@
 - [x] Apply the same extension fix to duplicate NotebookSkill implementation and standalone summary script to avoid regression.
 - [x] Validate updated code paths with syntax checks and spot-check existing podcast files for container/extension consistency.
 
+- [x] Confirm local runtime path for Philips translation entry is `gps/ph.py -> gps/rss_monitor_base.py -> src/singju_ds.py -> src/deepseek.py`.
+- [x] Add unified DeepSeek network strategy in `src/deepseek.py` (`DEEPSEEK_NETWORK_MODE=auto/proxy/direct`) to avoid proxy path split.
+- [x] Add fast-fail glossary extraction in `src/singju_ds.py` (short timeout + single retry + fallback) to prevent blocking at first LLM call.
+- [x] Validate modified Python files with `python3 -m py_compile`.
+- [x] Verify DeepSeek mode resolution (`auto/proxy/direct`) matches crawler proxy source in local checks.
+- [x] Run one full local `gps/ph.py` cycle and capture current blocker (RSS fetch fails at proxy connect before translation stage).
+- [x] Run minimal glossary-call test and confirm fast-fail fallback works (`Connection error` returns quickly and degrades to `{}`).
+
 # Review
 
 - Date: 2026-03-04
@@ -87,4 +95,38 @@
 - Files: `src/notebook_tool.py`, `notebook_tool.py`, `notebooklm_summary_podcast.py`, `tasks/todo.md`
 - Change path: stop forcing `.mp3` filename for downloaded NotebookLM audio; preserve `.m4a` container naming
 - Git commit: not yet
+- Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-07
+- Scope: Philips pipeline stalls on first LLM glossary request and proxy path mismatch
+- Files: `src/deepseek.py`, `src/singju_ds.py`, `tasks/todo.md`
+- Change path: add configurable DeepSeek network mode (`auto/proxy/direct`) and fast-fail glossary extraction fallback
+- Git commit: not yet
+- Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-07
+- Scope: align DeepSeek proxy decision with crawler proxy source
+- Files: `src/deepseek.py`, `tasks/todo.md`
+- Change path: `auto` mode now prefers `gps/server_utils.get_proxy_config()`; local mode-resolution checks pass, but quick live probe hit `Connection error`
+- Git commit: not yet
+- Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-07
+- Scope: execution test for Philips local pipeline after proxy/glossary changes
+- Files: `tasks/todo.md`
+- Change path: ran `gps/ph.py` initial cycle and isolated current failure at RSS proxy connect; ran glossary minimal test and verified fast-fail fallback without long blocking
+- Git commit: not yet
+- Sync status: local updated; VPS not yet synced
+
+- [x] Confirm `translate_and_review.py` currently uses `singju_ds` translation entry.
+- [x] Align translation call with `main_us.py` style by switching to `src/translator.translate_article`.
+- [x] Move script into repo path `scripts/translate_and_review.py` for versioned management.
+- [x] Add `scripts/README.md` for script usage and dependency notes.
+- [x] Commit only related files with a short English message.
+
+- Date: 2026-03-08
+- Scope: move translate-and-review helper into Agent repo and align translator entry with `main_us.py`
+- Files: `scripts/translate_and_review.py`, `scripts/README.md`, `tasks/todo.md`
+- Change path: copied script into `scripts/`, switched translation entry to `src/translator.translate_article`, and added script-level README
+- Git commit: pending
 - Sync status: local updated; VPS not yet synced
