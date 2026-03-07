@@ -14,6 +14,7 @@ import time
 import logging
 import os
 import re
+import argparse
 import xml.etree.ElementTree as ET
 import requests
 from datetime import datetime, timedelta
@@ -52,10 +53,14 @@ IMAGES_DIR = "downloaded_images/siemens"
 from urllib.parse import urljoin
 
 
-def get_siemens_target_dates():
-    """Siemens 仅处理最近 3 天（今天/昨天/前天）。"""
+def get_siemens_target_dates(lookback_days=3, override_dates=None):
+    """返回 Siemens 目标日期集合。默认最近 3 天，可通过 override_dates 覆盖。"""
+    if override_dates:
+        return set(override_dates)
+
+    lookback_days = max(int(lookback_days or 3), 1)
     today = datetime.now().date()
-    return {today - timedelta(days=i) for i in range(3)}
+    return {today - timedelta(days=i) for i in range(lookback_days)}
 
 
 def _parse_lastmod_date(lastmod_text):
@@ -521,7 +526,7 @@ def enhance_content_with_images(content, url, logger):
 
 # ===== Siemens 特有的文章链接获取 =====
 
-def get_article_links():
+def get_article_links(target_dates=None):
     """通过 Selenium 抓取 Press 页面获取文章链接"""
     driver = None
     try:
@@ -535,7 +540,7 @@ def get_article_links():
 
         from selenium.webdriver.common.by import By
 
-        target_dates = get_siemens_target_dates()
+        target_dates = target_dates or get_siemens_target_dates()
         logger.info(f"Target dates: {sorted(target_dates)}")
 
         links = []
@@ -749,22 +754,25 @@ def get_article_links():
 
 # ===== 主处理流程 =====
 
-def process_articles():
+def process_articles(runtime_config=None):
     """主流程：检测 → 获取内容 → 翻译 → 审核 → 发布"""
     logger.info("Checking for new articles...")
+    runtime_config = runtime_config or {}
+    target_dates = runtime_config.get("target_dates") or get_siemens_target_dates()
+    ignore_processed = bool(runtime_config.get("ignore_processed", False))
 
     state = load_state(STATE_FILE)
     processed = load_processed(PROCESSED_FILE)
     processed_links = set(state.get("processed_links", []))
 
-    article_links = get_article_links()
+    article_links = get_article_links(target_dates=target_dates)
 
     new_count = 0
     for item in article_links:
         link = item["link"]
         link_hash = item["link_hash"]
 
-        if link_hash in processed_links:
+        if not ignore_processed and link_hash in processed_links:
             continue
 
         new_count += 1
@@ -789,8 +797,6 @@ def process_articles():
             content = enhance_content_with_images(content, link, logger)
 
             # 从正文提取日期，无法提取时跳过并标记，避免历史文章反复被推送
-            target_dates = get_siemens_target_dates()
-
             article_date = None
             article_date_source = ""
 
@@ -885,11 +891,71 @@ def process_articles():
     logger.info("Processing complete")
 
 
+def _parse_runtime_config():
+    parser = argparse.ArgumentParser(
+        description="Siemens Healthineers monitor with optional one-off rerun controls."
+    )
+    parser.add_argument(
+        "--lookback-days",
+        type=int,
+        default=3,
+        help="默认回看天数（默认 3）"
+    )
+    parser.add_argument(
+        "--rerun-date",
+        action="append",
+        default=[],
+        help="指定要重跑的发布日期（YYYY-MM-DD），可多次传入"
+    )
+    parser.add_argument(
+        "--once",
+        action="store_true",
+        help="只执行一次检查并退出（不启动定时器）"
+    )
+    parser.add_argument(
+        "--ignore-processed",
+        action="store_true",
+        help="忽略 processed 去重记录，强制重跑命中的文章"
+    )
+    args = parser.parse_args()
+
+    override_dates = set()
+    for raw in args.rerun_date:
+        parsed = parse_date(raw)
+        if not parsed:
+            raise SystemExit(f"Invalid --rerun-date value: {raw}. Expected YYYY-MM-DD")
+        override_dates.add(parsed)
+
+    target_dates = get_siemens_target_dates(
+        lookback_days=args.lookback_days,
+        override_dates=override_dates if override_dates else None
+    )
+    ignore_processed = args.ignore_processed or bool(override_dates)
+
+    if override_dates:
+        logger.info(f"Rerun mode target dates: {sorted(target_dates)}")
+        if ignore_processed:
+            logger.info("Rerun mode enabled: processed cache will be ignored for this run")
+
+    return {
+        "target_dates": target_dates,
+        "ignore_processed": ignore_processed,
+        "once": args.once,
+    }
+
+
 def main():
+    runtime_config = _parse_runtime_config()
+
+    if runtime_config.get("once"):
+        logger.info("Run mode: once")
+        process_articles(runtime_config=runtime_config)
+        return
+
     scheduler = BackgroundScheduler()
     # 每4小时运行一次，misfire_grace_time=None 表示错过后总会执行，coalesce=True 合并多次错过的执行
     scheduler.add_job(
-        process_articles,
+        lambda: process_articles(runtime_config=runtime_config),
         'interval',
         hours=4,
         id='polling_job',
@@ -905,7 +971,7 @@ def main():
     logger.info("- Auto-publishes to WeChat after processing")
 
     logger.info("Running initial check...")
-    process_articles()
+    process_articles(runtime_config=runtime_config)
 
     try:
         while True:
