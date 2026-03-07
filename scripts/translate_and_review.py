@@ -13,11 +13,12 @@ import argparse
 
 # 优先补充常见源码路径，避免强依赖“同目录放模块”
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(SCRIPT_DIR)
 EXTRA_IMPORT_DIRS = [
     SCRIPT_DIR,
-    os.path.join(SCRIPT_DIR, "spiders"),
-    os.path.join(SCRIPT_DIR, "Agent"),
-    os.path.join(SCRIPT_DIR, "Agent", "src"),
+    REPO_ROOT,
+    os.path.join(REPO_ROOT, "src"),
+    os.path.join(REPO_ROOT, "spiders"),
 ]
 for extra_dir in EXTRA_IMPORT_DIRS:
     if os.path.isdir(extra_dir) and extra_dir not in sys.path:
@@ -33,27 +34,25 @@ except ImportError:
         import translator
     except ImportError as e:
         print(f"❌ 导入错误: {e}")
-        print("请确保可用路径包含：当前目录 / spiders / Agent / Agent/src")
+        print("请确保可用路径包含：scripts / Agent 根目录 / Agent/src")
         sys.exit(1)
 
 try:
-    from singju_ds import convert_to_markdown_and_copy
+    from src.singju_ds import convert_to_markdown_and_copy
     import pypandoc
 except ImportError as e:
     print(f"❌ 导入错误: {e}")
-    print("请确保可用路径包含：当前目录 / spiders / Agent / Agent/src")
+    print("请确保可用路径包含：scripts / Agent 根目录 / Agent/src")
     print("请确保已安装: pip install pypandoc")
     sys.exit(1)
 
 # 从 review_markdown_ds.py 导入审校相关函数
 try:
-    from review_markdown_ds import (
-        review_markdown_content,      # 审校函数
-        save_reviewed_markdown         # 保存函数
-    )
+    from src.reviewer import review_article
+    from src.review_markdown_ds import save_reviewed_markdown
 except ImportError as e:
     print(f"❌ 导入错误: {e}")
-    print("请确保 review_markdown_ds.py 位于当前目录、spiders 或 Agent/src")
+    print("请确保 reviewer.py / review_markdown_ds.py 位于 Agent/src")
     sys.exit(1)
 
 
@@ -245,8 +244,8 @@ def main():
     print("🔍 正在调用 DeepSeek API 进行审校...")
     print("   (这可能需要几分钟，请耐心等待)\n")
 
-    # 直接调用 review_markdown_ds.py 的审校函数
-    reviewed_content = review_markdown_content(translated_content)
+    # 调用 reviewer 统一审校入口（支持并行分块）
+    reviewed_content = review_article(translated_content)
 
     if not reviewed_content:
         print("\n❌ 审校失败，但翻译结果已保存")
