@@ -26,6 +26,22 @@ import platform
 import shutil
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
+try:
+    from src.translator import translate_article as translate_article_with_pipeline
+except Exception:
+    try:
+        from translator import translate_article as translate_article_with_pipeline
+    except Exception:
+        translate_article_with_pipeline = None
+
+try:
+    from src.reviewer import review_article as review_article_with_pipeline
+except Exception:
+    try:
+        from reviewer import review_article as review_article_with_pipeline
+    except Exception:
+        review_article_with_pipeline = None
+
 # --- 配置区 (macOS 版本) ---
 # !!! 用户需要修改这里 !!!
 # ----------------------------------------------------
@@ -940,6 +956,18 @@ def translate_text_with_deepseek_api(text):
 
 请开始处理文章。
     """
+    use_pipeline_modules = os.getenv("SINGJU_USE_PIPELINE_MODULES", "1").strip().lower() not in {"0", "false", "no"}
+    if use_pipeline_modules and translate_article_with_pipeline:
+        try:
+            print("\n--- 使用 translator.py 进行翻译 ---")
+            translated_text = translate_article_with_pipeline(text)
+            if translated_text and len(translated_text.strip()) > 10:
+                print(f"translator.py 翻译完成，输出长度: {len(translated_text)} 字符")
+                return translated_text
+            print("translator.py 返回为空，将回退到 singju 内置翻译逻辑")
+        except Exception as e:
+            print(f"translator.py 调用失败，回退到 singju 内置翻译逻辑: {e}")
+
     text_chunks = split_text_by_length(text)
     
     if not text_chunks:
@@ -1078,6 +1106,19 @@ def main_workflow():
 
         if translated_full_article_markdown:
             print(f"文章 {idx} 翻译完成。")
+
+            use_pipeline_reviewer = os.getenv("SINGJU_USE_PIPELINE_REVIEWER", "1").strip().lower() not in {"0", "false", "no"}
+            if use_pipeline_reviewer and review_article_with_pipeline:
+                try:
+                    print(f"文章 {idx} 开始使用 reviewer.py 审校。")
+                    reviewed_markdown = review_article_with_pipeline(translated_full_article_markdown)
+                    if reviewed_markdown and reviewed_markdown.strip():
+                        translated_full_article_markdown = reviewed_markdown
+                        print(f"文章 {idx} reviewer.py 审校完成。")
+                    else:
+                        print(f"文章 {idx} reviewer.py 审校结果为空，保留原翻译。")
+                except Exception as e:
+                    print(f"文章 {idx} reviewer.py 审校失败，保留原翻译: {e}")
 
             html_snippet, full_html_content = convert_to_markdown_and_copy(translated_full_article_markdown)
 
