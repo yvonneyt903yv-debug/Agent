@@ -130,3 +130,15 @@
 - Change path: copied script into `scripts/`, switched translation entry to `src/translator.translate_article`, and added script-level README
 - Git commit: pending
 - Sync status: local updated; VPS not yet synced
+
+- [x] Confirm runtime chain for `publish_to_wechat_ds.py` points to `gps/publish_to_wechat.py` and then `baoyu-skills/.../wechat-article.ts`.
+- [x] Reproduce title extraction logic on target markdown and verify H1 parsing is correct (not full body).
+- [x] Fix WeChat editor selector fallback to avoid selecting title input when inserting HTML content.
+- [ ] Re-run one full publish flow and verify article body stays in editor while title keeps only H1 text.
+
+- Date: 2026-03-10
+- Scope: WeChat publish automation pasted full article into title field
+- Files: `baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts`, `tasks/todo.md`
+- Change path: narrowed editor selection to content area, excluded title-like contenteditable elements, and blocked `INPUT/TEXTAREA` fallback before HTML insertion
+- Git commit: not yet
+- Sync status: local updated; VPS not yet synced

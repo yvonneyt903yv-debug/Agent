@@ -412,17 +412,62 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
     console.log('[wechat] Waiting for editor to load...');
     await sleep(2000);
 
-    // 点击编辑器
-    console.log('[wechat] Clicking on editor...');
-    try {
-      await clickElement(session, '.ProseMirror');
-    } catch (e) {
-      console.log('[wechat] Could not click .ProseMirror, trying alternative...');
-      try {
-        await clickElement(session, '[contenteditable="true"]');
-      } catch (e2) {
-        console.log('[wechat] Could not find editor element');
-      }
+    // 点击正文编辑器（避免误选标题输入区域）
+    console.log('[wechat] Clicking on content editor...');
+    const clickedEditor = await evaluate<boolean>(session, `
+      (function() {
+        function isTitleLike(el) {
+          if (!el) return false;
+          const marker = [
+            el.id || '',
+            el.getAttribute('name') || '',
+            el.getAttribute('placeholder') || '',
+            el.getAttribute('aria-label') || '',
+            el.className || '',
+          ].join(' ');
+          if (/title|标题/i.test(marker)) return true;
+          if (el.closest && (el.closest('#title') || el.closest('.title'))) return true;
+          return false;
+        }
+
+        function pickEditor() {
+          const preferred = [
+            '#js_editor .ProseMirror',
+            '.editor_content .ProseMirror',
+            '#js_editor [contenteditable="true"]',
+            '.editor_content [contenteditable="true"]',
+            '.ProseMirror[contenteditable="true"]',
+          ];
+
+          for (const selector of preferred) {
+            const nodes = Array.from(document.querySelectorAll(selector));
+            for (const el of nodes) {
+              if (!isTitleLike(el)) return el;
+            }
+          }
+
+          const allEditable = Array.from(document.querySelectorAll('[contenteditable="true"]'));
+          const candidates = allEditable.filter((el) => !isTitleLike(el));
+          if (!candidates.length) return null;
+
+          // 正文区域通常更大，按可视面积优先
+          candidates.sort((a, b) => {
+            const ra = a.getBoundingClientRect();
+            const rb = b.getBoundingClientRect();
+            return rb.width * rb.height - ra.width * ra.height;
+          });
+          return candidates[0] || null;
+        }
+
+        const editor = pickEditor();
+        if (!editor) return false;
+        editor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        editor.click();
+        return true;
+      })()
+    `);
+    if (!clickedEditor) {
+      console.log('[wechat] Could not find a safe content editor target');
     }
     await sleep(1000);
 
@@ -444,27 +489,66 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
       console.log('[wechat] Inserting content into editor via innerHTML...');
       const insertResult = await evaluate(session, `
         (function() {
-          // 尝试多种选择器找到编辑器
-          let editor = document.querySelector('.ProseMirror') || 
-                       document.querySelector('[contenteditable="true"]') ||
-                       document.querySelector('#js_editor');
-          
+          function isTitleLike(el) {
+            if (!el) return false;
+            const marker = [
+              el.id || '',
+              el.getAttribute('name') || '',
+              el.getAttribute('placeholder') || '',
+              el.getAttribute('aria-label') || '',
+              el.className || '',
+            ].join(' ');
+            if (/title|标题/i.test(marker)) return true;
+            if (el.closest && (el.closest('#title') || el.closest('.title'))) return true;
+            return false;
+          }
+
+          function pickEditor(doc) {
+            const preferred = [
+              '#js_editor .ProseMirror',
+              '.editor_content .ProseMirror',
+              '#js_editor [contenteditable="true"]',
+              '.editor_content [contenteditable="true"]',
+              '.ProseMirror[contenteditable="true"]',
+            ];
+
+            for (const selector of preferred) {
+              const nodes = Array.from(doc.querySelectorAll(selector));
+              for (const el of nodes) {
+                if (!isTitleLike(el)) return el;
+              }
+            }
+
+            const allEditable = Array.from(doc.querySelectorAll('[contenteditable="true"]'));
+            const candidates = allEditable.filter((el) => !isTitleLike(el));
+            if (!candidates.length) return null;
+            candidates.sort((a, b) => {
+              const ra = a.getBoundingClientRect();
+              const rb = b.getBoundingClientRect();
+              return rb.width * rb.height - ra.width * ra.height;
+            });
+            return candidates[0] || null;
+          }
+
+          let editor = pickEditor(document);
+
           if (!editor) {
-            // 如果找不到，尝试在 iframe 中找
             const iframes = document.querySelectorAll('iframe');
             for (const iframe of iframes) {
               try {
                 const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
                 if (iframeDoc) {
-                  editor = iframeDoc.querySelector('.ProseMirror') || 
-                          iframeDoc.querySelector('[contenteditable="true"]');
+                  editor = pickEditor(iframeDoc);
                   if (editor) break;
                 }
               } catch (e) {}
             }
           }
-          
+
           if (editor) {
+            if (editor.tagName === 'INPUT' || editor.tagName === 'TEXTAREA') {
+              return { success: false, error: 'Editor fallback points to input/textarea, aborted' };
+            }
             // 清空现有内容
             editor.innerHTML = '';
             
