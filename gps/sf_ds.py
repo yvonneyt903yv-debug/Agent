@@ -144,18 +144,31 @@ def parse_podscribe_date(date_str):
     # 清洗：移除换行符和多余空格，如果重复只取第一部分
     clean_date_str = date_str.strip().split('\n')[0].strip()
     
-    try:
-        # 优先尝试直接解析 "M/D/YYYY" 格式
-        return datetime.strptime(clean_date_str, "%m/%d/%Y").date()
-    except ValueError:
-        # 如果失败，则回退到旧的 "M/D" 格式处理方式
+    # 1) 优先解析带年份格式
+    for fmt in ("%m/%d/%Y", "%m/%d/%y"):
         try:
-            current_year = datetime.now().year
-            full_date_str = f"{clean_date_str}/{current_year}"
-            return datetime.strptime(full_date_str, "%m/%d/%Y").date()
+            return datetime.strptime(clean_date_str, fmt).date()
         except ValueError:
-            logger.warning(f"无法解析日期字符串: '{date_str}' (清洗后: '{clean_date_str}')")
-            return None
+            pass
+
+    # 2) 解析无年份格式（M/D），并做跨年回推
+    try:
+        month_day = datetime.strptime(clean_date_str, "%m/%d")
+        today = datetime.now().date()
+        candidate = month_day.replace(year=today.year).date()
+
+        # 若无年份日期被解析到“明显未来”，判定其属于上一年
+        # 例如在 2026-03-10 看到 12/14，应回推为 2025-12-14
+        if candidate > (today + timedelta(days=7)):
+            candidate = candidate.replace(year=candidate.year - 1)
+            logger.info(
+                f"检测到无年份日期跨年回推: 原始='{clean_date_str}', "
+                f"回推后='{candidate}'"
+            )
+        return candidate
+    except ValueError:
+        logger.warning(f"无法解析日期字符串: '{date_str}' (清洗后: '{clean_date_str}')")
+        return None
 
 def save_html_source_to_txt(html_content, safe_title, save_path):
     """将HTML源代码保存到txt文件中。"""
