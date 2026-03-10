@@ -136,9 +136,23 @@
 - [x] Fix WeChat editor selector fallback to avoid selecting title input when inserting HTML content.
 - [ ] Re-run one full publish flow and verify article body stays in editor while title keeps only H1 text.
 
+- [x] Confirm runtime module path for Singju translation is `gps/* -> src/singju_ds.py`.
+- [x] Enable parallel chunk translation in `src/singju_ds.py` with ordered merge and serial compensation fallback.
+- [x] Enable parallel chunk review in `src/review_markdown_ds.py` with serial compensation fallback.
+- [x] Run syntax/import checks for stage-1 changes and commit related files only.
+- [x] Switch `src/singju_ds.py` to call `translator.py` and `reviewer.py` first, with safe fallback to legacy path.
+- [x] Run syntax/import checks for stage-2 changes and commit related files only.
+
 - Date: 2026-03-10
 - Scope: WeChat publish automation pasted full article into title field
 - Files: `baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts`, `tasks/todo.md`
 - Change path: narrowed editor selection to content area, excluded title-like contenteditable elements, and blocked `INPUT/TEXTAREA` fallback before HTML insertion
 - Git commit: not yet
+- Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-10
+- Scope: phased safety rollout for Singju translation/review performance
+- Files: `src/singju_ds.py`, `src/review_markdown_ds.py`, `tasks/todo.md`
+- Change path: stage-1 enabled parallel chunk execution in local singju/review module with ordered merge and fallback; stage-2 switched singju entry to `translator.py` + `reviewer.py` with env-controlled fallback
+- Git commit: `b093cc2` (`Enable parallel chunk translation and review`), `8580206` (`Switch singju pipeline to translator and reviewer`)
 - Sync status: local updated; VPS not yet synced
