@@ -24,6 +24,7 @@ from selenium.common.exceptions import StaleElementReferenceException
 import subprocess
 import platform
 import shutil
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # --- 配置区 (macOS 版本) ---
 # !!! 用户需要修改这里 !!!
@@ -947,20 +948,48 @@ def translate_text_with_deepseek_api(text):
     # 步骤 1: 从第一个块创建术语表
     name_glossary = _create_name_glossary(text_chunks[0])
 
-    # 步骤 2: 使用术语表翻译所有块
-    translated_chunks = []
-    print(f"\n--- 开始使用术语表翻译所有 {len(text_chunks)} 个文本块 ---")
-    for i, chunk in enumerate(text_chunks, 1):
-        print(f"\n--- 正在翻译第 {i}/{len(text_chunks)} 块 ---")
-        translated_chunk = _translate_chunk(chunk, name_glossary)
-        
-        if translated_chunk:
-            translated_chunks.append(translated_chunk)
-        else:
-            print(f"第 {i} 块翻译失败，跳过")
+    # 步骤 2: 使用术语表并发翻译所有块（按索引回填，保证顺序不变）
+    total_chunks = len(text_chunks)
+    max_workers = max(1, int(os.getenv("SINGJU_TRANSLATE_CONCURRENCY", "3")))
+    translated_chunks = [None] * total_chunks
+    failed_indices = []
+    print(f"\n--- 开始使用术语表翻译所有 {total_chunks} 个文本块 (并发: {max_workers}) ---")
 
-    if translated_chunks:
-        final_translation = '\n\n'.join(translated_chunks)
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_index = {}
+        for idx, chunk in enumerate(text_chunks):
+            print(f"\n--- 提交翻译任务: 第 {idx + 1}/{total_chunks} 块 ---")
+            future = executor.submit(_translate_chunk, chunk, name_glossary)
+            future_to_index[future] = idx
+
+        for future in as_completed(future_to_index):
+            idx = future_to_index[future]
+            try:
+                translated_chunk = future.result()
+            except Exception as e:
+                print(f"第 {idx + 1} 块并发翻译异常: {e}")
+                translated_chunk = None
+
+            if translated_chunk:
+                translated_chunks[idx] = translated_chunk
+                print(f"第 {idx + 1} 块并发翻译成功")
+            else:
+                print(f"第 {idx + 1} 块并发翻译失败，加入串行补偿队列")
+                failed_indices.append(idx)
+
+    # 并发失败块串行补偿，尽量保持成功率
+    for idx in sorted(failed_indices):
+        print(f"\n--- 正在串行补偿翻译第 {idx + 1}/{total_chunks} 块 ---")
+        translated_chunk = _translate_chunk(text_chunks[idx], name_glossary)
+        if translated_chunk:
+            translated_chunks[idx] = translated_chunk
+            print(f"第 {idx + 1} 块串行补偿成功")
+        else:
+            print(f"第 {idx + 1} 块串行补偿仍失败，跳过")
+
+    ordered_chunks = [chunk for chunk in translated_chunks if chunk]
+    if ordered_chunks:
+        final_translation = '\n\n'.join(ordered_chunks)
         print(f"\n所有文本块翻译完成，合并后总长度: {len(final_translation)} 字符")
         return final_translation
     else:

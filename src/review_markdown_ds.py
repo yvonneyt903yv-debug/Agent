@@ -10,6 +10,7 @@ import sys
 import json
 import traceback
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # 确保能找到 src 目录下的模块
 _script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -139,6 +140,30 @@ def split_text_by_length(text, max_chars=10000):
     return text_chunks
 
 
+def _review_chunk_with_retry(review_prompt, chunk, chunk_index, total_chunks, max_retries=3):
+    """单块审校，保留原有重试语义。"""
+    full_prompt = review_prompt + chunk
+    for attempt in range(max_retries):
+        try:
+            print(f"正在调用 deepseek API 审校第 {chunk_index}/{total_chunks} 块 (尝试 {attempt + 1}/{max_retries})...")
+            reviewed_chunk = call_deepseek_api(full_prompt)
+            if reviewed_chunk and len(reviewed_chunk.strip()) > 10:
+                print(f"✅ 第 {chunk_index} 块审校成功 (输出长度: {len(reviewed_chunk)} 字符)")
+                return reviewed_chunk.strip(), True
+            print(f"⚠️ 第 {chunk_index} 块审校尝试 {attempt + 1}/{max_retries} 失败：返回为空或过短。")
+        except Exception as e:
+            print(f"❌ 第 {chunk_index} 块审校尝试 {attempt + 1}/{max_retries} 失败，错误: {e}")
+            traceback.print_exc()
+
+        if attempt < max_retries - 1:
+            import time
+            wait_time = (attempt + 1) * 2
+            print(f"第 {chunk_index} 块将在 {wait_time} 秒后重试...")
+            time.sleep(wait_time)
+
+    return chunk, False
+
+
 def review_markdown_content(content):
     """
     使用 deepseek API 审校 Markdown 文档
@@ -189,44 +214,52 @@ def review_markdown_content(content):
         print("❌ 错误：文本拆分失败")
         return None
     
-    reviewed_chunks = []
-    
-    # 逐个处理每个文本块
-    for i, chunk in enumerate(text_chunks, 1):
-        print(f"\n--- 正在审校第 {i}/{len(text_chunks)} 块 ---")
-        
-        # 构建完整的 prompt
-        full_prompt = review_prompt + chunk
-        
-        max_retries = 3
-        for attempt in range(max_retries):
+    total_chunks = len(text_chunks)
+    max_workers = max(1, int(os.getenv("REVIEW_MD_CONCURRENCY", "3")))
+    reviewed_chunks = [None] * total_chunks
+    failed_indices = []
+
+    print(f"\n--- 开始并发审校，共 {total_chunks} 块 (并发: {max_workers}) ---")
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_index = {}
+        for idx, chunk in enumerate(text_chunks):
+            print(f"\n--- 提交审校任务: 第 {idx + 1}/{total_chunks} 块 ---")
+            future = executor.submit(
+                _review_chunk_with_retry,
+                review_prompt,
+                chunk,
+                idx + 1,
+                total_chunks,
+                3,
+            )
+            future_to_index[future] = idx
+
+        for future in as_completed(future_to_index):
+            idx = future_to_index[future]
             try:
-                print(f"正在调用 deepseek API (尝试 {attempt + 1}/{max_retries})...")
-                reviewed_chunk = call_deepseek_api(full_prompt)
-                
-                if reviewed_chunk and len(reviewed_chunk.strip()) > 10:
-                    print(f"✅ 第 {i} 块审校成功 (输出长度: {len(reviewed_chunk)} 字符)")
-                    reviewed_chunks.append(reviewed_chunk.strip())
-                    break
-                else:
-                    print(f"⚠️ 审校尝试 {attempt + 1}/{max_retries} 失败：API返回空内容或内容过短。")
-                    
+                reviewed_text, ok = future.result()
             except Exception as e:
-                print(f"❌ 审校尝试 {attempt + 1}/{max_retries} 失败，错误: {e}")
-                traceback.print_exc()
-            
-            if attempt < max_retries - 1:
-                import time
-                wait_time = (attempt + 1) * 2
-                print(f"将在 {wait_time} 秒后进行下一次重试...")
-                time.sleep(wait_time)
-        else:
-            print(f"❌ 错误：第 {i} 块在重试 {max_retries} 次后仍然失败，使用原内容")
-            reviewed_chunks.append(chunk)
+                print(f"❌ 第 {idx + 1} 块并发审校异常: {e}")
+                reviewed_text, ok = text_chunks[idx], False
+
+            reviewed_chunks[idx] = reviewed_text
+            if not ok:
+                failed_indices.append(idx)
+
+    # 并发失败块串行补偿，兼容原有“失败时尽量返回内容”策略
+    for idx in sorted(failed_indices):
+        print(f"🔁 第 {idx + 1} 块并发审校失败，串行补偿重试")
+        reviewed_text, ok = _review_chunk_with_retry(
+            review_prompt, text_chunks[idx], idx + 1, total_chunks, max_retries=3
+        )
+        reviewed_chunks[idx] = reviewed_text if reviewed_text else text_chunks[idx]
+        if not ok:
+            print(f"❌ 第 {idx + 1} 块串行补偿仍失败，使用原内容")
     
     # 合并所有审校后的块
-    if reviewed_chunks:
-        final_reviewed_content = '\n\n'.join(reviewed_chunks)
+    merged_chunks = [chunk for chunk in reviewed_chunks if chunk is not None]
+    if merged_chunks:
+        final_reviewed_content = '\n\n'.join(merged_chunks)
         print(f"\n✅ 所有文本块审校完成，合并后总长度: {len(final_reviewed_content)} 字符")
         
         # 进行后处理，确保对话格式正确
@@ -384,4 +417,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
