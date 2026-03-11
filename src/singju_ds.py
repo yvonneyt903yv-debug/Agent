@@ -1013,9 +1013,11 @@ def translate_text_with_deepseek_api(text):
             translated_chunks[idx] = translated_chunk
             print(f"第 {idx + 1} 块串行补偿成功")
         else:
-            print(f"第 {idx + 1} 块串行补偿仍失败，跳过")
+            # 不丢块：补偿失败时回填原文，避免最终输出缺段
+            translated_chunks[idx] = text_chunks[idx]
+            print(f"第 {idx + 1} 块串行补偿仍失败，已回填原文以保持完整性")
 
-    ordered_chunks = [chunk for chunk in translated_chunks if chunk]
+    ordered_chunks = [chunk if chunk is not None else text_chunks[i] for i, chunk in enumerate(translated_chunks)]
     if ordered_chunks:
         final_translation = '\n\n'.join(ordered_chunks)
         print(f"\n所有文本块翻译完成，合并后总长度: {len(final_translation)} 字符")
