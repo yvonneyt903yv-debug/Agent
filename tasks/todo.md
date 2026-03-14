@@ -7,6 +7,11 @@
 - [x] Verify modified files with syntax checks and one focused local translation-path test.
 - [x] Commit only Podscribe-related files with a short English message.
 
+- [x] Confirm DeepSeek local proxy behavior on Mac and compare proxy vs direct connectivity to NVIDIA API.
+- [x] Add automatic direct fallback in `src/deepseek.py` when proxy path hits connection or timeout errors.
+- [x] Verify `DEEPSEEK_NETWORK_MODE=auto` can succeed locally by falling back from proxy to direct.
+- [ ] Commit only DeepSeek network-fix files with a short English message.
+
 - [x] Confirm real runtime file for Podscribe is `/Users/yvonne/Documents/sf_ds.py` rather than `Agent/gps/sf_ds.py`.
 - [x] Fix `sf_ds.py` so review output cannot silently replace a longer translation with truncated content.
 - [x] Sync the same `sf_ds.py` fix into `Agent/gps/sf_ds.py` to keep repo copy aligned with runtime.
@@ -181,4 +186,11 @@
 - Files: `gps/sf_ds.py`, `tasks/todo.md`
 - Change path: switched Podscribe translation to prefer strict `src/translator.py` path, added final mixed-language rejection gate before file save, and verified with `python3 -m py_compile` plus a local detector smoke test
 - Git commit: `00f1c11` (`Enforce full Chinese podscribe output`)
+- Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-14
+- Scope: DeepSeek local Mac network fallback for Podscribe and related translators
+- Files: `src/deepseek.py`, `tasks/todo.md`
+- Change path: confirmed local Clash proxy port exists but NVIDIA API over proxy fails while direct works; added automatic fallback from proxy to direct on connection/timeout errors; verified `DEEPSEEK_NETWORK_MODE=auto` succeeds and returns `测试成功`
+- Git commit: pending
 - Sync status: local updated; VPS not yet synced

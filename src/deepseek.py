@@ -67,13 +67,40 @@ def _resolve_proxy_strategy() -> tuple[Optional[str], bool, str]:
 
 RESOLVED_PROXY, TRUST_ENV_PROXY, PROXY_SOURCE = _resolve_proxy_strategy()
 
-# ===== Client 初始化 =====
-client = OpenAI(
-    base_url=BASE_URL,
-    api_key=DEEPSEEK_API_KEY,
-    timeout=TIMEOUT,
-    http_client=httpx.Client(proxy=RESOLVED_PROXY, trust_env=TRUST_ENV_PROXY),
-)
+
+def _build_client(proxy: Optional[str], trust_env: bool, timeout: float) -> OpenAI:
+    return OpenAI(
+        base_url=BASE_URL,
+        api_key=DEEPSEEK_API_KEY,
+        timeout=timeout,
+        http_client=httpx.Client(proxy=proxy, trust_env=trust_env),
+    )
+
+
+def _is_connection_error(error_msg: str) -> bool:
+    message = (error_msg or "").lower()
+    needles = (
+        "connection error",
+        "ssl",
+        "connecterror",
+        "connect error",
+        "connection reset",
+        "unexpected eof",
+        "error syscall",
+        "network is unreachable",
+    )
+    return any(token in message for token in needles)
+
+
+def _is_timeout_error(error_msg: str) -> bool:
+    message = (error_msg or "").lower()
+    return "timeout" in message or "timed out" in message
+
+
+def _fallback_to_direct_allowed(proxy_in_use: Optional[str], trust_env: bool) -> bool:
+    if NETWORK_MODE == "direct":
+        return False
+    return bool(proxy_in_use) or trust_env
 
 
 def call_deepseek_api(
@@ -104,6 +131,11 @@ def call_deepseek_api(
         f"🌐 DeepSeek network mode={NETWORK_MODE}, proxy_source={PROXY_SOURCE}, "
         f"proxy_enabled={bool(RESOLVED_PROXY) or TRUST_ENV_PROXY}"
     )
+
+    current_proxy = RESOLVED_PROXY
+    current_trust_env = TRUST_ENV_PROXY
+    current_source = PROXY_SOURCE
+    client = _build_client(current_proxy, current_trust_env, effective_timeout)
 
     for attempt in range(effective_max_retries):
         try:
@@ -142,6 +174,16 @@ def call_deepseek_api(
             error_msg = str(e)
 
             print(f"⚠️ 尝试 {attempt + 1} 失败: {error_msg}")
+
+            if _fallback_to_direct_allowed(current_proxy, current_trust_env) and (
+                _is_connection_error(error_msg) or _is_timeout_error(error_msg)
+            ):
+                print("↪️ 检测到代理链路异常或超时，切换为直连后立即重试...")
+                current_proxy = None
+                current_trust_env = False
+                current_source = "direct_retry"
+                client = _build_client(current_proxy, current_trust_env, effective_timeout)
+                continue
 
             # 如果是最后一次尝试，直接抛出错误
             if attempt == effective_max_retries - 1:
