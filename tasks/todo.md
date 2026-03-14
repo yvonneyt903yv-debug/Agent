@@ -1,5 +1,17 @@
 # Todo
 
+- [x] Confirm the exact local runtime path for Podscribe on Mac (`LaunchAgent -> main.py -> gps/sf_ds.py`).
+- [x] Design a strict full-Chinese translation policy for Podscribe outputs: no English fallback chunks may be saved.
+- [x] Bypass legacy fallback in `gps/sf_ds.py` by preferring `src/translator.py` strict translation path.
+- [x] Add a final Chinese-completeness gate in `gps/sf_ds.py` before saving Markdown/HTML/Word outputs.
+- [x] Verify modified files with syntax checks and one focused local translation-path test.
+- [ ] Commit only Podscribe-related files with a short English message.
+
+- [x] Confirm real runtime file for Podscribe is `/Users/yvonne/Documents/sf_ds.py` rather than `Agent/gps/sf_ds.py`.
+- [x] Fix `sf_ds.py` so review output cannot silently replace a longer translation with truncated content.
+- [x] Sync the same `sf_ds.py` fix into `Agent/gps/sf_ds.py` to keep repo copy aligned with runtime.
+- [x] Run syntax checks for both `sf_ds.py` copies and note restart/verification commands.
+
 - [x] Confirm local runtime file for Philips pipeline is `/Users/yvonne/Documents/Agent/gps/ph.py`.
 - [x] Reproduce and verify bad Philips outputs are shell-content pages (disclaimer/browser tip) rather than real article body.
 - [x] Add Philips-specific low-quality content gate in `gps/ph.py` to block shell/noise extraction.
@@ -155,4 +167,18 @@
 - Files: `src/singju_ds.py`, `src/review_markdown_ds.py`, `tasks/todo.md`
 - Change path: stage-1 enabled parallel chunk execution in local singju/review module with ordered merge and fallback; stage-2 switched singju entry to `translator.py` + `reviewer.py` with env-controlled fallback
 - Git commit: `b093cc2` (`Enable parallel chunk translation and review`), `8580206` (`Switch singju pipeline to translator and reviewer`)
+- Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-12
+- Scope: Podscribe review-stage truncation guard and runtime/repo path alignment
+- Files: `/Users/yvonne/Documents/sf_ds.py`, `gps/sf_ds.py`, `tasks/todo.md`
+- Change path: confirmed real runtime is `/Users/yvonne/Documents/sf_ds.py`; added review-output length guard to prevent short reviewed text replacing longer translations; synced same guard to repo copy; added repo-copy import path fallback for direct execution; verified with `python3 -m py_compile`
+- Git commit: not yet
+- Sync status: local updated; runtime copy updated on Mac; VPS not involved
+
+- Date: 2026-03-14
+- Scope: Podscribe full-Chinese output enforcement on local Mac background run
+- Files: `gps/sf_ds.py`, `tasks/todo.md`
+- Change path: switched Podscribe translation to prefer strict `src/translator.py` path, added final mixed-language rejection gate before file save, and verified with `python3 -m py_compile` plus a local detector smoke test
+- Git commit: pending
 - Sync status: local updated; VPS not yet synced

@@ -9,6 +9,7 @@ import logging
 import schedule
 import argparse
 import fcntl
+import sys
 from datetime import datetime, timedelta
 import traceback
 
@@ -48,9 +49,28 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 
+# 兼容从 Agent/gps 直接运行，补齐 src 模块搜索路径
+_script_dir = os.path.dirname(os.path.abspath(__file__))
+_candidate_module_roots = [
+    os.path.dirname(_script_dir),
+    os.path.join(os.path.dirname(_script_dir), "src"),
+    _script_dir,
+]
+for _path in _candidate_module_roots:
+    if os.path.isdir(_path) and _path not in sys.path:
+        sys.path.insert(0, _path)
+
 # 导入您现有的辅助模块和配置文件
 import singju_ds as gemini_helper
 import config
+
+try:
+    from src.translator import translate_article as strict_translate_article
+except Exception:
+    try:
+        from translator import translate_article as strict_translate_article
+    except Exception:
+        strict_translate_article = None
 
 def setup_logging():
     """配置日志记录，输出到控制台和文件。"""
@@ -84,8 +104,6 @@ def setup_logging():
 logger = setup_logging()
 
 # 导入 DeepSeek review 模块
-import sys
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'Agent', 'src'))
 try:
     from review_markdown_ds import review_markdown_content
     REVIEW_AVAILABLE = True
@@ -103,6 +121,8 @@ FAILED_LOG_FILE = os.path.join(SCRIPT_ROOT, "failed_transcripts.log")
 TRANSLATE_MAX_RETRIES = int(os.getenv("PODSCRIBE_TRANSLATE_MAX_RETRIES", "5"))
 TRANSLATE_RETRY_BASE_SECONDS = int(os.getenv("PODSCRIBE_TRANSLATE_RETRY_BASE_SECONDS", "15"))
 LIST_PAGE_MAX_RETRIES = int(os.getenv("PODSCRIBE_LIST_PAGE_MAX_RETRIES", "3"))
+REVIEW_MIN_RATIO = float(os.getenv("PODSCRIBE_REVIEW_MIN_RATIO", "0.85"))
+REVIEW_RATIO_CHECK_MIN_SOURCE = int(os.getenv("PODSCRIBE_REVIEW_RATIO_CHECK_MIN_SOURCE", "1200"))
 
 # ==================== Podcast 系列配置 ====================
 PODCAST_SERIES = [
@@ -232,7 +252,10 @@ def translate_with_retry(text_to_translate, series_name, title):
     last_error = None
     for attempt in range(1, TRANSLATE_MAX_RETRIES + 1):
         try:
-            translated_markdown = gemini_helper.translate_text_with_deepseek_api(text_to_translate)
+            if strict_translate_article:
+                translated_markdown = strict_translate_article(text_to_translate)
+            else:
+                translated_markdown = gemini_helper.translate_text_with_deepseek_api(text_to_translate)
             if translated_markdown:
                 if attempt > 1:
                     logger.info(f"[{series_name}] 文稿 '{title}' 翻译在第 {attempt} 次尝试成功")
@@ -270,6 +293,68 @@ def load_series_list_with_retry(driver, wait, target_url, series_name):
                 time.sleep(sleep_seconds)
     logger.error(f"[{series_name}] 页面加载超时，未找到文稿列表。最后错误: {last_error}")
     return False
+
+
+def _is_output_complete_enough(source_text, candidate_text, min_ratio, min_source_len):
+    source_len = len(source_text or "")
+    candidate_len = len(candidate_text or "")
+    if candidate_len <= 0:
+        return False, source_len, candidate_len, 0.0
+
+    ratio = candidate_len / max(1, source_len)
+    if source_len < min_source_len:
+        return True, source_len, candidate_len, ratio
+    return ratio >= min_ratio, source_len, candidate_len, ratio
+
+
+def _contains_excessive_english(candidate_text):
+    """拦截明显未翻完的英文段落，避免中英混排结果落盘。"""
+    text = (candidate_text or "").strip()
+    if not text:
+        return True, {"reason": "empty"}
+
+    total_chars = len(text)
+    cjk_chars = len(re.findall(r"[\u4e00-\u9fff]", text))
+    ascii_letters = len(re.findall(r"[A-Za-z]", text))
+
+    suspicious_lines = []
+    suspicious_chars = 0
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        if line.startswith("#"):
+            continue
+
+        words = re.findall(r"[A-Za-z]+(?:'[A-Za-z]+)?", line)
+        line_cjk = len(re.findall(r"[\u4e00-\u9fff]", line))
+        line_alpha = len(re.findall(r"[A-Za-z]", line))
+
+        # 允许少量人名、术语和标题英文，但不允许整段英文正文漏翻。
+        if len(words) >= 8 and line_alpha >= 40 and line_cjk <= 6:
+            suspicious_lines.append(line[:120])
+            suspicious_chars += len(line)
+
+    ascii_ratio = ascii_letters / max(1, total_chars)
+    cjk_ratio = cjk_chars / max(1, total_chars)
+
+    has_excessive_english = (
+        suspicious_chars >= 200
+        or len(suspicious_lines) >= 3
+        or (ascii_letters >= 1200 and cjk_ratio < 0.12)
+        or (ascii_ratio >= 0.55 and cjk_chars < 400)
+    )
+
+    return has_excessive_english, {
+        "total_chars": total_chars,
+        "cjk_chars": cjk_chars,
+        "ascii_letters": ascii_letters,
+        "ascii_ratio": round(ascii_ratio, 4),
+        "cjk_ratio": round(cjk_ratio, 4),
+        "suspicious_line_count": len(suspicious_lines),
+        "suspicious_chars": suspicious_chars,
+        "sample": suspicious_lines[:2],
+    }
 
 def process_series(driver, wait, series_config, target_dates, processed_titles, PROCESSED_FILE):
     """处理单个 Podcast 系列"""
@@ -505,16 +590,46 @@ def process_series(driver, wait, series_config, target_dates, processed_titles, 
                 if REVIEW_AVAILABLE:
                     logger.info(f"[{series_name}] 调用 DeepSeek 进行审校...")
                     try:
+                        pre_review_markdown = translated_markdown
                         reviewed_markdown = review_markdown_content(translated_markdown)
                         if reviewed_markdown:
-                            translated_markdown = reviewed_markdown
-                            logger.info(f"[{series_name}] 审校完成")
+                            ok, source_len, reviewed_len, ratio = _is_output_complete_enough(
+                                pre_review_markdown,
+                                reviewed_markdown,
+                                REVIEW_MIN_RATIO,
+                                REVIEW_RATIO_CHECK_MIN_SOURCE,
+                            )
+                            if ok:
+                                translated_markdown = reviewed_markdown
+                                logger.info(
+                                    f"[{series_name}] 审校完成 "
+                                    f"(len {reviewed_len}/{source_len}={ratio:.3f})"
+                                )
+                            else:
+                                logger.warning(
+                                    f"[{series_name}] 审校结果长度比例过低 "
+                                    f"({reviewed_len}/{source_len}={ratio:.3f} < {REVIEW_MIN_RATIO})，"
+                                    "回退到审校前翻译结果"
+                                )
                         else:
                             logger.warning(f"[{series_name}] 审校返回为空，使用原翻译结果")
                     except Exception as e:
                         logger.warning(f"[{series_name}] 审校失败: {e}，使用原翻译结果")
 
-                logger.info(f"[{series_name}] 翻译完成，正在保存文件...")
+                mixed_lang, mixed_lang_meta = _contains_excessive_english(translated_markdown)
+                if mixed_lang:
+                    error_msg = f"translated output is not fully Chinese: {mixed_lang_meta}"
+                    record_failed_transcript(unique_key, title, series_config["series_id"], error_msg)
+                    logger.error(
+                        f"[{series_name}] 检测到明显英文残留，拒绝保存半成品并保留断点原文: "
+                        f"{mixed_lang_meta}"
+                    )
+                    continue
+
+                logger.info(
+                    f"[{series_name}] 翻译完成，正在保存文件... "
+                    f"(final_len={len(translated_markdown or '')})"
+                )
                 safe_title = re.sub(r'[\\/*?:"<>|]', "", title).strip()[:50]
                 
                 # 在文件名中添加系列标识
