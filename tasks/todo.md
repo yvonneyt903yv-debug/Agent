@@ -5,7 +5,7 @@
 - [x] Bypass legacy fallback in `gps/sf_ds.py` by preferring `src/translator.py` strict translation path.
 - [x] Add a final Chinese-completeness gate in `gps/sf_ds.py` before saving Markdown/HTML/Word outputs.
 - [x] Verify modified files with syntax checks and one focused local translation-path test.
-- [ ] Commit only Podscribe-related files with a short English message.
+- [x] Commit only Podscribe-related files with a short English message.
 
 - [x] Confirm real runtime file for Podscribe is `/Users/yvonne/Documents/sf_ds.py` rather than `Agent/gps/sf_ds.py`.
 - [x] Fix `sf_ds.py` so review output cannot silently replace a longer translation with truncated content.
@@ -180,5 +180,5 @@
 - Scope: Podscribe full-Chinese output enforcement on local Mac background run
 - Files: `gps/sf_ds.py`, `tasks/todo.md`
 - Change path: switched Podscribe translation to prefer strict `src/translator.py` path, added final mixed-language rejection gate before file save, and verified with `python3 -m py_compile` plus a local detector smoke test
-- Git commit: pending
+- Git commit: `00f1c11` (`Enforce full Chinese podscribe output`)
 - Sync status: local updated; VPS not yet synced
