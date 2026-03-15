@@ -25,6 +25,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
+from urllib.parse import urljoin
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -49,6 +50,21 @@ INIT_MARKER_FILE = os.path.join(SCRIPT_DIR, "lex_rss_monitor.initialized")
 LOCK_FILE = os.path.join(SCRIPT_DIR, "lex_rss_monitor.lock")
 LAST_CHECK_FILE = os.path.join(SCRIPT_DIR, "lex_rss_monitor.lastcheck")
 RSS_URL = "https://lexfridman.com/feed/podcast/"
+
+
+def get_translate_script_path():
+    """Resolve translate_and_review.py from current or repo-level script locations."""
+    candidates = [
+        os.path.join(SCRIPT_DIR, "translate_and_review.py"),
+        os.path.join(os.path.dirname(SCRIPT_DIR), "scripts", "translate_and_review.py"),
+    ]
+    for path in candidates:
+        if os.path.exists(path):
+            return path
+    raise FileNotFoundError(
+        "translate_and_review.py not found in gps/ or ../scripts/. "
+        f"Checked: {candidates}"
+    )
 
 logging.basicConfig(
     level=logging.INFO,
@@ -238,12 +254,55 @@ def extract_transcript_url(summary):
     """Extract transcript URL from RSS summary"""
     if not summary:
         return None
+    try:
+        soup = BeautifulSoup(summary, 'html.parser')
+        for anchor in soup.find_all('a', href=True):
+            href = anchor.get('href', '').strip()
+            full_url = urljoin("https://lexfridman.com/", href)
+            if re.search(r'https?://lexfridman\.com/[^"\']*transcript/?$', full_url, re.IGNORECASE):
+                return full_url
+    except Exception:
+        pass
     match = re.search(r'href=["\'](https?://lexfridman\.com/[^"\']*transcript[^"\']*)["\']', summary, re.IGNORECASE)
     if match:
         return match.group(1)
+    match = re.search(r'href=["\'](/[^"\']*transcript[^"\']*)["\']', summary, re.IGNORECASE)
+    if match:
+        return urljoin("https://lexfridman.com/", match.group(1))
     match = re.search(r'(https?://lexfridman\.com/[a-z0-9-]+-transcript)', summary, re.IGNORECASE)
     if match:
         return match.group(1)
+    match = re.search(r'(/([a-z0-9-]+-transcript))', summary, re.IGNORECASE)
+    if match:
+        return urljoin("https://lexfridman.com/", match.group(1))
+    return None
+
+
+def fetch_transcript_url_from_episode_page(episode_url):
+    """Fallback: fetch episode page and look for transcript link there."""
+    if not episode_url:
+        return None
+
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+        }
+        if requests_get_with_retry:
+            response = requests_get_with_retry(episode_url, headers=headers, timeout=30)
+        else:
+            response = requests.get(episode_url, headers=headers, timeout=30)
+        response.raise_for_status()
+
+        soup = BeautifulSoup(response.text, 'html.parser')
+        for anchor in soup.find_all('a', href=True):
+            href = anchor.get('href', '').strip()
+            text = anchor.get_text(" ", strip=True)
+            full_url = urljoin(episode_url, href)
+            if re.search(r'transcript', full_url, re.IGNORECASE) or re.search(r'\btranscript\b', text, re.IGNORECASE):
+                return full_url
+    except Exception as e:
+        logger.warning(f"Failed to fetch transcript URL from episode page {episode_url}: {e}")
+
     return None
 
 
@@ -296,9 +355,23 @@ def fetch_transcript_content(url):
         return None
 
 
+def resolve_transcript_url(transcript_url, episode_url=None):
+    """Resolve transcript URL directly or via episode page fallback."""
+    candidate = transcript_url or ""
+    if candidate and re.search(r'transcript', candidate, re.IGNORECASE):
+        return candidate
+
+    fallback_url = episode_url or candidate
+    if fallback_url:
+        return fetch_transcript_url_from_episode_page(fallback_url)
+
+    return None
+
+
 def translate_and_review(content, title, url):
     """Call translate_and_review.py to process the content. Returns True if successful."""
     try:
+        translate_script = get_translate_script_path()
         safe_title = re.sub(r'[\\/*?:"<>|]', "", title).strip()[:50]
         temp_file = os.path.join(SCRIPT_DIR, f"temp_{safe_title}.txt")
 
@@ -306,9 +379,10 @@ def translate_and_review(content, title, url):
             f.write(f"# {title}\n\nURL: {url}\n\n{content}")
 
         logger.info(f"Calling translate_and_review.py for: {title}")
+        logger.info(f"Using translate script: {translate_script}")
 
         result = subprocess.run(
-            [sys.executable, os.path.join(SCRIPT_DIR, "translate_and_review.py"), temp_file, "--auto"],
+            [sys.executable, translate_script, temp_file, "--auto"],
             capture_output=True,
             text=True,
             timeout=7200
@@ -342,6 +416,11 @@ def process_episode(guid, title, transcript_url, is_retry=False):
     """Process a single episode. Returns True if successful."""
     retry_info = " (retry)" if is_retry else ""
     logger.info(f"Processing{retry_info}: {title}")
+
+    transcript_url = resolve_transcript_url(transcript_url)
+    if not transcript_url:
+        logger.warning(f"Could not resolve transcript URL for: {title}")
+        return False
 
     content = fetch_transcript_content(transcript_url)
 
@@ -442,15 +521,19 @@ def check_rss_feed():
 
             title = entry.get('title', 'Unknown Episode')
             summary = entry.get('summary', '')
+            episode_url = entry.get('link', '')
 
             logger.info(f"Found new episode: {title}")
 
             transcript_url = extract_transcript_url(summary)
+            if not transcript_url:
+                logger.info(f"No transcript URL in RSS summary, trying episode page: {episode_url}")
+                transcript_url = fetch_transcript_url_from_episode_page(episode_url)
 
             if not transcript_url:
                 logger.warning(f"No transcript URL found for: {title}")
-                # Mark as processed since we can't do anything without transcript
-                save_processed_episode(guid)
+                add_pending_episode(guid, title, episode_url or transcript_url or "", retry_count=0)
+                logger.info(f"Added to pending for missing transcript retry: {title}")
                 continue
 
             success = process_episode(guid, title, transcript_url)

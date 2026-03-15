@@ -1,11 +1,15 @@
 # Todo
 
-- [ ] Confirm the real VPS runtime file and service unit for `lexfridman-rss.service`.
-- [ ] Verify whether `lexfridman_rss_monitor.py` on VPS still points to missing `gps/translate_and_review.py`.
-- [ ] Check recent VPS logs for the full failure chain: RSS fetch, transcript fetch, subprocess path, and pending retry behavior.
+- [x] Confirm the real VPS runtime file and service unit for `lexfridman-rss.service`.
+- [x] Verify VPS has `gps/translate_and_review.py`; missing-script hypothesis ruled out.
+- [x] Check recent VPS logs for the full failure chain: new episode detected, transcript URL parse failed, episode then skipped.
 - [x] Fix Lex monitor translation script resolution with a stable repo/runtime path strategy.
 - [x] Validate locally with syntax checks and one dry-run invocation path check.
-- [ ] Provide VPS restart, `journalctl`, and sync commands after the fix.
+- [x] Provide VPS restart, `journalctl`, and sync commands after the fix.
+- [x] Confirm the missed Lex episode was detected but skipped because transcript URL parsing failed.
+- [x] Expand Lex transcript URL extraction to support relative RSS links and episode-page fallback.
+- [x] Change missing-transcript handling to pending retry instead of marking processed immediately.
+- [x] Validate Lex fix with syntax checks and transcript URL extraction smoke tests.
 
 - [x] Confirm the exact local runtime path for Podscribe on Mac (`LaunchAgent -> main.py -> gps/sf_ds.py`).
 - [x] Design a strict full-Chinese translation policy for Podscribe outputs: no English fallback chunks may be saved.
@@ -78,6 +82,20 @@
 - Change path: added fallback resolution for `translate_and_review.py` in both `gps/` and repo-level `scripts/`, and logged the resolved script path before subprocess execution; verified with `python3 -m py_compile` and a direct path-resolution import check
 - Git commit: not yet
 - Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-15
+- Scope: Lex Fridman missed-episode recovery path for transcript URL parsing changes
+- Files: `gps/lexfridman_rss_monitor.py`, `tasks/todo.md`
+- Change path: confirmed `#493` was detected then skipped on `No transcript URL found`; updated transcript URL extraction to support relative links and episode-page fallback; changed missing-transcript handling to pending retry instead of immediate processed marking; verified with `python3 -m py_compile` and extraction smoke tests for relative/absolute transcript links
+- Git commit: not yet
+- Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-15
+- Scope: Lex Fridman VPS runtime verification and recovery instructions
+- Files: `tasks/todo.md`, `tasks/lessons.md`
+- Change path: confirmed VPS service unit uses `/root/projects/.venv/bin/python /root/projects/Agent/gps/lexfridman_rss_monitor.py`; confirmed `/root/projects/Agent/gps/translate_and_review.py` exists; confirmed recent VPS logs detected `#493 – Jeff Kaplan` but skipped it after `No transcript URL found`; recorded required VPS recovery steps to sync updated `gps/lexfridman_rss_monitor.py`, remove `https://lexfridman.com/?p=6426` from `processed_lex_episodes.txt`, restart `lexfridman-rss.service`, and verify with `journalctl`
+- Git commit: pending
+- Sync status: VPS facts recorded; code sync and service verification still pending
 
 - Date: 2026-03-04
 - Scope: local macOS LaunchAgent environment fix for `com.gps.ph.plist`
