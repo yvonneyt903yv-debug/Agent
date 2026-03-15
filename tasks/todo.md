@@ -1,5 +1,12 @@
 # Todo
 
+- [ ] Confirm the real VPS runtime file and service unit for `lexfridman-rss.service`.
+- [ ] Verify whether `lexfridman_rss_monitor.py` on VPS still points to missing `gps/translate_and_review.py`.
+- [ ] Check recent VPS logs for the full failure chain: RSS fetch, transcript fetch, subprocess path, and pending retry behavior.
+- [x] Fix Lex monitor translation script resolution with a stable repo/runtime path strategy.
+- [x] Validate locally with syntax checks and one dry-run invocation path check.
+- [ ] Provide VPS restart, `journalctl`, and sync commands after the fix.
+
 - [x] Confirm the exact local runtime path for Podscribe on Mac (`LaunchAgent -> main.py -> gps/sf_ds.py`).
 - [x] Design a strict full-Chinese translation policy for Podscribe outputs: no English fallback chunks may be saved.
 - [x] Bypass legacy fallback in `gps/sf_ds.py` by preferring `src/translator.py` strict translation path.
@@ -64,6 +71,13 @@
 - [x] Run minimal glossary-call test and confirm fast-fail fallback works (`Connection error` returns quickly and degrades to `{}`).
 
 # Review
+
+- Date: 2026-03-15
+- Scope: Lex Fridman RSS monitor translation-script path robustness
+- Files: `gps/lexfridman_rss_monitor.py`, `tasks/todo.md`
+- Change path: added fallback resolution for `translate_and_review.py` in both `gps/` and repo-level `scripts/`, and logged the resolved script path before subprocess execution; verified with `python3 -m py_compile` and a direct path-resolution import check
+- Git commit: not yet
+- Sync status: local updated; VPS not yet synced
 
 - Date: 2026-03-04
 - Scope: local macOS LaunchAgent environment fix for `com.gps.ph.plist`
