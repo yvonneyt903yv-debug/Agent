@@ -1,5 +1,11 @@
 # Todo
 
+- [x] Confirm the real Podscribe notification path: `agent-new-content-check.service` scans files instead of `sf_ds.py` directly calling `send_publish_notification()`.
+- [x] Verify the actual Podscribe runtime output directory used on VPS for the new file generated on 2026-03-15.
+- [x] Check whether Podscribe writes any state/marker file that the new-content checker depends on.
+- [x] Trace why the new Podscribe output did not trigger Telegram/email notification despite successful output generation.
+- [x] Prepare the minimal fix and VPS verification commands only after the root cause is confirmed.
+
 - [x] Confirm the real VPS runtime file and service unit for `lexfridman-rss.service`.
 - [x] Verify VPS has `gps/translate_and_review.py`; missing-script hypothesis ruled out.
 - [x] Check recent VPS logs for the full failure chain: new episode detected, transcript URL parse failed, episode then skipped.
@@ -10,6 +16,9 @@
 - [x] Expand Lex transcript URL extraction to support relative RSS links and episode-page fallback.
 - [x] Change missing-transcript handling to pending retry instead of marking processed immediately.
 - [x] Validate Lex fix with syntax checks and transcript URL extraction smoke tests.
+- [x] Confirm `#493 – Jeff Kaplan` retry now reaches transcript fetch and starts `translate_and_review.py` on VPS.
+- [x] Confirm current Lex failure mode is subprocess timeout after 7200 seconds rather than missing transcript or missing script.
+- [x] Increase Lex translate-and-review subprocess timeout to 14400 seconds with env override support.
 
 - [x] Confirm the exact local runtime path for Podscribe on Mac (`LaunchAgent -> main.py -> gps/sf_ds.py`).
 - [x] Design a strict full-Chinese translation policy for Podscribe outputs: no English fallback chunks may be saved.
@@ -61,6 +70,11 @@
 - [x] Update `gps/ph.py` to store `content_preview` in `ph_processed.json` for local inspection.
 - [ ] Run one full local ph cycle and verify latest `ph_processed.json` entry contains `content_preview`.
 
+- [x] Confirm Podscribe VPS runtime now extracts full transcript via `structured_graph` instead of partial DOM/copy fallback.
+- [x] Fix Podscribe output path drift so VPS saves under `gps/output/podscribe` rather than an accidental `/Users/...` path.
+- [ ] Re-run all Podscribe updates published after `2026-03-12`, excluding `#1071 Bill Gurley`, after clearing the matching processed/pending entries.
+- [ ] Restart `sf-ds.service` only after the above backfill finishes and verify with `journalctl`.
+
 - [x] Confirm podcast "no sound" report root cause by probing target output file stream/container and volume.
 - [x] Change NotebookLM audio download naming to preserve source container format (`.m4a`) instead of forcing `.mp3`.
 - [x] Apply the same extension fix to duplicate NotebookSkill implementation and standalone summary script to avoid regression.
@@ -96,6 +110,27 @@
 - Change path: confirmed VPS service unit uses `/root/projects/.venv/bin/python /root/projects/Agent/gps/lexfridman_rss_monitor.py`; confirmed `/root/projects/Agent/gps/translate_and_review.py` exists; confirmed recent VPS logs detected `#493 – Jeff Kaplan` but skipped it after `No transcript URL found`; recorded required VPS recovery steps to sync updated `gps/lexfridman_rss_monitor.py`, remove `https://lexfridman.com/?p=6426` from `processed_lex_episodes.txt`, restart `lexfridman-rss.service`, and verify with `journalctl`
 - Git commit: pending
 - Sync status: VPS facts recorded; code sync and service verification still pending
+
+- Date: 2026-03-16
+- Scope: Lex Fridman long-transcript retry timeout on `#493 – Jeff Kaplan`
+- Files: `gps/lexfridman_rss_monitor.py`, `tasks/todo.md`
+- Change path: confirmed VPS retry reaches transcript fetch and launches `translate_and_review.py`, then hits exact 7200-second subprocess timeout (`21:00:04` -> `23:00:04`); raised the outer translate/review timeout to 14400 seconds and made it configurable via `LEX_TRANSLATE_TIMEOUT_SECONDS`
+- Git commit: not yet
+- Sync status: local updated; VPS sync pending
+
+- Date: 2026-03-15
+- Scope: Podscribe transcript root-fix, save-path guard, and post-`2026-03-12` backfill plan
+- Files: `gps/sf_ds.py`, `tasks/todo.md`
+- Change path: switched Podscribe transcript extraction to API `structured_graph` decoding, fixed VPS save-path resolution to `gps/output/podscribe`, confirmed `#1071 Bill Gurley` can extract `111392` chars on VPS, and recorded the remaining rerun plan for all updates after `2026-03-12` except the already-good `#1071`
+- Git commit: `6e75c81` (`Decode Podscribe transcript graph and fix save path`)
+- Sync status: local committed; VPS script sync done, backfill + service restart pending
+
+- Date: 2026-03-16
+- Scope: Podscribe Telegram notification gap on VPS
+- Files: `README.md`, `tasks/todo.md`, `tasks/lessons.md`
+- Change path: confirmed Podscribe does not directly call `send_publish_notification()`; confirmed `agent-new-content-check.service` runs every 10 minutes and scans only `Automated_Articles`, `output/final_published`, and `output/translated`; confirmed Podscribe files are written under `gps/output/podscribe`, which is outside the current scan list; documented the notification architecture and the required fix to scan the whole `gps/output` tree recursively
+- Git commit: not yet
+- Sync status: local docs updated; VPS script change still pending
 
 - Date: 2026-03-04
 - Scope: local macOS LaunchAgent environment fix for `com.gps.ph.plist`

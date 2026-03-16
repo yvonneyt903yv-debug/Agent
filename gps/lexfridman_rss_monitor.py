@@ -50,6 +50,7 @@ INIT_MARKER_FILE = os.path.join(SCRIPT_DIR, "lex_rss_monitor.initialized")
 LOCK_FILE = os.path.join(SCRIPT_DIR, "lex_rss_monitor.lock")
 LAST_CHECK_FILE = os.path.join(SCRIPT_DIR, "lex_rss_monitor.lastcheck")
 RSS_URL = "https://lexfridman.com/feed/podcast/"
+TRANSLATE_TIMEOUT_SECONDS = int(os.getenv("LEX_TRANSLATE_TIMEOUT_SECONDS", "14400"))
 
 
 def get_translate_script_path():
@@ -385,7 +386,7 @@ def translate_and_review(content, title, url):
             [sys.executable, translate_script, temp_file, "--auto"],
             capture_output=True,
             text=True,
-            timeout=7200
+            timeout=TRANSLATE_TIMEOUT_SECONDS
         )
 
         if os.path.exists(temp_file):
@@ -403,7 +404,10 @@ def translate_and_review(content, title, url):
             return False
 
     except subprocess.TimeoutExpired:
-        logger.error(f"Translation timed out for: {title}")
+        logger.error(
+            f"Translation timed out for: {title} "
+            f"(timeout={TRANSLATE_TIMEOUT_SECONDS}s)"
+        )
         if os.path.exists(temp_file):
             os.remove(temp_file)
         return False
