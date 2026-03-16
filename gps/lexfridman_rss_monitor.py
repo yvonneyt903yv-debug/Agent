@@ -51,6 +51,7 @@ LOCK_FILE = os.path.join(SCRIPT_DIR, "lex_rss_monitor.lock")
 LAST_CHECK_FILE = os.path.join(SCRIPT_DIR, "lex_rss_monitor.lastcheck")
 RSS_URL = "https://lexfridman.com/feed/podcast/"
 TRANSLATE_TIMEOUT_SECONDS = int(os.getenv("LEX_TRANSLATE_TIMEOUT_SECONDS", "14400"))
+LEX_OUTPUT_DIR = os.path.join(SCRIPT_DIR, "output", "lexfridman")
 
 
 def get_translate_script_path():
@@ -373,6 +374,7 @@ def translate_and_review(content, title, url):
     """Call translate_and_review.py to process the content. Returns True if successful."""
     try:
         translate_script = get_translate_script_path()
+        os.makedirs(LEX_OUTPUT_DIR, exist_ok=True)
         safe_title = re.sub(r'[\\/*?:"<>|]', "", title).strip()[:50]
         temp_file = os.path.join(SCRIPT_DIR, f"temp_{safe_title}.txt")
 
@@ -381,12 +383,14 @@ def translate_and_review(content, title, url):
 
         logger.info(f"Calling translate_and_review.py for: {title}")
         logger.info(f"Using translate script: {translate_script}")
+        logger.info(f"Using Lex output dir: {LEX_OUTPUT_DIR}")
 
         result = subprocess.run(
             [sys.executable, translate_script, temp_file, "--auto"],
             capture_output=True,
             text=True,
-            timeout=TRANSLATE_TIMEOUT_SECONDS
+            timeout=TRANSLATE_TIMEOUT_SECONDS,
+            cwd=LEX_OUTPUT_DIR,
         )
 
         if os.path.exists(temp_file):

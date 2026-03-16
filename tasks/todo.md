@@ -1,5 +1,11 @@
 # Todo
 
+- [ ] Confirm the safest Telegram path for Lex completion: extend `agent-new-content-check.sh` vs adding direct Telegram send in `lexfridman_rss_monitor.py`.
+- [ ] Identify the exact Lex completion artifacts and directory pattern written on VPS after successful `translate_and_review.py`.
+- [ ] Add Lex completion artifacts to the Telegram scan scope with minimal false positives.
+- [ ] Validate the new-content checker manually once without restarting unrelated services.
+- [ ] Record the Lex Telegram notification rule in project docs after verification.
+
 - [x] Confirm the real Podscribe notification path: `agent-new-content-check.service` scans files instead of `sf_ds.py` directly calling `send_publish_notification()`.
 - [x] Verify the actual Podscribe runtime output directory used on VPS for the new file generated on 2026-03-15.
 - [x] Check whether Podscribe writes any state/marker file that the new-content checker depends on.
@@ -19,6 +25,7 @@
 - [x] Confirm `#493 – Jeff Kaplan` retry now reaches transcript fetch and starts `translate_and_review.py` on VPS.
 - [x] Confirm current Lex failure mode is subprocess timeout after 7200 seconds rather than missing transcript or missing script.
 - [x] Increase Lex translate-and-review subprocess timeout to 14400 seconds with env override support.
+- [x] Route Lex translation/review subprocess working directory to `gps/output/lexfridman` so completion artifacts land under `output`.
 
 - [x] Confirm the exact local runtime path for Podscribe on Mac (`LaunchAgent -> main.py -> gps/sf_ds.py`).
 - [x] Design a strict full-Chinese translation policy for Podscribe outputs: no English fallback chunks may be saved.
@@ -115,6 +122,13 @@
 - Scope: Lex Fridman long-transcript retry timeout on `#493 – Jeff Kaplan`
 - Files: `gps/lexfridman_rss_monitor.py`, `tasks/todo.md`
 - Change path: confirmed VPS retry reaches transcript fetch and launches `translate_and_review.py`, then hits exact 7200-second subprocess timeout (`21:00:04` -> `23:00:04`); raised the outer translate/review timeout to 14400 seconds and made it configurable via `LEX_TRANSLATE_TIMEOUT_SECONDS`
+- Git commit: not yet
+- Sync status: local updated; VPS sync pending
+
+- Date: 2026-03-16
+- Scope: Lex Fridman completion artifacts path alignment for Telegram scanning
+- Files: `gps/lexfridman_rss_monitor.py`, `tasks/todo.md`
+- Change path: kept `translate_and_review.py` unchanged and instead switched the Lex subprocess working directory to `gps/output/lexfridman`, so translated/reviewed files will land under `output` and can be covered by the unified new-content Telegram scanner
 - Git commit: not yet
 - Sync status: local updated; VPS sync pending
 
