@@ -92,6 +92,100 @@ python resume_pipeline.py
 python publish_to_wechat.py output/final_published/PUBLISH_xxx.md
 ```
 
+### 4. NotebookLM 总结并接 publisher
+
+如果你已经有一篇现成 Markdown，想先让 NotebookLM 生成要点，再把要点合并回原稿，最后交给 publisher 生成可发布版本，可以直接运行：
+
+```bash
+python3 md-to-publish.py /absolute/path/to/article.md
+```
+
+默认会生成两个文件：
+
+- `*_publish_source.md`：已合并 `## 【NotebookLM 智能总结】` 的中间稿
+- `*_publish.md`：publisher 输出的最终发布稿
+
+如果环境里已配置 `MINIMAX_API_KEY` 和 `MINIMAX_API_URL`，会走完整 publisher 改写流程；如果没有配置，也会继续完成 publisher 的结构整理和姓名统一，并保留 NotebookLM 总结作为观点总结。
+
+脚本在生成 `*_publish.md` 后，会继续询问是否发布到公众号：
+
+- 输入 `y`：调用 `/Users/yvonne/Documents/publish_to_wechat_ds.py`
+- 输入其他任意内容：直接终止，不发布
+
+如果只是本地验证合并逻辑，不想实际调用 NotebookLM，可以传入测试总结文本：
+
+```bash
+python3 md-to-publish.py /absolute/path/to/article.md \
+  --summary-text $'1. 要点一\n2. 要点二' \
+  --skip-publisher
+```
+
+## VPS 同步（当前生产结构）
+
+当前 VPS（`root@107.174.255.109`）的 `~/projects/Agent` 目录不是 git 仓库，不能使用 `git pull`。
+实际运行目录在：
+
+- `~/projects/Agent/gps`
+- `~/projects/Agent/gps/src`
+
+当本地修改以下文件时，需要用 `scp` 直接覆盖到 VPS 对应位置：
+
+- 本地 `src/notebook_tool.py` -> VPS `~/projects/Agent/gps/src/notebook_tool.py`
+- 本地 `notebook_tool.py` -> VPS `~/projects/Agent/gps/notebook_tool.py`
+- 本地 `notebooklm_summary_podcast.py` -> VPS `~/projects/Agent/gps/notebooklm_summary_podcast.py`
+
+推荐命令：
+
+```bash
+scp /Users/yvonne/Documents/Agent/src/notebook_tool.py \
+  root@107.174.255.109:/root/projects/Agent/gps/src/notebook_tool.py
+
+scp /Users/yvonne/Documents/Agent/notebook_tool.py \
+  /Users/yvonne/Documents/Agent/notebooklm_summary_podcast.py \
+  root@107.174.255.109:/root/projects/Agent/gps/
+```
+
+## Telegram 通知逻辑
+
+当前 VPS 上“新内容提醒”主要不是由各个抓取脚本统一直接发送，而是由 systemd 定时任务统一扫描产出目录后调用 Telegram 通知脚本：
+
+- service: `agent-new-content-check.service`
+- timer: `agent-new-content-check.timer`
+- runtime script: `/usr/local/bin/agent-new-content-check.sh`
+- notify script: `/usr/local/bin/notify_telegram.sh`
+
+工作方式：
+
+1. `agent-new-content-check.timer` 每 10 分钟触发一次 `agent-new-content-check.service`
+2. `agent-new-content-check.sh` 读取 `/var/lib/agent-notify/new_content_last_check` 作为上次扫描时间
+3. 脚本递归扫描指定目录中自上次检查以来的新文件
+4. 若发现新增文件，则把最近命中的文件列表拼成消息，调用 `/usr/local/bin/notify_telegram.sh text "..."`
+5. 扫描完成后更新 `new_content_last_check`
+
+当前约定：
+
+- `Automated_Articles` 不在 `output/` 下，需要单独纳入扫描
+- `gps/output` 应按“整个目录递归扫描”的方式监控，这样 `output/podscribe`、`output/translated`、`output/final_published` 以及未来新增子目录都会自动被纳入提醒
+- 如果新增了新的产出目录，但不在扫描列表中，就会出现“文件已生成但没有 Telegram 提醒”的情况
+
+排查新内容未提醒时，优先检查：
+
+```bash
+systemctl cat agent-new-content-check.service
+systemctl cat agent-new-content-check.timer
+journalctl -u agent-new-content-check.service -n 100 --no-pager
+sed -n '1,240p' /usr/local/bin/agent-new-content-check.sh
+```
+
+推荐的 VPS 监控目录配置：
+
+```bash
+DIRS=(
+  "/root/projects/Agent/gps/Automated_Articles"
+  "/root/projects/Agent/gps/output"
+)
+```
+
 ## 文件结构
 
 ```

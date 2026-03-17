@@ -1,5 +1,22 @@
 # Todo
 
+- [x] Confirm the real reusable entries for this glue flow are `src/notebook_tool.py` and `gps/publisher/publish_run.py`.
+- [x] Add a glue script that summarizes an existing markdown with NotebookLM, merges the summary back into the markdown, and then runs publisher.
+- [x] Make the merged markdown use the publisher-compatible heading `## 【NotebookLM 智能总结】` so existing publish extraction keeps working.
+- [x] Add usage notes for the new glue script in README docs.
+- [x] Validate the new glue script with syntax checks and a no-network local merge/publisher smoke test.
+- [x] Rename the glue script to `md-to-publish.py` under the Agent root and add a final `y` prompt to optionally call `publish_to_wechat_ds.py`.
+
+- [x] Confirm real runtime implementation for reusable NotebookLM document-summary skill is `src/notebook_tool.py`.
+- [x] Add a high-level NotebookLM summary entry in `src/notebook_tool.py` that accepts a document path, extracts source text, uploads to NotebookLM, and writes a structured output with key points first and original input after.
+- [x] Support common text-bearing formats for NotebookLM summary input with native readers plus macOS `textutil` fallback.
+- [x] Collapse root `notebook_tool.py` into a compatibility wrapper around `src.notebook_tool`.
+- [x] Create a reusable skill folder for the NotebookLM document summary workflow.
+- [x] Validate with syntax checks and one local dry-run on text extraction/output assembly paths.
+- [x] Add a drag-and-drop friendly wrapper entry for NotebookLM document summary.
+- [x] Update the local and installed skill instructions so a dropped file path can trigger the workflow directly.
+- [x] Validate the drag-path wrapper with syntax checks and a no-network smoke test.
+
 - [ ] Confirm the safest Telegram path for Lex completion: extend `agent-new-content-check.sh` vs adding direct Telegram send in `lexfridman_rss_monitor.py`.
 - [ ] Identify the exact Lex completion artifacts and directory pattern written on VPS after successful `translate_and_review.py`.
 - [ ] Add Lex completion artifacts to the Telegram scan scope with minimal false positives.
@@ -195,6 +212,13 @@
 - Git commit: not yet
 - Sync status: local updated; VPS not yet synced
 
+- Date: 2026-03-17
+- Scope: NotebookLM summary merge + publisher glue workflow for existing markdown files
+- Files: `md-to-publish.py`, `scripts/README.md`, `README.md`, `tasks/todo.md`
+- Change path: moved the glue script to the Agent root as `md-to-publish.py`; after generating `*_publish.md`, it now asks whether to publish, and only input `y` will call `/Users/yvonne/Documents/publish_to_wechat_ds.py`; verified with `python3 -m py_compile` and a no-network smoke test using `--summary-text`
+- Git commit: not yet
+- Sync status: local updated; VPS sync not needed unless this workflow will be used on VPS
+
 - Date: 2026-03-07
 - Scope: Philips pipeline stalls on first LLM glossary request and proxy path mismatch
 - Files: `src/deepseek.py`, `src/singju_ds.py`, `tasks/todo.md`
@@ -275,3 +299,17 @@
 - Change path: confirmed local Clash proxy port exists but NVIDIA API over proxy fails while direct works; added automatic fallback from proxy to direct on connection/timeout errors; verified `DEEPSEEK_NETWORK_MODE=auto` succeeds and returns `测试成功`
 - Git commit: pending
 - Sync status: local updated; VPS not yet synced
+
+- Date: 2026-03-16
+- Scope: NotebookLM document summary skill and unified output flow
+- Files: `src/notebook_tool.py`, `notebook_tool.py`, `skills/notebooklm-document-summary/SKILL.md`, `skills/notebooklm-document-summary/agents/openai.yaml`, `tasks/todo.md`
+- Change path: promoted `src/notebook_tool.py` to the real document-summary implementation, added multi-format text extraction with `textutil` fallback, added a single entry that saves a markdown output with key points first and original input after, reduced root `notebook_tool.py` to a compatibility wrapper, and created a reusable skill folder for this workflow
+- Git commit: not yet
+- Sync status: local updated; VPS sync not needed unless this capability should also exist on the server
+
+- Date: 2026-03-16
+- Scope: drag-and-drop trigger support for NotebookLM document summary skill
+- Files: `scripts/notebooklm_drop_summary.py`, `skills/notebooklm-document-summary/SKILL.md`, `skills/notebooklm-document-summary/agents/openai.yaml`, `tasks/todo.md`
+- Change path: added a drag-path friendly wrapper script, fixed its project-root import path, updated the project and installed skill prompts so a dropped local file path can directly trigger the workflow, and validated with `py_compile`, text extraction smoke test, and `--help`
+- Git commit: not yet
+- Sync status: local updated; installed skill under `~/.codex/skills/notebooklm-document-summary` updated too
