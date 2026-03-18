@@ -98,9 +98,9 @@ async function waitForDraftSave(session: ChromeSession, timeoutMs = 20_000): Pro
   while (Date.now() - start < timeoutMs) {
     const result = await evaluate<{ saved: boolean; message: string }>(session, `
       (function() {
-        const toast = document.querySelector('.weui-desktop-toast');
+        const toast = document.querySelector('.weui-desktop-toast, #js_save_success, #js_save_success_with_ad, #js_save_success_with_ad_op');
         const text = toast?.textContent?.trim() || '';
-        const saved = !!toast && (!text || /(已保存|保存成功|保存为草稿|success)/i.test(text));
+        const saved = !!toast && /(已保存|保存成功|保存为草稿|success)/i.test(text || '已保存');
         return { saved, message: text };
       })()
     `);
@@ -108,6 +108,21 @@ async function waitForDraftSave(session: ChromeSession, timeoutMs = 20_000): Pro
     await sleep(1000);
   }
   return false;
+}
+
+async function waitForCondition<T>(
+  session: ChromeSession,
+  expression: string,
+  timeoutMs = 20_000,
+  intervalMs = 500,
+): Promise<T | null> {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    const result = await evaluate<T | null>(session, expression);
+    if (result) return result;
+    await sleep(intervalMs);
+  }
+  return null;
 }
 
 async function clickMenuByText(session: ChromeSession, text: string): Promise<void> {
@@ -136,6 +151,103 @@ async function clickMenuByText(session: ChromeSession, text: string): Promise<vo
   await session.cdp.send('Input.dispatchMouseEvent', { type: 'mousePressed', x: pos.x, y: pos.y, button: 'left', clickCount: 1 }, { sessionId: session.sessionId });
   await sleep(100);
   await session.cdp.send('Input.dispatchMouseEvent', { type: 'mouseReleased', x: pos.x, y: pos.y, button: 'left', clickCount: 1 }, { sessionId: session.sessionId });
+}
+
+function extractToken(url: string): string | null {
+  try {
+    return new URL(url).searchParams.get('token');
+  } catch {
+    return null;
+  }
+}
+
+async function waitForEditorTab(
+  cdp: CdpConnection,
+  token: string | null,
+  timeoutMs = 20_000,
+): Promise<{ targetId: string; url: string }> {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    const targets = await cdp.send<{ targetInfos: Array<{ targetId: string; url: string; type: string }> }>('Target.getTargets');
+    const candidates = targets.targetInfos.filter((t) => {
+      if (t.type !== 'page') return false;
+      if (!t.url.includes('/cgi-bin/appmsg')) return false;
+      if (token && extractToken(t.url) !== token) return false;
+      return true;
+    });
+
+    const preferred = candidates.find((t) => t.url.includes('isNew=1') && /media\/appmsg_edit/.test(t.url))
+      || candidates.find((t) => /media\/appmsg_edit/.test(t.url));
+    if (preferred) return { targetId: preferred.targetId, url: preferred.url };
+
+    if (candidates.length > 0) return { targetId: candidates[0]!.targetId, url: candidates[0]!.url };
+    await sleep(500);
+  }
+
+  throw new Error(`New editor tab not found${token ? ` for token ${token}` : ''}`);
+}
+
+async function findExistingEditorTab(
+  cdp: CdpConnection,
+  token: string | null,
+): Promise<{ targetId: string; url: string } | null> {
+  const targets = await cdp.send<{ targetInfos: Array<{ targetId: string; url: string; type: string }> }>('Target.getTargets');
+  const candidates = targets.targetInfos.filter((t) => {
+    if (t.type !== 'page') return false;
+    if (!t.url.includes('/cgi-bin/appmsg')) return false;
+    if (token && extractToken(t.url) !== token) return false;
+    return true;
+  });
+
+  const preferred = candidates.find((t) => t.url.includes('isNew=1') && /media\/appmsg_edit/.test(t.url))
+    || candidates.find((t) => /media\/appmsg_edit/.test(t.url));
+
+  return preferred ? { targetId: preferred.targetId, url: preferred.url } : null;
+}
+
+async function inspectEditorTab(
+  cdp: CdpConnection,
+  targetId: string,
+): Promise<{ href: string; readyState: string; titleExists: boolean; editorExists: boolean }> {
+  const { sessionId } = await cdp.send<{ sessionId: string }>('Target.attachToTarget', { targetId, flatten: true });
+  try {
+    await cdp.send('Runtime.enable', {}, { sessionId });
+    return await evaluate<{ href: string; readyState: string; titleExists: boolean; editorExists: boolean }>(
+      { cdp, sessionId, targetId },
+      `
+        (function() {
+          return {
+            href: location.href,
+            readyState: document.readyState,
+            titleExists: !!document.querySelector('#title, textarea[name="title"], textarea[placeholder*="标题"]'),
+            editorExists: !!document.querySelector('.ProseMirror[contenteditable="true"], #js_editor .ProseMirror, #ueditor_0 .ProseMirror, .mock-iframe-body .ProseMirror')
+          };
+        })()
+      `
+    );
+  } finally {
+    await cdp.send('Target.detachFromTarget', { sessionId }).catch(() => {});
+  }
+}
+
+async function findReadyEditorTab(
+  cdp: CdpConnection,
+): Promise<{ targetId: string; url: string } | null> {
+  const targets = await cdp.send<{ targetInfos: Array<{ targetId: string; url: string; type: string }> }>('Target.getTargets');
+  const candidates = targets.targetInfos.filter((t) => t.type === 'page' && t.url.includes('/cgi-bin/appmsg') && /media\/appmsg_edit/.test(t.url));
+
+  for (const candidate of candidates) {
+    try {
+      const info = await inspectEditorTab(cdp, candidate.targetId);
+      if (info.titleExists && info.editorExists) {
+        return { targetId: candidate.targetId, url: candidate.url };
+      }
+    } catch {
+      continue;
+    }
+  }
+
+  return null;
 }
 
 async function copyImageToClipboard(imagePath: string): Promise<boolean> {
@@ -337,11 +449,17 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
     console.log('[wechat] Waiting for page load...');
     await sleep(3000);
 
+    const readyEditor = await findReadyEditorTab(cdp);
+    const preferredToken = readyEditor ? extractToken(readyEditor.url) : null;
+
     // 优先查找已登录的页面（URL包含token）
     const targets = await cdp.send<{ targetInfos: Array<{ targetId: string; url: string; type: string }> }>('Target.getTargets');
-    let loggedInTarget = targets.targetInfos.find(t => t.type === 'page' && t.url.includes('/cgi-bin/home') && t.url.includes('token='));
+    let loggedInTarget =
+      targets.targetInfos.find(t => t.type === 'page' && t.url.includes('/cgi-bin/home') && preferredToken && extractToken(t.url) === preferredToken)
+      || targets.targetInfos.find(t => t.type === 'page' && t.url.includes('/cgi-bin/home') && t.url.includes('token='));
 
     let session: ChromeSession;
+    let loggedInUrl = '';
     if (loggedInTarget) {
       console.log('[wechat] Found logged-in tab, using it...');
       const { sessionId } = await cdp.send<{ sessionId: string }>('Target.attachToTarget', { targetId: loggedInTarget.targetId, flatten: true });
@@ -349,6 +467,7 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
       await cdp.send('Runtime.enable', {}, { sessionId });
       await cdp.send('DOM.enable', {}, { sessionId });
       session = { cdp, sessionId, targetId: loggedInTarget.targetId };
+      loggedInUrl = loggedInTarget.url;
     } else {
       session = await getPageSession(cdp, 'mp.weixin.qq.com');
       const url = await evaluate<string>(session, 'window.location.href');
@@ -356,19 +475,26 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
         console.log('[wechat] Not logged in. Please scan QR code...');
         const loggedIn = await waitForLogin(session);
         if (!loggedIn) throw new Error('Login timeout');
+        loggedInUrl = await evaluate<string>(session, 'window.location.href');
+      } else {
+        loggedInUrl = url;
       }
     }
     console.log('[wechat] Logged in.');
     await sleep(2000);
 
-    const targets2 = await cdp.send<{ targetInfos: Array<{ targetId: string; url: string; type: string }> }>('Target.getTargets');
-    const initialIds = new Set(targets2.targetInfos.map(t => t.targetId));
+    const currentToken = extractToken(loggedInUrl);
 
-    await clickMenuByText(session, '文章');
-    await sleep(3000);
-
-    const editorTargetId = await waitForNewTab(cdp, initialIds, 'mp.weixin.qq.com');
-    console.log('[wechat] Editor tab opened.');
+    let editorTarget = readyEditor || await findExistingEditorTab(cdp, currentToken);
+    if (editorTarget) {
+      console.log(`[wechat] Reusing existing editor tab: ${editorTarget.url}`);
+    } else {
+      await clickMenuByText(session, '文章');
+      await sleep(3000);
+      editorTarget = await waitForEditorTab(cdp, currentToken);
+      console.log(`[wechat] Editor tab opened: ${editorTarget.url}`);
+    }
+    const editorTargetId = editorTarget.targetId;
 
     const { sessionId } = await cdp.send<{ sessionId: string }>('Target.attachToTarget', { targetId: editorTargetId, flatten: true });
     session = { cdp, sessionId, targetId: editorTargetId };
@@ -376,10 +502,44 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
     await cdp.send('Page.enable', {}, { sessionId });
     await cdp.send('Runtime.enable', {}, { sessionId });
     await cdp.send('DOM.enable', {}, { sessionId });
+    await cdp.send('Page.bringToFront', {}, { sessionId });
+    await sleep(1500);
 
-    // 等待页面完全加载
-    console.log('[wechat] Waiting for page to fully load...');
-    await sleep(5000);
+    const initialEditorState = await evaluate<{ href: string; readyState: string; titleExists: boolean; editorExists: boolean }>(session, `
+      (function() {
+        return {
+          href: location.href,
+          readyState: document.readyState,
+          titleExists: !!document.querySelector('#title, textarea[name="title"], textarea[placeholder*="标题"]'),
+          editorExists: !!document.querySelector('.ProseMirror[contenteditable="true"], #js_editor .ProseMirror, #ueditor_0 .ProseMirror, .mock-iframe-body .ProseMirror')
+        };
+      })()
+    `);
+    console.log('[wechat] Editor state after attach:', JSON.stringify(initialEditorState));
+
+    // 等待标题框和正文编辑器真正可用，而不是只等固定时间
+    console.log('[wechat] Waiting for editor controls to become ready...');
+    const editorReady = await waitForCondition<boolean>(session, `
+      (function() {
+        const titleInput = document.querySelector('#title, textarea[name="title"], textarea[placeholder*="标题"]');
+        const editor = document.querySelector('.ProseMirror[contenteditable="true"], #js_editor .ProseMirror, #ueditor_0 .ProseMirror, .mock-iframe-body .ProseMirror');
+        return !!titleInput && !!editor;
+      })()
+    `, 20000, 1000);
+    if (!editorReady) {
+      const diagnostics = await evaluate<{ href: string; readyState: string; titleExists: boolean; editorExists: boolean; bodyPreview: string }>(session, `
+        (function() {
+          return {
+            href: location.href,
+            readyState: document.readyState,
+            titleExists: !!document.querySelector('#title, textarea[name="title"], textarea[placeholder*="标题"]'),
+            editorExists: !!document.querySelector('.ProseMirror[contenteditable="true"], #js_editor .ProseMirror, #ueditor_0 .ProseMirror, .mock-iframe-body .ProseMirror'),
+            bodyPreview: (document.body?.innerText || '').slice(0, 200)
+          };
+        })()
+      `);
+      throw new Error(`Editor controls did not become ready in time: ${JSON.stringify(diagnostics)}`);
+    }
 
     // 填入标题（带重试）
     if (effectiveTitle) {
@@ -389,12 +549,18 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
         try {
           const filled = await evaluate<boolean>(session, `
             (function() {
-              const titleInput = document.querySelector('#title') || document.querySelector('input[placeholder*="标题"]');
+              const titleInput = document.querySelector('#title, textarea[name="title"], textarea[placeholder*="标题"], input[placeholder*="标题"]');
               if (titleInput) {
-                titleInput.value = ${JSON.stringify(effectiveTitle)};
+                titleInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                titleInput.focus();
+                const nativeSetter = Object.getOwnPropertyDescriptor(window.HTMLTextAreaElement?.prototype || {}, 'value')?.set
+                  || Object.getOwnPropertyDescriptor(window.HTMLInputElement?.prototype || {}, 'value')?.set;
+                if (nativeSetter) nativeSetter.call(titleInput, ${JSON.stringify(effectiveTitle)});
+                else titleInput.value = ${JSON.stringify(effectiveTitle)};
                 titleInput.dispatchEvent(new Event('input', { bubbles: true }));
                 titleInput.dispatchEvent(new Event('change', { bubbles: true }));
-                return true;
+                titleInput.dispatchEvent(new Event('blur', { bubbles: true }));
+                return titleInput.value === ${JSON.stringify(effectiveTitle)};
               }
               return false;
             })()
