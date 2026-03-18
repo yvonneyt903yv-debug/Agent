@@ -16,6 +16,7 @@ import sys
 import subprocess
 import glob
 from pathlib import Path
+from typing import Tuple
 
 # 项目根目录 (Agent/)
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -174,19 +175,37 @@ def publish_to_wechat(md_file_path, theme="grace", skip_review=False):
     print("  4. 等待自动化完成\n")
 
     try:
+        def run_publish_command(run_env) -> Tuple[int, str]:
+            """实时输出底层日志，同时保留文本用于失败判断/重试。"""
+            process = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                bufsize=1,
+                cwd=os.path.dirname(baoyu_script),
+                env=run_env
+            )
+
+            output_lines = []
+            try:
+                assert process.stdout is not None
+                for line in process.stdout:
+                    print(line, end="")
+                    output_lines.append(line)
+                returncode = process.wait(timeout=300)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait()
+                raise
+
+            return returncode, "".join(output_lines)
+
         # 执行命令
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=300,  # 5分钟超时
-            cwd=os.path.dirname(baoyu_script),
-            env=env
-        )
+        returncode, output_text = run_publish_command(env)
 
         # 某些 Node fetch 实现不支持 socks5 代理，检测到后自动无代理重试一次
-        error_text = f"{result.stderr}\n{result.stdout}"
-        if result.returncode != 0 and "UnsupportedProxyProtocol" in error_text:
+        if returncode != 0 and "UnsupportedProxyProtocol" in output_text:
             print("⚠️ 检测到代理协议不受支持，正在自动切换为无代理重试...")
             retry_env = env.copy()
             for key in (
@@ -195,26 +214,18 @@ def publish_to_wechat(md_file_path, theme="grace", skip_review=False):
             ):
                 retry_env.pop(key, None)
 
-            result = subprocess.run(
-                cmd,
-                capture_output=True,
-                text=True,
-                timeout=300,  # 5分钟超时
-                cwd=os.path.dirname(baoyu_script),
-                env=retry_env
-            )
+            returncode, output_text = run_publish_command(retry_env)
 
-        if result.returncode == 0:
+        if returncode == 0:
             print(f"\n{'='*60}")
-            print(f"✅ 文章已成功发布到微信公众号！")
+            print(f"✅ 微信公众号草稿已成功保存！")
             print(f"{'='*60}\n")
             return True
         else:
-            error_msg = result.stderr if result.stderr else result.stdout
             print(f"\n{'='*60}")
             print(f"❌ 发布失败")
             print(f"{'='*60}")
-            print(f"错误信息: {error_msg[:500]}\n")
+            print(f"错误信息: {output_text[-1000:]}\n")
             return False
 
     except subprocess.TimeoutExpired:

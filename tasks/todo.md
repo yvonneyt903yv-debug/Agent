@@ -1,5 +1,11 @@
 # Todo
 
+- [x] Confirm the real local runtime files for manual WeChat publish are `/Users/yvonne/Documents/publish_to_wechat_ds.py`, `/Users/yvonne/Documents/Agent/gps/publish_to_wechat.py`, and `Agent/baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts`.
+- [x] Fix the false-success condition so manual WeChat publish only returns success after an actual draft-save confirmation is detected.
+- [x] Stream the underlying publish logs to the terminal so login waits, editor detection failures, and save failures are visible in real time.
+- [ ] Decide whether manual publish should default to draft-save only or support an explicit final-submit mode, and align CLI messaging with the real behavior.
+- [ ] Validate with one local dry-run path check and one failed-save simulation if feasible, then record restart/usage notes.
+
 - [x] Confirm the real reusable entries for this glue flow are `src/notebook_tool.py` and `gps/publisher/publish_run.py`.
 - [x] Add a glue script that summarizes an existing markdown with NotebookLM, merges the summary back into the markdown, and then runs publisher.
 - [x] Make the merged markdown use the publisher-compatible heading `## 【NotebookLM 智能总结】` so existing publish extraction keeps working.
@@ -218,6 +224,13 @@
 - Change path: moved the glue script to the Agent root as `md-to-publish.py`; after generating `*_publish.md`, it now asks whether to publish, and only input `y` will call `/Users/yvonne/Documents/publish_to_wechat_ds.py`; verified with `python3 -m py_compile` and a no-network smoke test using `--summary-text`
 - Git commit: not yet
 - Sync status: local updated; VPS sync not needed unless this workflow will be used on VPS
+
+- Date: 2026-03-18
+- Scope: Local manual WeChat publish false-success and hidden runtime logs
+- Files: `gps/publish_to_wechat.py`, `baoyu-skills/skills/baoyu-post-to-wechat/scripts/wechat-article.ts`, `tasks/todo.md`
+- Change path: changed the Python wrapper to stream underlying publish logs live instead of swallowing them; changed the WeChat browser script to fail fast when title/editor/save controls are missing or when draft-save confirmation is not detected, so incomplete runs no longer return a false success
+- Git commit: not yet
+- Sync status: local updated; VPS sync not needed unless this manual publish flow is also run on VPS
 
 - Date: 2026-03-07
 - Scope: Philips pipeline stalls on first LLM glossary request and proxy path mismatch

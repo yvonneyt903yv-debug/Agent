@@ -93,6 +93,23 @@ async function waitForLogin(session: ChromeSession, timeoutMs = 120_000): Promis
   return false;
 }
 
+async function waitForDraftSave(session: ChromeSession, timeoutMs = 20_000): Promise<boolean> {
+  const start = Date.now();
+  while (Date.now() - start < timeoutMs) {
+    const result = await evaluate<{ saved: boolean; message: string }>(session, `
+      (function() {
+        const toast = document.querySelector('.weui-desktop-toast');
+        const text = toast?.textContent?.trim() || '';
+        const saved = !!toast && (!text || /(已保存|保存成功|保存为草稿|success)/i.test(text));
+        return { saved, message: text };
+      })()
+    `);
+    if (result?.saved) return true;
+    await sleep(1000);
+  }
+  return false;
+}
+
 async function clickMenuByText(session: ChromeSession, text: string): Promise<void> {
   console.log(`[wechat] Clicking "${text}" menu...`);
   const posResult = await session.cdp.send<{ result: { value: string } }>('Runtime.evaluate', {
@@ -367,9 +384,10 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
     // 填入标题（带重试）
     if (effectiveTitle) {
       console.log('[wechat] Filling title...');
+      let titleFilled = false;
       for (let i = 0; i < 3; i++) {
         try {
-          await evaluate(session, `
+          const filled = await evaluate<boolean>(session, `
             (function() {
               const titleInput = document.querySelector('#title') || document.querySelector('input[placeholder*="标题"]');
               if (titleInput) {
@@ -381,13 +399,17 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
               return false;
             })()
           `);
-          console.log('[wechat] Title filled successfully');
-          break;
+          if (filled) {
+            titleFilled = true;
+            console.log('[wechat] Title filled successfully');
+            break;
+          }
         } catch (e) {
           console.log(`[wechat] Title fill attempt ${i + 1} failed, retrying...`);
           await sleep(1000);
         }
       }
+      if (!titleFilled) throw new Error('Title input not found or title fill failed');
     }
 
     // 填入作者
@@ -467,7 +489,7 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
       })()
     `);
     if (!clickedEditor) {
-      console.log('[wechat] Could not find a safe content editor target');
+      throw new Error('Could not find a safe content editor target');
     }
     await sleep(1000);
 
@@ -574,7 +596,7 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
       if (insertResult && insertResult.success) {
         console.log('[wechat] Content inserted successfully, length:', insertResult.htmlLength);
       } else {
-        console.error('[wechat] Failed to insert content:', insertResult?.error || 'Unknown error');
+        throw new Error(`Failed to insert content: ${insertResult?.error || 'Unknown error'}`);
       }
       
       await sleep(3000);
@@ -638,19 +660,37 @@ export async function postArticle(options: ArticleOptions): Promise<void> {
 
     if (effectiveSummary) {
       console.log(`[wechat] Filling summary: ${effectiveSummary}`);
-      await evaluate(session, `document.querySelector('#js_description').value = ${JSON.stringify(effectiveSummary)}; document.querySelector('#js_description').dispatchEvent(new Event('input', { bubbles: true }));`);
+      const summaryFilled = await evaluate<boolean>(session, `
+        (function() {
+          const summaryInput = document.querySelector('#js_description');
+          if (!summaryInput) return false;
+          summaryInput.value = ${JSON.stringify(effectiveSummary)};
+          summaryInput.dispatchEvent(new Event('input', { bubbles: true }));
+          return true;
+        })()
+      `);
+      if (!summaryFilled) {
+        console.log('[wechat] Summary input not found, skipped');
+      }
     }
 
     console.log('[wechat] Saving as draft...');
-    await evaluate(session, `document.querySelector('#js_submit button').click()`);
+    const clickedSave = await evaluate<boolean>(session, `
+      (function() {
+        const saveButton = document.querySelector('#js_submit button');
+        if (!saveButton) return false;
+        saveButton.click();
+        return true;
+      })()
+    `);
+    if (!clickedSave) throw new Error('Save draft button not found');
     await sleep(3000);
 
-    const saved = await evaluate<boolean>(session, `!!document.querySelector('.weui-desktop-toast')`);
+    const saved = await waitForDraftSave(session);
     if (saved) {
       console.log('[wechat] Draft saved successfully!');
     } else {
-      console.log('[wechat] Waiting for save confirmation...');
-      await sleep(5000);
+      throw new Error('Draft save confirmation not detected');
     }
 
     console.log('[wechat] Done. Browser window left open.');
